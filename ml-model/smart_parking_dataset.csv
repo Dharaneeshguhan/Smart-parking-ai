@@ -1,0 +1,1201 @@
+record_id,timestamp,date,day_of_week,hour_of_day,month,location,vehicle_type,weather,event_type,total_slots,occupied_slots,available_slots,occupancy_rate,traffic_level,price_per_hour_inr,demand_level
+1,2025-01-01 00:00:00,2025-01-01,2,0,1,Velachery,Car,Clear,Festival,30,21,9,0.7,Medium,34.04,Medium
+2,2025-01-01 03:00:00,2025-01-01,2,3,1,Velachery,SUV,Clear,Festival,100,64,36,0.64,Medium,33.08,Medium
+3,2025-01-01 06:00:00,2025-01-01,2,6,1,Guindy,SUV,Clear,None,30,12,18,0.4,Low,28.59,Low
+4,2025-01-01 09:00:00,2025-01-01,2,9,1,Koyambedu,SUV,Cloudy,None,30,23,7,0.767,Medium,40.24,Medium
+5,2025-01-01 12:00:00,2025-01-01,2,12,1,OMR-Perungudi,Car,Clear,None,60,20,40,0.333,Low,29.86,Low
+6,2025-01-01 15:00:00,2025-01-01,2,15,1,Anna Nagar,Car,Clear,None,100,33,67,0.33,Low,28.56,Low
+7,2025-01-01 18:00:00,2025-01-01,2,18,1,Tambaram,Bike,Clear,None,30,22,8,0.733,Medium,33.07,Medium
+8,2025-01-01 21:00:00,2025-01-01,2,21,1,Koyambedu,SUV,Cloudy,Weekend,50,28,22,0.56,Medium,36.13,Medium
+9,2025-01-02 00:00:00,2025-01-02,3,0,1,Velachery,SUV,Clear,None,60,19,41,0.317,Low,26.91,Low
+10,2025-01-02 03:00:00,2025-01-02,3,3,1,Koyambedu,Car,Cloudy,None,50,21,29,0.42,Low,33.15,Low
+11,2025-01-02 06:00:00,2025-01-02,3,6,1,Adyar,Car,Rain,Sale,50,30,20,0.6,Medium,35.27,Medium
+12,2025-01-02 09:00:00,2025-01-02,3,9,1,Guindy,Car,Cloudy,None,50,30,20,0.6,Medium,32.2,Medium
+13,2025-01-02 12:00:00,2025-01-02,3,12,1,Tambaram,SUV,Clear,None,50,18,32,0.36,Low,26.65,Low
+14,2025-01-02 15:00:00,2025-01-02,3,15,1,Velachery,Car,Clear,None,80,16,64,0.2,Low,24.72,Low
+15,2025-01-02 18:00:00,2025-01-02,3,18,1,Anna Nagar,SUV,Rain,None,60,33,27,0.55,Low,32.73,Low
+16,2025-01-02 21:00:00,2025-01-02,3,21,1,OMR-Perungudi,Car,Cloudy,None,40,13,27,0.325,Low,29.93,Low
+17,2025-01-03 00:00:00,2025-01-03,4,0,1,Adyar,Car,Clear,Weekend,30,12,18,0.4,Low,31.05,Low
+18,2025-01-03 03:00:00,2025-01-03,4,3,1,Adyar,SUV,Clear,Weekend,80,40,40,0.5,Low,33.25,Low
+19,2025-01-03 06:00:00,2025-01-03,4,6,1,Mylapore,Car,Cloudy,Weekend,60,26,34,0.433,Low,30.46,Low
+20,2025-01-03 09:00:00,2025-01-03,4,9,1,Porur,Bike,Clear,None,40,19,21,0.475,Low,34.52,Low
+21,2025-01-03 12:00:00,2025-01-03,4,12,1,Koyambedu,Car,Clear,Weekend,60,35,25,0.583,Medium,36.68,Medium
+22,2025-01-03 15:00:00,2025-01-03,4,15,1,Anna Nagar,Car,Cloudy,None,80,29,51,0.362,Low,29.17,Low
+23,2025-01-03 18:00:00,2025-01-03,4,18,1,Anna Nagar,SUV,Cloudy,None,100,64,36,0.64,Medium,34.58,Medium
+24,2025-01-03 21:00:00,2025-01-03,4,21,1,Velachery,SUV,Rain,None,60,19,41,0.317,Low,26.97,Low
+25,2025-01-04 00:00:00,2025-01-04,5,0,1,Porur,SUV,Clear,Weekend,80,49,31,0.613,Medium,37.1,Medium
+26,2025-01-04 03:00:00,2025-01-04,5,3,1,Velachery,SUV,Cloudy,Weekend,100,69,31,0.69,Medium,34.02,Medium
+27,2025-01-04 06:00:00,2025-01-04,5,6,1,Tambaram,Car,Clear,None,30,13,17,0.433,Low,27.88,Low
+28,2025-01-04 09:00:00,2025-01-04,5,9,1,Porur,Car,Clear,Festival,80,78,2,0.975,High,45.17,High
+29,2025-01-04 12:00:00,2025-01-04,5,12,1,Porur,Bike,Clear,None,100,48,52,0.48,Low,34.41,Low
+30,2025-01-04 15:00:00,2025-01-04,5,15,1,Anna Nagar,Car,Rain,Sale,80,63,17,0.787,Medium,37.58,Medium
+31,2025-01-04 18:00:00,2025-01-04,5,18,1,Koyambedu,Bike,Clear,None,50,37,13,0.74,Medium,39.81,Medium
+32,2025-01-04 21:00:00,2025-01-04,5,21,1,Porur,Car,Rain,None,40,30,10,0.75,Medium,40.38,Medium
+33,2025-01-05 00:00:00,2025-01-05,6,0,1,Velachery,SUV,Clear,None,100,53,47,0.53,Low,31.0,Low
+34,2025-01-05 03:00:00,2025-01-05,6,3,1,Anna Nagar,Car,Rain,None,40,21,19,0.525,Low,32.4,Low
+35,2025-01-05 06:00:00,2025-01-05,6,6,1,Porur,Car,Clear,Weekend,80,57,23,0.713,Medium,39.46,Medium
+36,2025-01-05 09:00:00,2025-01-05,6,9,1,OMR-Perungudi,Bike,Cloudy,None,100,71,29,0.71,Medium,37.75,Medium
+37,2025-01-05 12:00:00,2025-01-05,6,12,1,Tambaram,Car,Clear,Weekend,60,40,20,0.667,Medium,32.0,Medium
+38,2025-01-05 15:00:00,2025-01-05,6,15,1,Adyar,Car,Clear,None,30,11,19,0.367,Low,30.73,Low
+39,2025-01-05 18:00:00,2025-01-05,6,18,1,Koyambedu,Car,Cloudy,None,40,28,12,0.7,Medium,39.2,Medium
+40,2025-01-05 21:00:00,2025-01-05,6,21,1,Adyar,Car,Rain,Weekend,30,22,8,0.733,Medium,38.44,Medium
+41,2025-01-06 00:00:00,2025-01-06,0,0,1,OMR-Perungudi,SUV,Clear,None,40,16,24,0.4,Low,31.47,Low
+42,2025-01-06 03:00:00,2025-01-06,0,3,1,Anna Nagar,Bike,Clear,Weekend,100,48,52,0.48,Low,31.58,Low
+43,2025-01-06 06:00:00,2025-01-06,0,6,1,Adyar,Car,Clear,Weekend,60,28,32,0.467,Low,32.54,Low
+44,2025-01-06 09:00:00,2025-01-06,0,9,1,Guindy,SUV,Clear,None,50,29,21,0.58,Medium,31.88,Medium
+45,2025-01-06 12:00:00,2025-01-06,0,12,1,T Nagar,Car,Cloudy,None,100,26,74,0.26,Low,24.71,Low
+46,2025-01-06 15:00:00,2025-01-06,0,15,1,Guindy,Car,Rain,None,100,37,63,0.37,Low,28.04,Low
+47,2025-01-06 18:00:00,2025-01-06,0,18,1,Adyar,Car,Clear,None,40,23,17,0.575,Medium,34.66,Medium
+48,2025-01-06 21:00:00,2025-01-06,0,21,1,Porur,Bike,Rain,None,60,31,29,0.517,Low,35.11,Low
+49,2025-01-07 00:00:00,2025-01-07,1,0,1,OMR-Perungudi,Car,Rain,None,30,14,16,0.467,Low,32.47,Low
+50,2025-01-07 03:00:00,2025-01-07,1,3,1,Velachery,Car,Clear,None,40,8,32,0.2,Low,24.95,Low
+51,2025-01-07 06:00:00,2025-01-07,1,6,1,Guindy,Bike,Clear,None,30,11,19,0.367,Low,28.11,Low
+52,2025-01-07 09:00:00,2025-01-07,1,9,1,Porur,SUV,Cloudy,None,60,36,24,0.6,Medium,36.94,Medium
+53,2025-01-07 12:00:00,2025-01-07,1,12,1,OMR-Perungudi,Bike,Clear,None,100,30,70,0.3,Low,29.12,Low
+54,2025-01-07 15:00:00,2025-01-07,1,15,1,Adyar,SUV,Clear,None,30,12,18,0.4,Low,31.26,Low
+55,2025-01-07 18:00:00,2025-01-07,1,18,1,Tambaram,SUV,Clear,None,30,20,10,0.667,Medium,32.28,Medium
+56,2025-01-07 21:00:00,2025-01-07,1,21,1,Anna Nagar,Car,Clear,Sale,30,19,11,0.633,Medium,34.37,Medium
+57,2025-01-08 00:00:00,2025-01-08,2,0,1,Velachery,Bike,Rain,None,80,29,51,0.362,Low,27.86,Low
+58,2025-01-08 03:00:00,2025-01-08,2,3,1,Velachery,SUV,Clear,None,80,26,54,0.325,Low,27.15,Low
+59,2025-01-08 06:00:00,2025-01-08,2,6,1,Velachery,Bike,Clear,None,60,23,37,0.383,Low,28.12,Low
+60,2025-01-08 09:00:00,2025-01-08,2,9,1,Porur,Bike,Clear,None,40,27,13,0.675,Medium,38.65,Medium
+61,2025-01-08 12:00:00,2025-01-08,2,12,1,Guindy,Bike,Clear,None,40,12,28,0.3,Low,26.89,Low
+62,2025-01-08 15:00:00,2025-01-08,2,15,1,Velachery,Car,Rain,None,30,12,18,0.4,Low,28.85,Low
+63,2025-01-08 18:00:00,2025-01-08,2,18,1,Velachery,Bike,Clear,None,80,41,39,0.512,Low,30.67,Low
+64,2025-01-08 21:00:00,2025-01-08,2,21,1,Velachery,SUV,Clear,None,40,10,30,0.25,Low,25.81,Low
+65,2025-01-09 00:00:00,2025-01-09,3,0,1,Porur,SUV,Cloudy,Sale,80,52,28,0.65,Medium,37.93,Medium
+66,2025-01-09 03:00:00,2025-01-09,3,3,1,T Nagar,SUV,Clear,Weekend,100,58,42,0.58,Medium,30.41,Medium
+67,2025-01-09 06:00:00,2025-01-09,3,6,1,Velachery,SUV,Rain,None,40,17,23,0.425,Low,29.02,Low
+68,2025-01-09 09:00:00,2025-01-09,3,9,1,OMR-Perungudi,SUV,Cloudy,None,40,28,12,0.7,Medium,37.7,Medium
+69,2025-01-09 12:00:00,2025-01-09,3,12,1,Tambaram,SUV,Rain,None,40,18,22,0.45,Low,28.26,Low
+70,2025-01-09 15:00:00,2025-01-09,3,15,1,Mylapore,Car,Cloudy,Weekend,50,22,28,0.44,Low,30.88,Low
+71,2025-01-09 18:00:00,2025-01-09,3,18,1,Guindy,Car,Clear,None,50,31,19,0.62,Medium,32.89,Medium
+72,2025-01-09 21:00:00,2025-01-09,3,21,1,Porur,Bike,Clear,Festival,40,31,9,0.775,Medium,40.7,Medium
+73,2025-01-10 00:00:00,2025-01-10,4,0,1,OMR-Perungudi,SUV,Rain,None,30,13,17,0.433,Low,31.84,Low
+74,2025-01-10 03:00:00,2025-01-10,4,3,1,Anna Nagar,SUV,Clear,None,80,38,42,0.475,Low,31.41,Low
+75,2025-01-10 06:00:00,2025-01-10,4,6,1,Anna Nagar,Car,Clear,None,60,8,52,0.133,Low,24.78,Low
+76,2025-01-10 09:00:00,2025-01-10,4,9,1,Tambaram,Bike,Cloudy,None,40,28,12,0.7,Medium,32.52,Medium
+77,2025-01-10 12:00:00,2025-01-10,4,12,1,OMR-Perungudi,Car,Cloudy,Sale,60,35,25,0.583,Medium,35.15,Medium
+78,2025-01-10 15:00:00,2025-01-10,4,15,1,Anna Nagar,SUV,Clear,Weekend,40,18,22,0.45,Low,30.83,Low
+79,2025-01-10 18:00:00,2025-01-10,4,18,1,Tambaram,Car,Rain,Weekend,60,48,12,0.8,High,34.53,High
+80,2025-01-10 21:00:00,2025-01-10,4,21,1,Porur,Car,Clear,Festival,40,20,20,0.5,Low,34.61,Low
+81,2025-01-11 00:00:00,2025-01-11,5,0,1,Mylapore,Bike,Rain,None,40,24,16,0.6,Medium,33.73,Medium
+82,2025-01-11 03:00:00,2025-01-11,5,3,1,Porur,Bike,Cloudy,None,40,24,16,0.6,Medium,36.71,Medium
+83,2025-01-11 06:00:00,2025-01-11,5,6,1,Tambaram,Bike,Rain,Weekend,50,42,8,0.84,High,35.27,High
+84,2025-01-11 09:00:00,2025-01-11,5,9,1,Tambaram,SUV,Cloudy,None,100,77,23,0.77,Medium,33.83,Medium
+85,2025-01-11 12:00:00,2025-01-11,5,12,1,Tambaram,Car,Rain,None,30,16,14,0.533,Low,29.82,Low
+86,2025-01-11 15:00:00,2025-01-11,5,15,1,Koyambedu,Bike,Clear,None,50,24,26,0.48,Low,34.58,Low
+87,2025-01-11 18:00:00,2025-01-11,5,18,1,Tambaram,Bike,Clear,None,60,51,9,0.85,High,35.36,High
+88,2025-01-11 21:00:00,2025-01-11,5,21,1,Koyambedu,Car,Cloudy,None,40,23,17,0.575,Medium,36.66,Medium
+89,2025-01-12 00:00:00,2025-01-12,6,0,1,OMR-Perungudi,SUV,Rain,None,80,45,35,0.562,Medium,34.75,Medium
+90,2025-01-12 03:00:00,2025-01-12,6,3,1,Adyar,Bike,Rain,None,50,33,17,0.66,Medium,36.48,Medium
+91,2025-01-12 06:00:00,2025-01-12,6,6,1,Koyambedu,Bike,Clear,None,50,27,23,0.54,Low,35.62,Low
+92,2025-01-12 09:00:00,2025-01-12,6,9,1,OMR-Perungudi,SUV,Clear,None,50,43,7,0.86,High,40.75,High
+93,2025-01-12 12:00:00,2025-01-12,6,12,1,Porur,Bike,Clear,None,80,38,42,0.475,Low,34.23,Low
+94,2025-01-12 15:00:00,2025-01-12,6,15,1,Anna Nagar,Car,Clear,None,80,40,40,0.5,Low,31.97,Low
+95,2025-01-12 18:00:00,2025-01-12,6,18,1,Porur,SUV,Cloudy,None,50,39,11,0.78,Medium,40.82,Medium
+96,2025-01-12 21:00:00,2025-01-12,6,21,1,Tambaram,SUV,Cloudy,None,60,27,33,0.45,Low,27.97,Low
+97,2025-01-13 00:00:00,2025-01-13,0,0,1,Mylapore,SUV,Clear,None,100,37,63,0.37,Low,29.4,Low
+98,2025-01-13 03:00:00,2025-01-13,0,3,1,Koyambedu,Car,Rain,None,50,23,27,0.46,Low,33.74,Low
+99,2025-01-13 06:00:00,2025-01-13,0,6,1,Porur,Car,Clear,Weekend,40,19,21,0.475,Low,34.16,Low
+100,2025-01-13 09:00:00,2025-01-13,0,9,1,Adyar,Bike,Cloudy,None,60,37,23,0.617,Medium,35.65,Medium
+101,2025-01-13 12:00:00,2025-01-13,0,12,1,Guindy,Bike,Cloudy,None,100,27,73,0.27,Low,26.04,Low
+102,2025-01-13 15:00:00,2025-01-13,0,15,1,Mylapore,Car,Cloudy,None,60,21,39,0.35,Low,28.86,Low
+103,2025-01-13 18:00:00,2025-01-13,0,18,1,Velachery,SUV,Cloudy,None,60,36,24,0.6,Medium,32.39,Medium
+104,2025-01-13 21:00:00,2025-01-13,0,21,1,OMR-Perungudi,Car,Clear,None,60,17,43,0.283,Low,28.92,Low
+105,2025-01-14 00:00:00,2025-01-14,1,0,1,Mylapore,SUV,Cloudy,Weekend,40,19,21,0.475,Low,31.64,Low
+106,2025-01-14 03:00:00,2025-01-14,1,3,1,Koyambedu,SUV,Rain,Sale,50,33,17,0.66,Medium,38.31,Medium
+107,2025-01-14 06:00:00,2025-01-14,1,6,1,OMR-Perungudi,Car,Clear,Weekend,60,37,23,0.617,Medium,35.85,Medium
+108,2025-01-14 09:00:00,2025-01-14,1,9,1,Mylapore,SUV,Clear,None,60,37,23,0.617,Medium,34.16,Medium
+109,2025-01-14 12:00:00,2025-01-14,1,12,1,Porur,Bike,Clear,None,80,30,50,0.375,Low,32.01,Low
+110,2025-01-14 15:00:00,2025-01-14,1,15,1,Velachery,Bike,Clear,None,100,34,66,0.34,Low,27.5,Low
+111,2025-01-14 18:00:00,2025-01-14,1,18,1,OMR-Perungudi,SUV,Clear,None,30,13,17,0.433,Low,32.24,Low
+112,2025-01-14 21:00:00,2025-01-14,1,21,1,Anna Nagar,Bike,Clear,None,100,35,65,0.35,Low,28.89,Low
+113,2025-01-15 00:00:00,2025-01-15,2,0,1,OMR-Perungudi,Bike,Clear,None,60,21,39,0.35,Low,30.34,Low
+114,2025-01-15 03:00:00,2025-01-15,2,3,1,Guindy,SUV,Clear,Weekend,80,53,27,0.662,Medium,33.61,Medium
+115,2025-01-15 06:00:00,2025-01-15,2,6,1,Guindy,Bike,Clear,None,60,20,40,0.333,Low,27.32,Low
+116,2025-01-15 09:00:00,2025-01-15,2,9,1,Guindy,SUV,Clear,Festival,80,74,6,0.925,High,38.47,High
+117,2025-01-15 12:00:00,2025-01-15,2,12,1,Adyar,Car,Clear,None,60,21,39,0.35,Low,30.19,Low
+118,2025-01-15 15:00:00,2025-01-15,2,15,1,Guindy,SUV,Cloudy,None,50,14,36,0.28,Low,26.41,Low
+119,2025-01-15 18:00:00,2025-01-15,2,18,1,Anna Nagar,SUV,Rain,Weekend,60,53,7,0.883,High,39.65,High
+120,2025-01-15 21:00:00,2025-01-15,2,21,1,T Nagar,Car,Cloudy,None,60,26,34,0.433,Low,27.92,Low
+121,2025-01-16 00:00:00,2025-01-16,3,0,1,Guindy,Bike,Clear,Weekend,40,21,19,0.525,Low,31.08,Low
+122,2025-01-16 03:00:00,2025-01-16,3,3,1,Guindy,Bike,Clear,None,50,14,36,0.28,Low,26.24,Low
+123,2025-01-16 06:00:00,2025-01-16,3,6,1,Porur,Car,Clear,None,60,28,32,0.467,Low,33.98,Low
+124,2025-01-16 09:00:00,2025-01-16,3,9,1,OMR-Perungudi,SUV,Clear,Sale,30,21,9,0.7,Medium,37.24,Medium
+125,2025-01-16 12:00:00,2025-01-16,3,12,1,Velachery,Car,Clear,None,100,40,60,0.4,Low,28.5,Low
+126,2025-01-16 15:00:00,2025-01-16,3,15,1,Adyar,Bike,Clear,None,30,16,14,0.533,Low,33.87,Low
+127,2025-01-16 18:00:00,2025-01-16,3,18,1,Velachery,Bike,Clear,Weekend,80,51,29,0.637,Medium,33.11,Medium
+128,2025-01-16 21:00:00,2025-01-16,3,21,1,Tambaram,SUV,Rain,None,40,15,25,0.375,Low,26.92,Low
+129,2025-01-17 00:00:00,2025-01-17,4,0,1,Velachery,Car,Clear,Sale,40,22,18,0.55,Medium,31.55,Medium
+130,2025-01-17 03:00:00,2025-01-17,4,3,1,Porur,Bike,Rain,None,80,31,49,0.388,Low,32.42,Low
+131,2025-01-17 06:00:00,2025-01-17,4,6,1,Adyar,Car,Cloudy,None,30,8,22,0.267,Low,28.3,Low
+132,2025-01-17 09:00:00,2025-01-17,4,9,1,Velachery,SUV,Rain,Festival,100,98,2,0.98,High,39.52,High
+133,2025-01-17 12:00:00,2025-01-17,4,12,1,Velachery,Bike,Clear,Festival,80,45,35,0.562,Medium,31.68,Medium
+134,2025-01-17 15:00:00,2025-01-17,4,15,1,Tambaram,Bike,Clear,None,30,12,18,0.4,Low,26.98,Low
+135,2025-01-17 18:00:00,2025-01-17,4,18,1,Mylapore,Bike,Clear,None,30,16,14,0.533,Low,32.42,Low
+136,2025-01-17 21:00:00,2025-01-17,4,21,1,Anna Nagar,SUV,Clear,None,60,28,32,0.467,Low,31.39,Low
+137,2025-01-18 00:00:00,2025-01-18,5,0,1,Porur,Bike,Clear,Weekend,80,47,33,0.588,Medium,36.69,Medium
+138,2025-01-18 03:00:00,2025-01-18,5,3,1,Mylapore,Bike,Clear,Weekend,60,37,23,0.617,Medium,34.36,Medium
+139,2025-01-18 06:00:00,2025-01-18,5,6,1,Adyar,Bike,Clear,None,30,18,12,0.6,Medium,35.32,Medium
+140,2025-01-18 09:00:00,2025-01-18,5,9,1,Koyambedu,Bike,Clear,None,80,55,25,0.688,Medium,38.72,Medium
+141,2025-01-18 12:00:00,2025-01-18,5,12,1,Tambaram,Bike,Clear,None,40,22,18,0.55,Low,29.87,Low
+142,2025-01-18 15:00:00,2025-01-18,5,15,1,Tambaram,Bike,Cloudy,Weekend,50,39,11,0.78,Medium,34.12,Medium
+143,2025-01-18 18:00:00,2025-01-18,5,18,1,OMR-Perungudi,Car,Clear,None,30,20,10,0.667,Medium,36.48,Medium
+144,2025-01-18 21:00:00,2025-01-18,5,21,1,Guindy,Bike,Clear,None,60,33,27,0.55,Low,31.3,Low
+145,2025-01-19 00:00:00,2025-01-19,6,0,1,Mylapore,Car,Clear,Festival,60,51,9,0.85,High,38.85,High
+146,2025-01-19 03:00:00,2025-01-19,6,3,1,Guindy,Bike,Cloudy,None,100,62,38,0.62,Medium,32.77,Medium
+147,2025-01-19 06:00:00,2025-01-19,6,6,1,Mylapore,SUV,Clear,None,80,34,46,0.425,Low,30.53,Low
+148,2025-01-19 09:00:00,2025-01-19,6,9,1,OMR-Perungudi,Bike,Clear,None,50,34,16,0.68,Medium,36.96,Medium
+149,2025-01-19 12:00:00,2025-01-19,6,12,1,Porur,Car,Clear,None,40,23,17,0.575,Medium,36.35,Medium
+150,2025-01-19 15:00:00,2025-01-19,6,15,1,OMR-Perungudi,Bike,Clear,None,100,55,45,0.55,Medium,34.46,Medium
+151,2025-01-19 18:00:00,2025-01-19,6,18,1,Porur,SUV,Cloudy,None,100,83,17,0.83,High,41.93,High
+152,2025-01-19 21:00:00,2025-01-19,6,21,1,Porur,Bike,Clear,Weekend,30,20,10,0.667,Medium,38.64,Medium
+153,2025-01-20 00:00:00,2025-01-20,0,0,1,Anna Nagar,Bike,Clear,None,50,15,35,0.3,Low,27.85,Low
+154,2025-01-20 03:00:00,2025-01-20,0,3,1,T Nagar,Car,Cloudy,None,30,12,18,0.4,Low,27.17,Low
+155,2025-01-20 06:00:00,2025-01-20,0,6,1,Mylapore,Bike,Clear,Weekend,30,15,15,0.5,Low,31.77,Low
+156,2025-01-20 09:00:00,2025-01-20,0,9,1,Mylapore,Bike,Rain,None,60,37,23,0.617,Medium,34.33,Medium
+157,2025-01-20 12:00:00,2025-01-20,0,12,1,Mylapore,Car,Clear,Weekend,30,19,11,0.633,Medium,34.26,Medium
+158,2025-01-20 15:00:00,2025-01-20,0,15,1,Koyambedu,SUV,Clear,None,100,39,61,0.39,Low,32.38,Low
+159,2025-01-20 18:00:00,2025-01-20,0,18,1,Porur,Bike,Clear,Sale,30,21,9,0.7,Medium,39.22,Medium
+160,2025-01-20 21:00:00,2025-01-20,0,21,1,Koyambedu,SUV,Clear,Festival,80,56,24,0.7,Medium,39.17,Medium
+161,2025-01-21 00:00:00,2025-01-21,1,0,1,Guindy,SUV,Clear,Weekend,60,24,36,0.4,Low,28.41,Low
+162,2025-01-21 03:00:00,2025-01-21,1,3,1,Guindy,SUV,Clear,None,50,21,29,0.42,Low,28.81,Low
+163,2025-01-21 06:00:00,2025-01-21,1,6,1,Velachery,Car,Clear,None,40,18,22,0.45,Low,29.37,Low
+164,2025-01-21 09:00:00,2025-01-21,1,9,1,Anna Nagar,Car,Clear,None,40,21,19,0.525,Low,32.58,Low
+165,2025-01-21 12:00:00,2025-01-21,1,12,1,Guindy,Car,Clear,None,60,26,34,0.433,Low,29.07,Low
+166,2025-01-21 15:00:00,2025-01-21,1,15,1,Adyar,Bike,Cloudy,None,50,21,29,0.42,Low,31.55,Low
+167,2025-01-21 18:00:00,2025-01-21,1,18,1,Velachery,SUV,Clear,None,100,67,33,0.67,Medium,33.58,Medium
+168,2025-01-21 21:00:00,2025-01-21,1,21,1,Koyambedu,Car,Clear,Weekend,100,62,38,0.62,Medium,37.43,Medium
+169,2025-01-22 00:00:00,2025-01-22,2,0,1,OMR-Perungudi,Car,Rain,None,40,16,24,0.4,Low,31.49,Low
+170,2025-01-22 03:00:00,2025-01-22,2,3,1,Velachery,SUV,Clear,None,30,9,21,0.3,Low,26.48,Low
+171,2025-01-22 06:00:00,2025-01-22,2,6,1,Koyambedu,Bike,Clear,None,50,14,36,0.28,Low,30.02,Low
+172,2025-01-22 09:00:00,2025-01-22,2,9,1,Guindy,Car,Clear,None,50,27,23,0.54,Low,31.11,Low
+173,2025-01-22 12:00:00,2025-01-22,2,12,1,Koyambedu,SUV,Cloudy,Weekend,30,15,15,0.5,Low,34.67,Low
+174,2025-01-22 15:00:00,2025-01-22,2,15,1,Porur,SUV,Rain,None,30,14,16,0.467,Low,33.88,Low
+175,2025-01-22 18:00:00,2025-01-22,2,18,1,Koyambedu,Bike,Cloudy,Sale,30,26,4,0.867,High,42.41,High
+176,2025-01-22 21:00:00,2025-01-22,2,21,1,Koyambedu,SUV,Clear,Festival,30,21,9,0.7,Medium,39.47,Medium
+177,2025-01-23 00:00:00,2025-01-23,3,0,1,Mylapore,SUV,Clear,None,50,18,32,0.36,Low,28.95,Low
+178,2025-01-23 03:00:00,2025-01-23,3,3,1,Mylapore,Bike,Clear,None,30,14,16,0.467,Low,31.23,Low
+179,2025-01-23 06:00:00,2025-01-23,3,6,1,Velachery,Bike,Cloudy,None,40,14,26,0.35,Low,27.78,Low
+180,2025-01-23 09:00:00,2025-01-23,3,9,1,Guindy,Bike,Clear,None,80,65,15,0.812,High,36.45,High
+181,2025-01-23 12:00:00,2025-01-23,3,12,1,Tambaram,SUV,Clear,Sale,30,18,12,0.6,Medium,30.8,Medium
+182,2025-01-23 15:00:00,2025-01-23,3,15,1,T Nagar,Car,Clear,Weekend,100,40,60,0.4,Low,27.23,Low
+183,2025-01-23 18:00:00,2025-01-23,3,18,1,Adyar,SUV,Cloudy,None,80,44,36,0.55,Low,34.27,Low
+184,2025-01-23 21:00:00,2025-01-23,3,21,1,Mylapore,Bike,Clear,None,30,12,18,0.4,Low,29.69,Low
+185,2025-01-24 00:00:00,2025-01-24,4,0,1,Mylapore,SUV,Clear,None,100,33,67,0.33,Low,28.58,Low
+186,2025-01-24 03:00:00,2025-01-24,4,3,1,Koyambedu,Car,Clear,None,40,16,24,0.4,Low,32.79,Low
+187,2025-01-24 06:00:00,2025-01-24,4,6,1,OMR-Perungudi,Car,Rain,None,60,28,32,0.467,Low,32.68,Low
+188,2025-01-24 09:00:00,2025-01-24,4,9,1,Mylapore,SUV,Clear,None,30,18,12,0.6,Medium,33.76,Medium
+189,2025-01-24 12:00:00,2025-01-24,4,12,1,Porur,Bike,Clear,None,80,23,57,0.287,Low,30.1,Low
+190,2025-01-24 15:00:00,2025-01-24,4,15,1,Mylapore,Car,Clear,None,40,9,31,0.225,Low,26.53,Low
+191,2025-01-24 18:00:00,2025-01-24,4,18,1,Koyambedu,Car,Clear,Festival,80,69,11,0.863,High,42.67,High
+192,2025-01-24 21:00:00,2025-01-24,4,21,1,Porur,Bike,Cloudy,None,60,27,33,0.45,Low,33.69,Low
+193,2025-01-25 00:00:00,2025-01-25,5,0,1,T Nagar,SUV,Cloudy,Festival,50,44,6,0.88,High,35.79,High
+194,2025-01-25 03:00:00,2025-01-25,5,3,1,Mylapore,Bike,Clear,None,40,17,23,0.425,Low,30.52,Low
+195,2025-01-25 06:00:00,2025-01-25,5,6,1,OMR-Perungudi,Car,Rain,None,80,50,30,0.625,Medium,35.91,Medium
+196,2025-01-25 09:00:00,2025-01-25,5,9,1,Adyar,Bike,Rain,None,80,71,9,0.887,High,41.44,High
+197,2025-01-25 12:00:00,2025-01-25,5,12,1,T Nagar,Bike,Cloudy,Festival,50,39,11,0.78,Medium,34.21,Medium
+198,2025-01-25 15:00:00,2025-01-25,5,15,1,Guindy,Car,Cloudy,Festival,100,87,13,0.87,High,37.49,High
+199,2025-01-25 18:00:00,2025-01-25,5,18,1,Mylapore,Bike,Rain,None,30,26,4,0.867,High,39.12,High
+200,2025-01-25 21:00:00,2025-01-25,5,21,1,Velachery,Car,Rain,None,60,31,29,0.517,Low,30.8,Low
+201,2025-01-26 00:00:00,2025-01-26,6,0,1,Anna Nagar,Car,Rain,Weekend,60,46,14,0.767,Medium,37.02,Medium
+202,2025-01-26 03:00:00,2025-01-26,6,3,1,Mylapore,SUV,Cloudy,None,50,30,20,0.6,Medium,33.98,Medium
+203,2025-01-26 06:00:00,2025-01-26,6,6,1,Velachery,Bike,Rain,Weekend,50,41,9,0.82,High,36.43,High
+204,2025-01-26 09:00:00,2025-01-26,6,9,1,Tambaram,SUV,Cloudy,None,100,89,11,0.89,High,36.1,High
+205,2025-01-26 12:00:00,2025-01-26,6,12,1,T Nagar,Bike,Cloudy,None,80,36,44,0.45,Low,28.1,Low
+206,2025-01-26 15:00:00,2025-01-26,6,15,1,Adyar,SUV,Rain,None,100,53,47,0.53,Low,34.07,Low
+207,2025-01-26 18:00:00,2025-01-26,6,18,1,Velachery,Car,Clear,None,60,49,11,0.817,High,36.52,High
+208,2025-01-26 21:00:00,2025-01-26,6,21,1,T Nagar,Bike,Clear,Festival,50,44,6,0.88,High,35.68,High
+209,2025-01-27 00:00:00,2025-01-27,0,0,1,Guindy,SUV,Clear,None,40,16,24,0.4,Low,28.39,Low
+210,2025-01-27 03:00:00,2025-01-27,0,3,1,Anna Nagar,Bike,Cloudy,None,40,28,12,0.7,Medium,35.63,Medium
+211,2025-01-27 06:00:00,2025-01-27,0,6,1,Koyambedu,Car,Rain,None,100,48,52,0.48,Low,34.27,Low
+212,2025-01-27 09:00:00,2025-01-27,0,9,1,Adyar,SUV,Clear,None,60,41,19,0.683,Medium,37.3,Medium
+213,2025-01-27 12:00:00,2025-01-27,0,12,1,T Nagar,Car,Cloudy,Weekend,60,35,25,0.583,Medium,30.37,Medium
+214,2025-01-27 15:00:00,2025-01-27,0,15,1,Velachery,Bike,Rain,Weekend,60,36,24,0.6,Medium,32.38,Medium
+215,2025-01-27 18:00:00,2025-01-27,0,18,1,Guindy,Car,Cloudy,None,100,60,40,0.6,Medium,32.43,Medium
+216,2025-01-27 21:00:00,2025-01-27,0,21,1,Guindy,Bike,Clear,None,60,25,35,0.417,Low,28.76,Low
+217,2025-01-28 00:00:00,2025-01-28,1,0,1,Koyambedu,SUV,Clear,Sale,50,24,26,0.48,Low,34.54,Low
+218,2025-01-28 03:00:00,2025-01-28,1,3,1,Guindy,SUV,Rain,None,50,21,29,0.42,Low,28.77,Low
+219,2025-01-28 06:00:00,2025-01-28,1,6,1,T Nagar,Bike,Cloudy,Festival,80,51,29,0.637,Medium,31.54,Medium
+220,2025-01-28 09:00:00,2025-01-28,1,9,1,Adyar,Car,Clear,Weekend,80,58,22,0.725,Medium,38.04,Medium
+221,2025-01-28 12:00:00,2025-01-28,1,12,1,Koyambedu,SUV,Cloudy,None,50,28,22,0.56,Medium,36.21,Medium
+222,2025-01-28 15:00:00,2025-01-28,1,15,1,Anna Nagar,Car,Cloudy,None,100,23,77,0.23,Low,26.57,Low
+223,2025-01-28 18:00:00,2025-01-28,1,18,1,Porur,Car,Clear,None,60,39,21,0.65,Medium,38.15,Medium
+224,2025-01-28 21:00:00,2025-01-28,1,21,1,Velachery,Car,Clear,None,50,11,39,0.22,Low,25.18,Low
+225,2025-01-29 00:00:00,2025-01-29,2,0,1,Anna Nagar,SUV,Clear,Weekend,80,35,45,0.438,Low,30.56,Low
+226,2025-01-29 03:00:00,2025-01-29,2,3,1,Porur,Bike,Cloudy,None,40,19,21,0.475,Low,34.09,Low
+227,2025-01-29 06:00:00,2025-01-29,2,6,1,Porur,Bike,Cloudy,Weekend,100,51,49,0.51,Low,34.91,Low
+228,2025-01-29 09:00:00,2025-01-29,2,9,1,Velachery,SUV,Clear,Festival,40,33,7,0.825,High,36.38,High
+229,2025-01-29 12:00:00,2025-01-29,2,12,1,Guindy,Car,Cloudy,None,80,26,54,0.325,Low,27.1,Low
+230,2025-01-29 15:00:00,2025-01-29,2,15,1,Porur,SUV,Clear,None,80,32,48,0.4,Low,32.73,Low
+231,2025-01-29 18:00:00,2025-01-29,2,18,1,Porur,Bike,Cloudy,None,80,46,34,0.575,Medium,36.35,Medium
+232,2025-01-29 21:00:00,2025-01-29,2,21,1,Velachery,SUV,Clear,None,100,37,63,0.37,Low,27.94,Low
+233,2025-01-30 00:00:00,2025-01-30,3,0,1,Tambaram,Bike,Clear,None,80,28,52,0.35,Low,26.37,Low
+234,2025-01-30 03:00:00,2025-01-30,3,3,1,Porur,Car,Clear,None,100,30,70,0.3,Low,30.43,Low
+235,2025-01-30 06:00:00,2025-01-30,3,6,1,Porur,SUV,Clear,None,60,31,29,0.517,Low,35.26,Low
+236,2025-01-30 09:00:00,2025-01-30,3,9,1,Anna Nagar,SUV,Cloudy,None,60,41,19,0.683,Medium,35.48,Medium
+237,2025-01-30 12:00:00,2025-01-30,3,12,1,OMR-Perungudi,Bike,Cloudy,None,60,13,47,0.217,Low,27.51,Low
+238,2025-01-30 15:00:00,2025-01-30,3,15,1,Velachery,Bike,Rain,None,60,27,33,0.45,Low,29.41,Low
+239,2025-01-30 18:00:00,2025-01-30,3,18,1,T Nagar,Car,Clear,None,100,55,45,0.55,Low,29.85,Low
+240,2025-01-30 21:00:00,2025-01-30,3,21,1,Tambaram,SUV,Clear,Sale,30,19,11,0.633,Medium,31.13,Medium
+241,2025-01-31 00:00:00,2025-01-31,4,0,1,Tambaram,Car,Clear,None,30,9,21,0.3,Low,25.16,Low
+242,2025-01-31 03:00:00,2025-01-31,4,3,1,Mylapore,SUV,Cloudy,None,30,11,19,0.367,Low,29.34,Low
+243,2025-01-31 06:00:00,2025-01-31,4,6,1,T Nagar,Car,Clear,Festival,30,21,9,0.7,Medium,32.43,Medium
+244,2025-01-31 09:00:00,2025-01-31,4,9,1,Koyambedu,Car,Cloudy,None,40,28,12,0.7,Medium,39.1,Medium
+245,2025-01-31 12:00:00,2025-01-31,4,12,1,Koyambedu,Car,Clear,Weekend,40,15,25,0.375,Low,32.08,Low
+246,2025-01-31 15:00:00,2025-01-31,4,15,1,Koyambedu,Car,Rain,None,30,12,18,0.4,Low,32.71,Low
+247,2025-01-31 18:00:00,2025-01-31,4,18,1,OMR-Perungudi,Car,Clear,Festival,50,43,7,0.86,High,40.84,High
+248,2025-01-31 21:00:00,2025-01-31,4,21,1,Anna Nagar,SUV,Cloudy,None,30,10,20,0.333,Low,28.49,Low
+249,2025-02-01 00:00:00,2025-02-01,5,0,2,Tambaram,SUV,Clear,None,30,20,10,0.667,Medium,32.08,Medium
+250,2025-02-01 03:00:00,2025-02-01,5,3,2,Guindy,Bike,Clear,None,80,45,35,0.562,Medium,31.63,Medium
+251,2025-02-01 06:00:00,2025-02-01,5,6,2,Tambaram,Car,Clear,None,80,34,46,0.425,Low,27.72,Low
+252,2025-02-01 09:00:00,2025-02-01,5,9,2,Koyambedu,SUV,Rain,Festival,30,29,1,0.967,High,45.17,High
+253,2025-02-01 12:00:00,2025-02-01,5,12,2,OMR-Perungudi,Car,Rain,None,50,39,11,0.78,Medium,39.14,Medium
+254,2025-02-01 15:00:00,2025-02-01,5,15,2,Mylapore,SUV,Clear,None,60,37,23,0.617,Medium,34.13,Medium
+255,2025-02-01 18:00:00,2025-02-01,5,18,2,Mylapore,Car,Clear,Weekend,30,23,7,0.767,Medium,37.41,Medium
+256,2025-02-01 21:00:00,2025-02-01,5,21,2,Velachery,SUV,Cloudy,None,40,21,19,0.525,Low,30.85,Low
+257,2025-02-02 00:00:00,2025-02-02,6,0,2,Tambaram,Bike,Clear,Sale,60,50,10,0.833,High,34.96,High
+258,2025-02-02 03:00:00,2025-02-02,6,3,2,OMR-Perungudi,Car,Cloudy,None,80,40,40,0.5,Low,33.42,Low
+259,2025-02-02 06:00:00,2025-02-02,6,6,2,OMR-Perungudi,Car,Clear,Weekend,100,69,31,0.69,Medium,37.19,Medium
+260,2025-02-02 09:00:00,2025-02-02,6,9,2,Guindy,SUV,Clear,Weekend,50,48,2,0.96,High,39.18,High
+261,2025-02-02 12:00:00,2025-02-02,6,12,2,Velachery,Bike,Cloudy,None,50,24,26,0.48,Low,30.18,Low
+262,2025-02-02 15:00:00,2025-02-02,6,15,2,Anna Nagar,Car,Clear,Weekend,100,65,35,0.65,Medium,34.78,Medium
+263,2025-02-02 18:00:00,2025-02-02,6,18,2,Velachery,Car,Cloudy,None,60,33,27,0.55,Medium,31.41,Medium
+264,2025-02-02 21:00:00,2025-02-02,6,21,2,OMR-Perungudi,Bike,Clear,None,30,13,17,0.433,Low,32.27,Low
+265,2025-02-03 00:00:00,2025-02-03,0,0,2,Velachery,Bike,Cloudy,None,60,22,38,0.367,Low,27.8,Low
+266,2025-02-03 03:00:00,2025-02-03,0,3,2,T Nagar,SUV,Clear,None,50,13,37,0.26,Low,24.5,Low
+267,2025-02-03 06:00:00,2025-02-03,0,6,2,OMR-Perungudi,Car,Clear,None,40,19,21,0.475,Low,32.95,Low
+268,2025-02-03 09:00:00,2025-02-03,0,9,2,Tambaram,SUV,Cloudy,None,80,41,39,0.512,Low,29.28,Low
+269,2025-02-03 12:00:00,2025-02-03,0,12,2,Adyar,SUV,Rain,Weekend,60,31,29,0.517,Low,33.66,Low
+270,2025-02-03 15:00:00,2025-02-03,0,15,2,Koyambedu,SUV,Clear,None,100,36,64,0.36,Low,31.79,Low
+271,2025-02-03 18:00:00,2025-02-03,0,18,2,Porur,Bike,Cloudy,None,30,22,8,0.733,Medium,40.1,Medium
+272,2025-02-03 21:00:00,2025-02-03,0,21,2,Tambaram,SUV,Rain,None,50,16,34,0.32,Low,25.67,Low
+273,2025-02-04 00:00:00,2025-02-04,1,0,2,Guindy,Car,Cloudy,None,30,14,16,0.467,Low,29.94,Low
+274,2025-02-04 03:00:00,2025-02-04,1,3,2,Velachery,Bike,Clear,None,100,35,65,0.35,Low,27.63,Low
+275,2025-02-04 06:00:00,2025-02-04,1,6,2,Tambaram,SUV,Cloudy,None,40,12,28,0.3,Low,25.43,Low
+276,2025-02-04 09:00:00,2025-02-04,1,9,2,Koyambedu,SUV,Clear,Weekend,30,23,7,0.767,Medium,40.35,Medium
+277,2025-02-04 12:00:00,2025-02-04,1,12,2,T Nagar,Bike,Clear,None,100,37,63,0.37,Low,26.59,Low
+278,2025-02-04 15:00:00,2025-02-04,1,15,2,Mylapore,SUV,Clear,None,80,24,56,0.3,Low,27.98,Low
+279,2025-02-04 18:00:00,2025-02-04,1,18,2,Velachery,SUV,Clear,None,50,30,20,0.6,Medium,32.45,Medium
+280,2025-02-04 21:00:00,2025-02-04,1,21,2,Koyambedu,Car,Clear,None,60,19,41,0.317,Low,30.89,Low
+281,2025-02-05 00:00:00,2025-02-05,2,0,2,Guindy,Car,Clear,None,80,29,51,0.362,Low,27.79,Low
+282,2025-02-05 03:00:00,2025-02-05,2,3,2,Anna Nagar,Bike,Clear,None,50,20,30,0.4,Low,29.98,Low
+283,2025-02-05 06:00:00,2025-02-05,2,6,2,Guindy,Car,Clear,None,40,19,21,0.475,Low,30.01,Low
+284,2025-02-05 09:00:00,2025-02-05,2,9,2,OMR-Perungudi,Car,Cloudy,Weekend,80,52,28,0.65,Medium,36.48,Medium
+285,2025-02-05 12:00:00,2025-02-05,2,12,2,Guindy,Car,Clear,None,100,52,48,0.52,Low,30.84,Low
+286,2025-02-05 15:00:00,2025-02-05,2,15,2,Tambaram,SUV,Clear,None,80,16,64,0.2,Low,23.49,Low
+287,2025-02-05 18:00:00,2025-02-05,2,18,2,Guindy,Bike,Clear,None,50,29,21,0.58,Medium,32.11,Medium
+288,2025-02-05 21:00:00,2025-02-05,2,21,2,Anna Nagar,Bike,Cloudy,None,80,34,46,0.425,Low,30.46,Low
+289,2025-02-06 00:00:00,2025-02-06,3,0,2,Velachery,SUV,Clear,Weekend,60,30,30,0.5,Low,30.31,Low
+290,2025-02-06 03:00:00,2025-02-06,3,3,2,Guindy,SUV,Rain,None,80,30,50,0.375,Low,28.19,Low
+291,2025-02-06 06:00:00,2025-02-06,3,6,2,Tambaram,SUV,Clear,None,40,13,27,0.325,Low,26.0,Low
+292,2025-02-06 09:00:00,2025-02-06,3,9,2,Velachery,Bike,Rain,None,80,51,29,0.637,Medium,33.11,Medium
+293,2025-02-06 12:00:00,2025-02-06,3,12,2,Tambaram,Car,Cloudy,Sale,100,53,47,0.53,Low,29.59,Low
+294,2025-02-06 15:00:00,2025-02-06,3,15,2,Adyar,SUV,Clear,None,30,13,17,0.433,Low,31.65,Low
+295,2025-02-06 18:00:00,2025-02-06,3,18,2,Anna Nagar,SUV,Rain,None,100,71,29,0.71,Medium,36.03,Medium
+296,2025-02-06 21:00:00,2025-02-06,3,21,2,Mylapore,Bike,Cloudy,Festival,60,37,23,0.617,Medium,34.37,Medium
+297,2025-02-07 00:00:00,2025-02-07,4,0,2,Koyambedu,SUV,Cloudy,None,100,45,55,0.45,Low,33.76,Low
+298,2025-02-07 03:00:00,2025-02-07,4,3,2,Tambaram,SUV,Clear,None,40,15,25,0.375,Low,26.74,Low
+299,2025-02-07 06:00:00,2025-02-07,4,6,2,Porur,Car,Clear,None,50,21,29,0.42,Low,32.96,Low
+300,2025-02-07 09:00:00,2025-02-07,4,9,2,Porur,Bike,Clear,None,60,39,21,0.65,Medium,38.05,Medium
+301,2025-02-07 12:00:00,2025-02-07,4,12,2,Velachery,SUV,Rain,Weekend,100,48,52,0.48,Low,30.14,Low
+302,2025-02-07 15:00:00,2025-02-07,4,15,2,Koyambedu,SUV,Clear,None,80,24,56,0.3,Low,30.59,Low
+303,2025-02-07 18:00:00,2025-02-07,4,18,2,T Nagar,Car,Clear,Weekend,60,47,13,0.783,Medium,34.04,Medium
+304,2025-02-07 21:00:00,2025-02-07,4,21,2,Tambaram,Car,Clear,None,80,32,48,0.4,Low,27.18,Low
+305,2025-02-08 00:00:00,2025-02-08,5,0,2,Mylapore,SUV,Cloudy,Weekend,30,20,10,0.667,Medium,35.43,Medium
+306,2025-02-08 03:00:00,2025-02-08,5,3,2,Velachery,SUV,Clear,None,80,43,37,0.537,Low,31.19,Low
+307,2025-02-08 06:00:00,2025-02-08,5,6,2,Mylapore,Bike,Cloudy,None,60,40,20,0.667,Medium,35.11,Medium
+308,2025-02-08 09:00:00,2025-02-08,5,9,2,Tambaram,SUV,Cloudy,None,50,38,12,0.76,Medium,33.73,Medium
+309,2025-02-08 12:00:00,2025-02-08,5,12,2,Koyambedu,Car,Cloudy,Festival,30,27,3,0.9,High,43.52,High
+310,2025-02-08 15:00:00,2025-02-08,5,15,2,Tambaram,Bike,Clear,None,30,15,15,0.5,Low,29.25,Low
+311,2025-02-08 18:00:00,2025-02-08,5,18,2,Koyambedu,Car,Clear,None,40,31,9,0.775,Medium,40.47,Medium
+312,2025-02-08 21:00:00,2025-02-08,5,21,2,Tambaram,Bike,Cloudy,Sale,50,42,8,0.84,High,35.26,High
+313,2025-02-09 00:00:00,2025-02-09,6,0,2,Anna Nagar,SUV,Clear,None,80,48,32,0.6,Medium,33.8,Medium
+314,2025-02-09 03:00:00,2025-02-09,6,3,2,Guindy,SUV,Cloudy,Festival,100,93,7,0.93,High,38.48,High
+315,2025-02-09 06:00:00,2025-02-09,6,6,2,OMR-Perungudi,Bike,Clear,None,30,19,11,0.633,Medium,36.13,Medium
+316,2025-02-09 09:00:00,2025-02-09,6,9,2,T Nagar,Bike,Rain,None,50,43,7,0.86,High,35.51,High
+317,2025-02-09 12:00:00,2025-02-09,6,12,2,Mylapore,Car,Clear,None,40,23,17,0.575,Medium,33.57,Medium
+318,2025-02-09 15:00:00,2025-02-09,6,15,2,Porur,SUV,Clear,None,30,15,15,0.5,Low,34.91,Low
+319,2025-02-09 18:00:00,2025-02-09,6,18,2,OMR-Perungudi,SUV,Rain,None,30,27,3,0.9,High,41.34,High
+320,2025-02-09 21:00:00,2025-02-09,6,21,2,Anna Nagar,SUV,Clear,None,80,42,38,0.525,Low,32.29,Low
+321,2025-02-10 00:00:00,2025-02-10,0,0,2,Koyambedu,Bike,Clear,Festival,40,26,14,0.65,Medium,38.21,Medium
+322,2025-02-10 03:00:00,2025-02-10,0,3,2,Adyar,Bike,Cloudy,None,60,26,34,0.433,Low,31.85,Low
+323,2025-02-10 06:00:00,2025-02-10,0,6,2,Adyar,Bike,Rain,None,80,29,51,0.362,Low,30.55,Low
+324,2025-02-10 09:00:00,2025-02-10,0,9,2,Adyar,Bike,Clear,None,50,38,12,0.76,Medium,38.88,Medium
+325,2025-02-10 12:00:00,2025-02-10,0,12,2,Mylapore,Bike,Clear,Festival,50,28,22,0.56,Medium,33.28,Medium
+326,2025-02-10 15:00:00,2025-02-10,0,15,2,Anna Nagar,Bike,Clear,Weekend,40,15,25,0.375,Low,29.38,Low
+327,2025-02-10 18:00:00,2025-02-10,0,18,2,T Nagar,Car,Clear,None,100,69,31,0.69,Medium,32.47,Medium
+328,2025-02-10 21:00:00,2025-02-10,0,21,2,OMR-Perungudi,Bike,Cloudy,None,30,13,17,0.433,Low,32.18,Low
+329,2025-02-11 00:00:00,2025-02-11,1,0,2,Mylapore,Car,Clear,None,80,32,48,0.4,Low,29.92,Low
+330,2025-02-11 03:00:00,2025-02-11,1,3,2,Mylapore,Bike,Clear,Weekend,50,26,24,0.52,Low,32.3,Low
+331,2025-02-11 06:00:00,2025-02-11,1,6,2,OMR-Perungudi,Bike,Rain,None,50,21,29,0.42,Low,31.88,Low
+332,2025-02-11 09:00:00,2025-02-11,1,9,2,Adyar,SUV,Clear,None,30,16,14,0.533,Low,33.93,Low
+333,2025-02-11 12:00:00,2025-02-11,1,12,2,Tambaram,Bike,Clear,None,40,14,26,0.35,Low,26.41,Low
+334,2025-02-11 15:00:00,2025-02-11,1,15,2,Anna Nagar,Car,Cloudy,None,100,33,67,0.33,Low,28.45,Low
+335,2025-02-11 18:00:00,2025-02-11,1,18,2,T Nagar,SUV,Clear,None,50,34,16,0.68,Medium,32.2,Medium
+336,2025-02-11 21:00:00,2025-02-11,1,21,2,Koyambedu,Car,Cloudy,None,80,29,51,0.362,Low,31.95,Low
+337,2025-02-12 00:00:00,2025-02-12,2,0,2,Porur,SUV,Clear,None,30,9,21,0.3,Low,30.13,Low
+338,2025-02-12 03:00:00,2025-02-12,2,3,2,Mylapore,SUV,Rain,None,30,12,18,0.4,Low,30.0,Low
+339,2025-02-12 06:00:00,2025-02-12,2,6,2,OMR-Perungudi,SUV,Clear,None,30,11,19,0.367,Low,30.93,Low
+340,2025-02-12 09:00:00,2025-02-12,2,9,2,Anna Nagar,Car,Cloudy,None,50,29,21,0.58,Medium,33.58,Medium
+341,2025-02-12 12:00:00,2025-02-12,2,12,2,Koyambedu,SUV,Cloudy,None,60,19,41,0.317,Low,30.79,Low
+342,2025-02-12 15:00:00,2025-02-12,2,15,2,Tambaram,SUV,Clear,Sale,30,17,13,0.567,Medium,30.25,Medium
+343,2025-02-12 18:00:00,2025-02-12,2,18,2,OMR-Perungudi,SUV,Clear,None,30,19,11,0.633,Medium,35.83,Medium
+344,2025-02-12 21:00:00,2025-02-12,2,21,2,Guindy,Car,Clear,None,50,15,35,0.3,Low,26.85,Low
+345,2025-02-13 00:00:00,2025-02-13,3,0,2,Tambaram,SUV,Cloudy,Festival,40,26,14,0.65,Medium,31.56,Medium
+346,2025-02-13 03:00:00,2025-02-13,3,3,2,Tambaram,SUV,Clear,None,40,15,25,0.375,Low,26.63,Low
+347,2025-02-13 06:00:00,2025-02-13,3,6,2,Anna Nagar,SUV,Cloudy,None,100,26,74,0.26,Low,27.23,Low
+348,2025-02-13 09:00:00,2025-02-13,3,9,2,Anna Nagar,Bike,Cloudy,None,40,21,19,0.525,Low,32.24,Low
+349,2025-02-13 12:00:00,2025-02-13,3,12,2,T Nagar,Car,Cloudy,None,50,16,34,0.32,Low,25.81,Low
+350,2025-02-13 15:00:00,2025-02-13,3,15,2,Tambaram,SUV,Rain,None,50,21,29,0.42,Low,27.43,Low
+351,2025-02-13 18:00:00,2025-02-13,3,18,2,Mylapore,Bike,Cloudy,None,50,33,17,0.66,Medium,34.97,Medium
+352,2025-02-13 21:00:00,2025-02-13,3,21,2,Tambaram,Car,Clear,Weekend,30,18,12,0.6,Medium,30.58,Medium
+353,2025-02-14 00:00:00,2025-02-14,4,0,2,Tambaram,Bike,Cloudy,Weekend,60,34,26,0.567,Medium,30.24,Medium
+354,2025-02-14 03:00:00,2025-02-14,4,3,2,Tambaram,SUV,Clear,None,40,13,27,0.325,Low,26.07,Low
+355,2025-02-14 06:00:00,2025-02-14,4,6,2,Porur,SUV,Clear,Festival,30,19,11,0.633,Medium,38.01,Medium
+356,2025-02-14 09:00:00,2025-02-14,4,9,2,Anna Nagar,Bike,Clear,None,80,42,38,0.525,Low,32.29,Low
+357,2025-02-14 12:00:00,2025-02-14,4,12,2,Porur,Car,Cloudy,None,50,19,31,0.38,Low,32.18,Low
+358,2025-02-14 15:00:00,2025-02-14,4,15,2,Mylapore,Bike,Cloudy,None,50,18,32,0.36,Low,29.07,Low
+359,2025-02-14 18:00:00,2025-02-14,4,18,2,Koyambedu,Car,Rain,None,60,42,18,0.7,Medium,39.25,Medium
+360,2025-02-14 21:00:00,2025-02-14,4,21,2,Velachery,SUV,Clear,None,100,28,72,0.28,Low,26.36,Low
+361,2025-02-15 00:00:00,2025-02-15,5,0,2,Anna Nagar,Bike,Cloudy,None,30,18,12,0.6,Medium,33.91,Medium
+362,2025-02-15 03:00:00,2025-02-15,5,3,2,T Nagar,Bike,Cloudy,None,40,27,13,0.675,Medium,32.29,Medium
+363,2025-02-15 06:00:00,2025-02-15,5,6,2,Tambaram,Car,Clear,Weekend,60,38,22,0.633,Medium,31.54,Medium
+364,2025-02-15 09:00:00,2025-02-15,5,9,2,Mylapore,SUV,Cloudy,None,50,42,8,0.84,High,38.67,High
+365,2025-02-15 12:00:00,2025-02-15,5,12,2,Anna Nagar,Bike,Clear,None,80,47,33,0.588,Medium,33.59,Medium
+366,2025-02-15 15:00:00,2025-02-15,5,15,2,Adyar,SUV,Clear,None,30,15,15,0.5,Low,33.31,Low
+367,2025-02-15 18:00:00,2025-02-15,5,18,2,Guindy,SUV,Cloudy,None,80,66,14,0.825,High,36.65,High
+368,2025-02-15 21:00:00,2025-02-15,5,21,2,Mylapore,Bike,Clear,Sale,40,29,11,0.725,Medium,36.47,Medium
+369,2025-02-16 00:00:00,2025-02-16,6,0,2,Adyar,Car,Clear,None,30,16,14,0.533,Low,34.13,Low
+370,2025-02-16 03:00:00,2025-02-16,6,3,2,Mylapore,Bike,Rain,Weekend,30,20,10,0.667,Medium,35.23,Medium
+371,2025-02-16 06:00:00,2025-02-16,6,6,2,Tambaram,Bike,Clear,None,100,53,47,0.53,Low,29.58,Low
+372,2025-02-16 09:00:00,2025-02-16,6,9,2,Anna Nagar,Car,Cloudy,None,100,85,15,0.85,High,38.83,High
+373,2025-02-16 12:00:00,2025-02-16,6,12,2,Tambaram,Car,Rain,None,80,58,22,0.725,Medium,33.07,Medium
+374,2025-02-16 15:00:00,2025-02-16,6,15,2,Adyar,Bike,Clear,None,60,36,24,0.6,Medium,35.56,Medium
+375,2025-02-16 18:00:00,2025-02-16,6,18,2,Mylapore,Car,Rain,None,80,78,2,0.975,High,41.4,High
+376,2025-02-16 21:00:00,2025-02-16,6,21,2,Porur,SUV,Cloudy,Sale,60,42,18,0.7,Medium,39.09,Medium
+377,2025-02-17 00:00:00,2025-02-17,0,0,2,Guindy,Bike,Clear,Weekend,60,32,28,0.533,Low,31.2,Low
+378,2025-02-17 03:00:00,2025-02-17,0,3,2,Velachery,Car,Clear,None,60,22,38,0.367,Low,27.89,Low
+379,2025-02-17 06:00:00,2025-02-17,0,6,2,OMR-Perungudi,Car,Cloudy,None,100,56,44,0.56,Medium,34.49,Medium
+380,2025-02-17 09:00:00,2025-02-17,0,9,2,Guindy,Car,Clear,Weekend,80,52,28,0.65,Medium,33.39,Medium
+381,2025-02-17 12:00:00,2025-02-17,0,12,2,OMR-Perungudi,SUV,Clear,None,40,11,29,0.275,Low,28.85,Low
+382,2025-02-17 15:00:00,2025-02-17,0,15,2,Adyar,Bike,Clear,Weekend,50,21,29,0.42,Low,31.74,Low
+383,2025-02-17 18:00:00,2025-02-17,0,18,2,Velachery,Bike,Rain,None,50,26,24,0.52,Low,30.64,Low
+384,2025-02-17 21:00:00,2025-02-17,0,21,2,Anna Nagar,SUV,Clear,None,100,31,69,0.31,Low,28.1,Low
+385,2025-02-18 00:00:00,2025-02-18,1,0,2,Anna Nagar,SUV,Clear,Weekend,80,33,47,0.412,Low,30.1,Low
+386,2025-02-18 03:00:00,2025-02-18,1,3,2,Koyambedu,SUV,Clear,Weekend,100,48,52,0.48,Low,34.41,Low
+387,2025-02-18 06:00:00,2025-02-18,1,6,2,T Nagar,SUV,Rain,None,30,14,16,0.467,Low,28.23,Low
+388,2025-02-18 09:00:00,2025-02-18,1,9,2,Porur,SUV,Clear,None,100,75,25,0.75,Medium,40.2,Medium
+389,2025-02-18 12:00:00,2025-02-18,1,12,2,T Nagar,SUV,Clear,Weekend,60,33,27,0.55,Low,29.83,Low
+390,2025-02-18 15:00:00,2025-02-18,1,15,2,Porur,Bike,Cloudy,None,60,20,40,0.333,Low,31.21,Low
+391,2025-02-18 18:00:00,2025-02-18,1,18,2,Porur,Bike,Clear,None,60,32,28,0.533,Low,35.41,Low
+392,2025-02-18 21:00:00,2025-02-18,1,21,2,Guindy,Car,Clear,None,60,23,37,0.383,Low,28.36,Low
+393,2025-02-19 00:00:00,2025-02-19,2,0,2,Tambaram,Bike,Rain,None,100,32,68,0.32,Low,25.84,Low
+394,2025-02-19 03:00:00,2025-02-19,2,3,2,Guindy,Car,Clear,Festival,40,32,8,0.8,Medium,36.05,Medium
+395,2025-02-19 06:00:00,2025-02-19,2,6,2,Tambaram,Car,Clear,None,40,18,22,0.45,Low,28.0,Low
+396,2025-02-19 09:00:00,2025-02-19,2,9,2,Anna Nagar,SUV,Rain,None,30,19,11,0.633,Medium,34.72,Medium
+397,2025-02-19 12:00:00,2025-02-19,2,12,2,Guindy,Bike,Rain,Sale,40,20,20,0.5,Low,30.32,Low
+398,2025-02-19 15:00:00,2025-02-19,2,15,2,Koyambedu,Bike,Cloudy,None,100,49,51,0.49,Low,34.55,Low
+399,2025-02-19 18:00:00,2025-02-19,2,18,2,OMR-Perungudi,Car,Clear,None,60,35,25,0.583,Medium,35.23,Medium
+400,2025-02-19 21:00:00,2025-02-19,2,21,2,Velachery,Car,Rain,None,60,32,28,0.533,Low,31.0,Low
+401,2025-02-20 00:00:00,2025-02-20,3,0,2,Koyambedu,SUV,Clear,None,50,11,39,0.22,Low,28.8,Low
+402,2025-02-20 03:00:00,2025-02-20,3,3,2,Mylapore,Bike,Cloudy,None,50,17,33,0.34,Low,28.57,Low
+403,2025-02-20 06:00:00,2025-02-20,3,6,2,Anna Nagar,Bike,Cloudy,Festival,50,34,16,0.68,Medium,35.47,Medium
+404,2025-02-20 09:00:00,2025-02-20,3,9,2,T Nagar,Bike,Clear,None,60,36,24,0.6,Medium,30.87,Medium
+405,2025-02-20 12:00:00,2025-02-20,3,12,2,OMR-Perungudi,SUV,Clear,None,50,16,34,0.32,Low,29.5,Low
+406,2025-02-20 15:00:00,2025-02-20,3,15,2,Porur,Car,Clear,None,80,32,48,0.4,Low,32.64,Low
+407,2025-02-20 18:00:00,2025-02-20,3,18,2,Guindy,Bike,Clear,Festival,50,41,9,0.82,High,36.4,High
+408,2025-02-20 21:00:00,2025-02-20,3,21,2,Anna Nagar,Car,Clear,None,40,14,26,0.35,Low,28.7,Low
+409,2025-02-21 00:00:00,2025-02-21,4,0,2,T Nagar,Bike,Clear,None,30,11,19,0.367,Low,26.47,Low
+410,2025-02-21 03:00:00,2025-02-21,4,3,2,OMR-Perungudi,Car,Rain,None,60,28,32,0.467,Low,32.75,Low
+411,2025-02-21 06:00:00,2025-02-21,4,6,2,Tambaram,SUV,Clear,None,80,33,47,0.412,Low,27.32,Low
+412,2025-02-21 09:00:00,2025-02-21,4,9,2,Porur,SUV,Cloudy,None,80,43,37,0.537,Low,35.66,Low
+413,2025-02-21 12:00:00,2025-02-21,4,12,2,Mylapore,Car,Clear,None,100,23,77,0.23,Low,26.5,Low
+414,2025-02-21 15:00:00,2025-02-21,4,15,2,Tambaram,SUV,Rain,None,50,27,23,0.54,Low,29.58,Low
+415,2025-02-21 18:00:00,2025-02-21,4,18,2,Porur,SUV,Cloudy,Weekend,100,78,22,0.78,Medium,40.77,Medium
+416,2025-02-21 21:00:00,2025-02-21,4,21,2,Mylapore,SUV,Cloudy,Sale,50,26,24,0.52,Low,32.3,Low
+417,2025-02-22 00:00:00,2025-02-22,5,0,2,Koyambedu,Car,Clear,Festival,40,38,2,0.95,High,44.61,High
+418,2025-02-22 03:00:00,2025-02-22,5,3,2,OMR-Perungudi,Bike,Cloudy,Festival,100,87,13,0.87,High,40.99,High
+419,2025-02-22 06:00:00,2025-02-22,5,6,2,Anna Nagar,SUV,Clear,None,100,62,38,0.62,Medium,34.36,Medium
+420,2025-02-22 09:00:00,2025-02-22,5,9,2,Velachery,Car,Clear,None,40,31,9,0.775,Medium,35.84,Medium
+421,2025-02-22 12:00:00,2025-02-22,5,12,2,Guindy,SUV,Clear,None,100,69,31,0.69,Medium,34.13,Medium
+422,2025-02-22 15:00:00,2025-02-22,5,15,2,Mylapore,SUV,Cloudy,Festival,100,98,2,0.98,High,41.4,High
+423,2025-02-22 18:00:00,2025-02-22,5,18,2,Adyar,SUV,Cloudy,None,80,63,17,0.787,Medium,39.35,Medium
+424,2025-02-22 21:00:00,2025-02-22,5,21,2,Guindy,SUV,Clear,Sale,50,40,10,0.8,High,36.27,High
+425,2025-02-23 00:00:00,2025-02-23,6,0,2,Tambaram,SUV,Cloudy,None,80,49,31,0.613,Medium,31.01,Medium
+426,2025-02-23 03:00:00,2025-02-23,6,3,2,Porur,Bike,Rain,None,80,58,22,0.725,Medium,39.54,Medium
+427,2025-02-23 06:00:00,2025-02-23,6,6,2,OMR-Perungudi,Bike,Rain,None,50,27,23,0.54,Low,34.03,Low
+428,2025-02-23 09:00:00,2025-02-23,6,9,2,Porur,Bike,Cloudy,None,100,86,14,0.86,High,42.68,High
+429,2025-02-23 12:00:00,2025-02-23,6,12,2,Mylapore,SUV,Rain,None,50,35,15,0.7,Medium,35.75,Medium
+430,2025-02-23 15:00:00,2025-02-23,6,15,2,Porur,Bike,Cloudy,None,50,21,29,0.42,Low,33.06,Low
+431,2025-02-23 18:00:00,2025-02-23,6,18,2,Guindy,Bike,Cloudy,Sale,50,46,4,0.92,High,38.3,High
+432,2025-02-23 21:00:00,2025-02-23,6,21,2,T Nagar,Bike,Clear,Sale,50,28,22,0.56,Medium,30.2,Medium
+433,2025-02-24 00:00:00,2025-02-24,0,0,2,Porur,SUV,Clear,None,100,33,67,0.33,Low,31.09,Low
+434,2025-02-24 03:00:00,2025-02-24,0,3,2,Porur,SUV,Clear,None,80,33,47,0.412,Low,32.8,Low
+435,2025-02-24 06:00:00,2025-02-24,0,6,2,Koyambedu,SUV,Cloudy,None,40,20,20,0.5,Low,34.8,Low
+436,2025-02-24 09:00:00,2025-02-24,0,9,2,Adyar,Bike,Clear,None,100,61,39,0.61,Medium,35.54,Medium
+437,2025-02-24 12:00:00,2025-02-24,0,12,2,Mylapore,SUV,Clear,None,30,14,16,0.467,Low,31.51,Low
+438,2025-02-24 15:00:00,2025-02-24,0,15,2,Anna Nagar,Bike,Rain,None,60,19,41,0.317,Low,28.33,Low
+439,2025-02-24 18:00:00,2025-02-24,0,18,2,Mylapore,Bike,Rain,None,100,54,46,0.54,Low,32.77,Low
+440,2025-02-24 21:00:00,2025-02-24,0,21,2,Porur,SUV,Cloudy,None,100,38,62,0.38,Low,32.11,Low
+441,2025-02-25 00:00:00,2025-02-25,1,0,2,Koyambedu,Car,Cloudy,None,40,16,24,0.4,Low,32.87,Low
+442,2025-02-25 03:00:00,2025-02-25,1,3,2,Anna Nagar,Car,Clear,Weekend,60,28,32,0.467,Low,31.25,Low
+443,2025-02-25 06:00:00,2025-02-25,1,6,2,Guindy,Bike,Cloudy,None,60,13,47,0.217,Low,25.06,Low
+444,2025-02-25 09:00:00,2025-02-25,1,9,2,T Nagar,Bike,Cloudy,None,30,19,11,0.633,Medium,31.21,Medium
+445,2025-02-25 12:00:00,2025-02-25,1,12,2,Porur,Bike,Clear,Sale,60,27,33,0.45,Low,33.63,Low
+446,2025-02-25 15:00:00,2025-02-25,1,15,2,Anna Nagar,Car,Clear,None,80,32,48,0.4,Low,29.99,Low
+447,2025-02-25 18:00:00,2025-02-25,1,18,2,Tambaram,SUV,Cloudy,Festival,40,38,2,0.95,High,37.27,High
+448,2025-02-25 21:00:00,2025-02-25,1,21,2,Anna Nagar,SUV,Cloudy,Festival,30,18,12,0.6,Medium,33.98,Medium
+449,2025-02-26 00:00:00,2025-02-26,2,0,2,Adyar,Bike,Cloudy,None,40,14,26,0.35,Low,30.02,Low
+450,2025-02-26 03:00:00,2025-02-26,2,3,2,Guindy,Car,Clear,None,80,21,59,0.263,Low,26.01,Low
+451,2025-02-26 06:00:00,2025-02-26,2,6,2,Anna Nagar,Car,Rain,None,40,17,23,0.425,Low,30.41,Low
+452,2025-02-26 09:00:00,2025-02-26,2,9,2,Porur,Bike,Cloudy,None,60,42,18,0.7,Medium,39.26,Medium
+453,2025-02-26 12:00:00,2025-02-26,2,12,2,Porur,SUV,Clear,Festival,80,46,34,0.575,Medium,36.34,Medium
+454,2025-02-26 15:00:00,2025-02-26,2,15,2,Tambaram,Bike,Cloudy,None,100,42,58,0.42,Low,27.57,Low
+455,2025-02-26 18:00:00,2025-02-26,2,18,2,Porur,SUV,Clear,None,40,22,18,0.55,Medium,36.04,Medium
+456,2025-02-26 21:00:00,2025-02-26,2,21,2,Porur,Bike,Rain,None,100,37,63,0.37,Low,31.92,Low
+457,2025-02-27 00:00:00,2025-02-27,3,0,2,Tambaram,Bike,Rain,None,80,34,46,0.425,Low,27.59,Low
+458,2025-02-27 03:00:00,2025-02-27,3,3,2,Anna Nagar,Bike,Cloudy,Festival,60,36,24,0.6,Medium,33.82,Medium
+459,2025-02-27 06:00:00,2025-02-27,3,6,2,OMR-Perungudi,Car,Cloudy,Festival,60,38,22,0.633,Medium,36.16,Medium
+460,2025-02-27 09:00:00,2025-02-27,3,9,2,Adyar,Car,Rain,Festival,100,88,12,0.88,High,41.3,High
+461,2025-02-27 12:00:00,2025-02-27,3,12,2,OMR-Perungudi,SUV,Clear,None,60,30,30,0.5,Low,33.5,Low
+462,2025-02-27 15:00:00,2025-02-27,3,15,2,Velachery,Car,Rain,Weekend,30,17,13,0.567,Medium,31.45,Medium
+463,2025-02-27 18:00:00,2025-02-27,3,18,2,Koyambedu,SUV,Clear,None,80,44,36,0.55,Low,35.75,Low
+464,2025-02-27 21:00:00,2025-02-27,3,21,2,Mylapore,Bike,Cloudy,None,30,12,18,0.4,Low,29.86,Low
+465,2025-02-28 00:00:00,2025-02-28,4,0,2,Velachery,Car,Clear,None,80,27,53,0.338,Low,27.45,Low
+466,2025-02-28 03:00:00,2025-02-28,4,3,2,OMR-Perungudi,Bike,Clear,None,60,20,40,0.333,Low,29.88,Low
+467,2025-02-28 06:00:00,2025-02-28,4,6,2,Porur,Car,Clear,None,100,40,60,0.4,Low,32.62,Low
+468,2025-02-28 09:00:00,2025-02-28,4,9,2,Adyar,SUV,Clear,None,80,53,27,0.662,Medium,36.67,Medium
+469,2025-02-28 12:00:00,2025-02-28,4,12,2,Velachery,Car,Rain,Sale,80,47,33,0.588,Medium,32.1,Medium
+470,2025-02-28 15:00:00,2025-02-28,4,15,2,Mylapore,Car,Clear,None,30,9,21,0.3,Low,28.02,Low
+471,2025-02-28 18:00:00,2025-02-28,4,18,2,Guindy,Bike,Clear,Sale,50,39,11,0.78,Medium,35.7,Medium
+472,2025-02-28 21:00:00,2025-02-28,4,21,2,Guindy,SUV,Cloudy,None,30,6,24,0.2,Low,24.7,Low
+473,2025-03-01 00:00:00,2025-03-01,5,0,3,Anna Nagar,SUV,Clear,Weekend,100,53,47,0.53,Low,32.47,Low
+474,2025-03-01 03:00:00,2025-03-01,5,3,3,Guindy,Car,Rain,None,80,58,22,0.725,Medium,34.6,Medium
+475,2025-03-01 06:00:00,2025-03-01,5,6,3,T Nagar,Bike,Cloudy,None,50,35,15,0.7,Medium,32.45,Medium
+476,2025-03-01 09:00:00,2025-03-01,5,9,3,OMR-Perungudi,Bike,Clear,Weekend,60,53,7,0.883,High,41.22,High
+477,2025-03-01 12:00:00,2025-03-01,5,12,3,Anna Nagar,Car,Rain,None,50,33,17,0.66,Medium,34.99,Medium
+478,2025-03-01 15:00:00,2025-03-01,5,15,3,T Nagar,Car,Cloudy,None,100,58,42,0.58,Medium,30.53,Medium
+479,2025-03-01 18:00:00,2025-03-01,5,18,3,Adyar,Bike,Clear,None,40,39,1,0.975,High,43.29,High
+480,2025-03-01 21:00:00,2025-03-01,5,21,3,Koyambedu,SUV,Clear,None,100,62,38,0.62,Medium,37.38,Medium
+481,2025-03-02 00:00:00,2025-03-02,6,0,3,T Nagar,Car,Clear,None,60,31,29,0.517,Low,29.36,Low
+482,2025-03-02 03:00:00,2025-03-02,6,3,3,Anna Nagar,SUV,Clear,Sale,80,52,28,0.65,Medium,34.94,Medium
+483,2025-03-02 06:00:00,2025-03-02,6,6,3,Koyambedu,Bike,Cloudy,None,50,22,28,0.44,Low,33.32,Low
+484,2025-03-02 09:00:00,2025-03-02,6,9,3,Adyar,SUV,Rain,Weekend,50,49,1,0.98,High,43.29,High
+485,2025-03-02 12:00:00,2025-03-02,6,12,3,Adyar,SUV,Clear,None,60,28,32,0.467,Low,32.72,Low
+486,2025-03-02 15:00:00,2025-03-02,6,15,3,Anna Nagar,Car,Clear,None,100,42,58,0.42,Low,30.24,Low
+487,2025-03-02 18:00:00,2025-03-02,6,18,3,Tambaram,Bike,Cloudy,None,100,76,24,0.76,Medium,33.65,Medium
+488,2025-03-02 21:00:00,2025-03-02,6,21,3,Guindy,SUV,Clear,None,60,27,33,0.45,Low,29.38,Low
+489,2025-03-03 00:00:00,2025-03-03,0,0,3,Mylapore,SUV,Clear,Weekend,40,24,16,0.6,Medium,33.98,Medium
+490,2025-03-03 03:00:00,2025-03-03,0,3,3,Anna Nagar,Bike,Clear,Weekend,60,32,28,0.533,Low,32.7,Low
+491,2025-03-03 06:00:00,2025-03-03,0,6,3,OMR-Perungudi,Car,Clear,None,80,28,52,0.35,Low,30.23,Low
+492,2025-03-03 09:00:00,2025-03-03,0,9,3,Tambaram,Bike,Clear,None,100,72,28,0.72,Medium,32.93,Medium
+493,2025-03-03 12:00:00,2025-03-03,0,12,3,Velachery,Bike,Clear,Festival,80,52,28,0.65,Medium,33.4,Medium
+494,2025-03-03 15:00:00,2025-03-03,0,15,3,Guindy,Car,Clear,None,100,28,72,0.28,Low,26.31,Low
+495,2025-03-03 18:00:00,2025-03-03,0,18,3,Adyar,Bike,Clear,Festival,80,78,2,0.975,High,43.29,High
+496,2025-03-03 21:00:00,2025-03-03,0,21,3,Adyar,Car,Rain,None,50,24,26,0.48,Low,32.79,Low
+497,2025-03-04 00:00:00,2025-03-04,1,0,3,Adyar,Bike,Rain,None,100,35,65,0.35,Low,30.18,Low
+498,2025-03-04 03:00:00,2025-03-04,1,3,3,Adyar,Car,Clear,None,100,33,67,0.33,Low,29.93,Low
+499,2025-03-04 06:00:00,2025-03-04,1,6,3,OMR-Perungudi,SUV,Clear,Festival,50,29,21,0.58,Medium,35.0,Medium
+500,2025-03-04 09:00:00,2025-03-04,1,9,3,Tambaram,Bike,Clear,None,50,24,26,0.48,Low,28.81,Low
+501,2025-03-04 12:00:00,2025-03-04,1,12,3,Mylapore,Bike,Cloudy,Weekend,30,17,13,0.567,Medium,33.37,Medium
+502,2025-03-04 15:00:00,2025-03-04,1,15,3,Adyar,Car,Clear,None,50,25,25,0.5,Low,33.41,Low
+503,2025-03-04 18:00:00,2025-03-04,1,18,3,Anna Nagar,SUV,Rain,None,30,17,13,0.567,Medium,33.25,Medium
+504,2025-03-04 21:00:00,2025-03-04,1,21,3,Guindy,Bike,Clear,None,50,20,30,0.4,Low,28.47,Low
+505,2025-03-05 00:00:00,2025-03-05,2,0,3,Koyambedu,SUV,Cloudy,None,40,13,27,0.325,Low,31.08,Low
+506,2025-03-05 03:00:00,2025-03-05,2,3,3,Tambaram,SUV,Clear,Festival,50,31,19,0.62,Medium,31.0,Medium
+507,2025-03-05 06:00:00,2025-03-05,2,6,3,Mylapore,Car,Cloudy,None,60,20,40,0.333,Low,28.59,Low
+508,2025-03-05 09:00:00,2025-03-05,2,9,3,Anna Nagar,SUV,Clear,None,100,53,47,0.53,Low,32.51,Low
+509,2025-03-05 12:00:00,2025-03-05,2,12,3,T Nagar,SUV,Cloudy,None,80,31,49,0.388,Low,26.91,Low
+510,2025-03-05 15:00:00,2025-03-05,2,15,3,T Nagar,Car,Cloudy,None,30,9,21,0.3,Low,25.64,Low
+511,2025-03-05 18:00:00,2025-03-05,2,18,3,Velachery,Bike,Clear,None,100,62,38,0.62,Medium,32.75,Medium
+512,2025-03-05 21:00:00,2025-03-05,2,21,3,Tambaram,SUV,Cloudy,None,30,11,19,0.367,Low,26.77,Low
+513,2025-03-06 00:00:00,2025-03-06,3,0,3,Mylapore,SUV,Clear,None,100,33,67,0.33,Low,28.55,Low
+514,2025-03-06 03:00:00,2025-03-06,3,3,3,Guindy,SUV,Cloudy,None,30,9,21,0.3,Low,26.81,Low
+515,2025-03-06 06:00:00,2025-03-06,3,6,3,Porur,Bike,Cloudy,None,30,10,20,0.333,Low,31.21,Low
+516,2025-03-06 09:00:00,2025-03-06,3,9,3,Anna Nagar,Car,Clear,Weekend,30,23,7,0.767,Medium,37.45,Medium
+517,2025-03-06 12:00:00,2025-03-06,3,12,3,Adyar,Bike,Cloudy,None,80,34,46,0.425,Low,31.7,Low
+518,2025-03-06 15:00:00,2025-03-06,3,15,3,Guindy,SUV,Clear,None,30,8,22,0.267,Low,26.14,Low
+519,2025-03-06 18:00:00,2025-03-06,3,18,3,Adyar,Car,Cloudy,None,100,64,36,0.64,Medium,36.21,Medium
+520,2025-03-06 21:00:00,2025-03-06,3,21,3,T Nagar,Bike,Clear,None,30,12,18,0.4,Low,27.38,Low
+521,2025-03-07 00:00:00,2025-03-07,4,0,3,T Nagar,Bike,Clear,None,100,22,78,0.22,Low,23.9,Low
+522,2025-03-07 03:00:00,2025-03-07,4,3,3,Guindy,Car,Clear,Festival,100,69,31,0.69,Medium,34.11,Medium
+523,2025-03-07 06:00:00,2025-03-07,4,6,3,OMR-Perungudi,SUV,Rain,None,30,11,19,0.367,Low,30.8,Low
+524,2025-03-07 09:00:00,2025-03-07,4,9,3,Koyambedu,SUV,Rain,None,60,44,16,0.733,Medium,39.67,Medium
+525,2025-03-07 12:00:00,2025-03-07,4,12,3,Porur,Bike,Clear,None,80,23,57,0.287,Low,30.24,Low
+526,2025-03-07 15:00:00,2025-03-07,4,15,3,T Nagar,SUV,Cloudy,None,40,9,31,0.225,Low,24.24,Low
+527,2025-03-07 18:00:00,2025-03-07,4,18,3,Guindy,SUV,Clear,None,30,14,16,0.467,Low,29.88,Low
+528,2025-03-07 21:00:00,2025-03-07,4,21,3,Guindy,SUV,Clear,Weekend,100,47,53,0.47,Low,29.96,Low
+529,2025-03-08 00:00:00,2025-03-08,5,0,3,Anna Nagar,Bike,Clear,Festival,100,85,15,0.85,High,38.85,High
+530,2025-03-08 03:00:00,2025-03-08,5,3,3,T Nagar,Bike,Cloudy,None,30,15,15,0.5,Low,28.78,Low
+531,2025-03-08 06:00:00,2025-03-08,5,6,3,Koyambedu,Bike,Clear,Sale,80,62,18,0.775,Medium,40.87,Medium
+532,2025-03-08 09:00:00,2025-03-08,5,9,3,T Nagar,Bike,Rain,None,100,73,27,0.73,Medium,33.09,Medium
+533,2025-03-08 12:00:00,2025-03-08,5,12,3,Adyar,Car,Clear,None,50,26,24,0.52,Low,33.86,Low
+534,2025-03-08 15:00:00,2025-03-08,5,15,3,Koyambedu,Bike,Cloudy,None,100,46,54,0.46,Low,34.0,Low
+535,2025-03-08 18:00:00,2025-03-08,5,18,3,Adyar,Bike,Clear,None,100,73,27,0.73,Medium,38.07,Medium
+536,2025-03-08 21:00:00,2025-03-08,5,21,3,Anna Nagar,Car,Clear,None,100,53,47,0.53,Low,32.57,Low
+537,2025-03-09 00:00:00,2025-03-09,6,0,3,T Nagar,Car,Cloudy,None,50,25,25,0.5,Low,28.84,Low
+538,2025-03-09 03:00:00,2025-03-09,6,3,3,Anna Nagar,SUV,Clear,None,30,15,15,0.5,Low,31.88,Low
+539,2025-03-09 06:00:00,2025-03-09,6,6,3,OMR-Perungudi,SUV,Clear,None,60,37,23,0.617,Medium,35.64,Medium
+540,2025-03-09 09:00:00,2025-03-09,6,9,3,Velachery,Bike,Clear,None,80,59,21,0.738,Medium,34.87,Medium
+541,2025-03-09 12:00:00,2025-03-09,6,12,3,T Nagar,SUV,Cloudy,None,50,31,19,0.62,Medium,31.28,Medium
+542,2025-03-09 15:00:00,2025-03-09,6,15,3,OMR-Perungudi,Bike,Clear,None,40,18,22,0.45,Low,32.1,Low
+543,2025-03-09 18:00:00,2025-03-09,6,18,3,Anna Nagar,Car,Clear,None,40,33,7,0.825,High,38.28,High
+544,2025-03-09 21:00:00,2025-03-09,6,21,3,Velachery,Bike,Clear,None,40,26,14,0.65,Medium,33.2,Medium
+545,2025-03-10 00:00:00,2025-03-10,0,0,3,Velachery,SUV,Clear,None,50,8,42,0.16,Low,23.88,Low
+546,2025-03-10 03:00:00,2025-03-10,0,3,3,Mylapore,Car,Clear,None,80,23,57,0.287,Low,27.67,Low
+547,2025-03-10 06:00:00,2025-03-10,0,6,3,Porur,SUV,Clear,Weekend,30,15,15,0.5,Low,35.15,Low
+548,2025-03-10 09:00:00,2025-03-10,0,9,3,Guindy,SUV,Clear,None,50,29,21,0.58,Medium,32.03,Medium
+549,2025-03-10 12:00:00,2025-03-10,0,12,3,Koyambedu,SUV,Cloudy,None,40,16,24,0.4,Low,32.85,Low
+550,2025-03-10 15:00:00,2025-03-10,0,15,3,Adyar,Bike,Rain,None,60,23,37,0.383,Low,30.9,Low
+551,2025-03-10 18:00:00,2025-03-10,0,18,3,Porur,SUV,Clear,None,100,61,39,0.61,Medium,37.11,Medium
+552,2025-03-10 21:00:00,2025-03-10,0,21,3,Adyar,Bike,Cloudy,None,50,18,32,0.36,Low,30.61,Low
+553,2025-03-11 00:00:00,2025-03-11,1,0,3,Tambaram,SUV,Clear,Weekend,30,17,13,0.567,Medium,30.14,Medium
+554,2025-03-11 03:00:00,2025-03-11,1,3,3,Anna Nagar,SUV,Clear,Festival,100,67,33,0.67,Medium,35.27,Medium
+555,2025-03-11 06:00:00,2025-03-11,1,6,3,Mylapore,SUV,Cloudy,None,100,41,59,0.41,Low,30.06,Low
+556,2025-03-11 09:00:00,2025-03-11,1,9,3,Velachery,Bike,Clear,None,60,34,26,0.567,Medium,31.72,Medium
+557,2025-03-11 12:00:00,2025-03-11,1,12,3,Adyar,Bike,Cloudy,None,50,17,33,0.34,Low,30.06,Low
+558,2025-03-11 15:00:00,2025-03-11,1,15,3,Velachery,Bike,Clear,Sale,60,31,29,0.517,Low,30.74,Low
+559,2025-03-11 18:00:00,2025-03-11,1,18,3,OMR-Perungudi,Bike,Rain,Weekend,80,67,13,0.838,High,40.21,High
+560,2025-03-11 21:00:00,2025-03-11,1,21,3,OMR-Perungudi,SUV,Clear,Festival,30,18,12,0.6,Medium,35.76,Medium
+561,2025-03-12 00:00:00,2025-03-12,2,0,3,Koyambedu,Car,Clear,Weekend,100,49,51,0.49,Low,34.65,Low
+562,2025-03-12 03:00:00,2025-03-12,2,3,3,Tambaram,SUV,Clear,None,40,21,19,0.525,Low,29.29,Low
+563,2025-03-12 06:00:00,2025-03-12,2,6,3,Guindy,Car,Clear,Sale,50,31,19,0.62,Medium,32.71,Medium
+564,2025-03-12 09:00:00,2025-03-12,2,9,3,Velachery,SUV,Cloudy,None,50,30,20,0.6,Medium,32.41,Medium
+565,2025-03-12 12:00:00,2025-03-12,2,12,3,Koyambedu,Bike,Clear,None,100,45,55,0.45,Low,33.64,Low
+566,2025-03-12 15:00:00,2025-03-12,2,15,3,Mylapore,Bike,Clear,None,100,32,68,0.32,Low,28.28,Low
+567,2025-03-12 18:00:00,2025-03-12,2,18,3,T Nagar,Car,Clear,None,60,26,34,0.433,Low,27.87,Low
+568,2025-03-12 21:00:00,2025-03-12,2,21,3,Velachery,Bike,Clear,None,100,27,73,0.27,Low,26.09,Low
+569,2025-03-13 00:00:00,2025-03-13,3,0,3,Adyar,Bike,Clear,None,80,16,64,0.2,Low,27.15,Low
+570,2025-03-13 03:00:00,2025-03-13,3,3,3,Mylapore,SUV,Clear,None,50,16,34,0.32,Low,28.37,Low
+571,2025-03-13 06:00:00,2025-03-13,3,6,3,Velachery,SUV,Cloudy,Weekend,30,15,15,0.5,Low,30.48,Low
+572,2025-03-13 09:00:00,2025-03-13,3,9,3,Anna Nagar,Car,Clear,None,100,73,27,0.73,Medium,36.54,Medium
+573,2025-03-13 12:00:00,2025-03-13,3,12,3,Tambaram,Bike,Clear,None,80,30,50,0.375,Low,26.77,Low
+574,2025-03-13 15:00:00,2025-03-13,3,15,3,Anna Nagar,Car,Clear,None,40,13,27,0.325,Low,28.58,Low
+575,2025-03-13 18:00:00,2025-03-13,3,18,3,Koyambedu,Car,Clear,None,40,27,13,0.675,Medium,38.39,Medium
+576,2025-03-13 21:00:00,2025-03-13,3,21,3,Adyar,Car,Cloudy,None,40,8,32,0.2,Low,27.2,Low
+577,2025-03-14 00:00:00,2025-03-14,4,0,3,Koyambedu,Bike,Clear,Festival,30,20,10,0.667,Medium,38.45,Medium
+578,2025-03-14 03:00:00,2025-03-14,4,3,3,Tambaram,Bike,Clear,None,40,16,24,0.4,Low,27.41,Low
+579,2025-03-14 06:00:00,2025-03-14,4,6,3,OMR-Perungudi,Bike,Clear,None,100,23,77,0.23,Low,27.8,Low
+580,2025-03-14 09:00:00,2025-03-14,4,9,3,Koyambedu,SUV,Cloudy,None,30,22,8,0.733,Medium,39.58,Medium
+581,2025-03-14 12:00:00,2025-03-14,4,12,3,Anna Nagar,SUV,Clear,None,100,38,62,0.38,Low,29.47,Low
+582,2025-03-14 15:00:00,2025-03-14,4,15,3,Koyambedu,Car,Clear,None,30,10,20,0.333,Low,30.84,Low
+583,2025-03-14 18:00:00,2025-03-14,4,18,3,Porur,SUV,Cloudy,None,30,20,10,0.667,Medium,38.7,Medium
+584,2025-03-14 21:00:00,2025-03-14,4,21,3,Guindy,Bike,Clear,None,60,32,28,0.533,Low,31.05,Low
+585,2025-03-15 00:00:00,2025-03-15,5,0,3,Anna Nagar,SUV,Cloudy,None,60,34,26,0.567,Medium,33.38,Medium
+586,2025-03-15 03:00:00,2025-03-15,5,3,3,Anna Nagar,Car,Clear,None,80,44,36,0.55,Low,32.89,Low
+587,2025-03-15 06:00:00,2025-03-15,5,6,3,Tambaram,Car,Rain,None,60,34,26,0.567,Medium,30.32,Medium
+588,2025-03-15 09:00:00,2025-03-15,5,9,3,Mylapore,SUV,Clear,None,40,28,12,0.7,Medium,36.1,Medium
+589,2025-03-15 12:00:00,2025-03-15,5,12,3,OMR-Perungudi,Bike,Cloudy,None,100,63,37,0.63,Medium,35.97,Medium
+590,2025-03-15 15:00:00,2025-03-15,5,15,3,Mylapore,Car,Clear,None,60,28,32,0.467,Low,31.14,Low
+591,2025-03-15 18:00:00,2025-03-15,5,18,3,Porur,Car,Clear,None,30,24,6,0.8,Medium,40.97,Medium
+592,2025-03-15 21:00:00,2025-03-15,5,21,3,Mylapore,SUV,Cloudy,Festival,80,66,14,0.825,High,38.27,High
+593,2025-03-16 00:00:00,2025-03-16,6,0,3,OMR-Perungudi,SUV,Clear,None,30,17,13,0.567,Medium,34.76,Medium
+594,2025-03-16 03:00:00,2025-03-16,6,3,3,Tambaram,SUV,Clear,Weekend,80,54,26,0.675,Medium,32.18,Medium
+595,2025-03-16 06:00:00,2025-03-16,6,6,3,Mylapore,SUV,Clear,None,80,49,31,0.613,Medium,34.14,Medium
+596,2025-03-16 09:00:00,2025-03-16,6,9,3,Adyar,Bike,Clear,Weekend,50,43,7,0.86,High,40.79,High
+597,2025-03-16 12:00:00,2025-03-16,6,12,3,Tambaram,Car,Rain,None,30,18,12,0.6,Medium,30.59,Medium
+598,2025-03-16 15:00:00,2025-03-16,6,15,3,Adyar,SUV,Clear,None,100,45,55,0.45,Low,32.35,Low
+599,2025-03-16 18:00:00,2025-03-16,6,18,3,Koyambedu,Car,Cloudy,None,100,77,23,0.77,Medium,40.73,Medium
+600,2025-03-16 21:00:00,2025-03-16,6,21,3,Adyar,SUV,Clear,None,30,17,13,0.567,Medium,34.6,Medium
+601,2025-03-17 00:00:00,2025-03-17,0,0,3,OMR-Perungudi,Bike,Cloudy,None,40,18,22,0.45,Low,32.12,Low
+602,2025-03-17 03:00:00,2025-03-17,0,3,3,Koyambedu,SUV,Clear,Sale,50,24,26,0.48,Low,34.29,Low
+603,2025-03-17 06:00:00,2025-03-17,0,6,3,Velachery,Car,Cloudy,Sale,40,26,14,0.65,Medium,33.28,Medium
+604,2025-03-17 09:00:00,2025-03-17,0,9,3,Porur,Car,Rain,None,100,79,21,0.79,Medium,41.03,Medium
+605,2025-03-17 12:00:00,2025-03-17,0,12,3,Anna Nagar,SUV,Clear,None,100,38,62,0.38,Low,29.58,Low
+606,2025-03-17 15:00:00,2025-03-17,0,15,3,Guindy,SUV,Cloudy,None,60,32,28,0.533,Low,31.02,Low
+607,2025-03-17 18:00:00,2025-03-17,0,18,3,Guindy,Car,Cloudy,None,60,34,26,0.567,Medium,31.74,Medium
+608,2025-03-17 21:00:00,2025-03-17,0,21,3,Guindy,Bike,Cloudy,Festival,80,46,34,0.575,Medium,31.97,Medium
+609,2025-03-18 00:00:00,2025-03-18,1,0,3,Mylapore,SUV,Clear,None,60,12,48,0.2,Low,26.11,Low
+610,2025-03-18 03:00:00,2025-03-18,1,3,3,Velachery,SUV,Cloudy,Sale,100,70,30,0.7,Medium,34.22,Medium
+611,2025-03-18 06:00:00,2025-03-18,1,6,3,Tambaram,Bike,Clear,Festival,30,21,9,0.7,Medium,32.64,Medium
+612,2025-03-18 09:00:00,2025-03-18,1,9,3,Adyar,Bike,Cloudy,None,60,38,22,0.633,Medium,35.95,Medium
+613,2025-03-18 12:00:00,2025-03-18,1,12,3,OMR-Perungudi,Bike,Rain,None,80,36,44,0.45,Low,32.36,Low
+614,2025-03-18 15:00:00,2025-03-18,1,15,3,T Nagar,Bike,Cloudy,None,30,9,21,0.3,Low,25.22,Low
+615,2025-03-18 18:00:00,2025-03-18,1,18,3,T Nagar,Bike,Clear,Weekend,30,27,3,0.9,High,36.48,High
+616,2025-03-18 21:00:00,2025-03-18,1,21,3,T Nagar,Car,Cloudy,None,60,23,37,0.383,Low,27.03,Low
+617,2025-03-19 00:00:00,2025-03-19,2,0,3,Porur,Car,Rain,Weekend,40,22,18,0.55,Medium,36.07,Medium
+618,2025-03-19 03:00:00,2025-03-19,2,3,3,Tambaram,SUV,Cloudy,None,50,22,28,0.44,Low,27.89,Low
+619,2025-03-19 06:00:00,2025-03-19,2,6,3,Anna Nagar,SUV,Clear,None,30,12,18,0.4,Low,29.69,Low
+620,2025-03-19 09:00:00,2025-03-19,2,9,3,Adyar,Car,Cloudy,None,60,39,21,0.65,Medium,36.41,Medium
+621,2025-03-19 12:00:00,2025-03-19,2,12,3,Adyar,SUV,Clear,None,60,17,43,0.283,Low,28.94,Low
+622,2025-03-19 15:00:00,2025-03-19,2,15,3,Mylapore,Car,Clear,None,30,12,18,0.4,Low,29.68,Low
+623,2025-03-19 18:00:00,2025-03-19,2,18,3,Guindy,Bike,Clear,None,100,75,25,0.75,Medium,35.19,Medium
+624,2025-03-19 21:00:00,2025-03-19,2,21,3,Velachery,Bike,Clear,Weekend,100,58,42,0.58,Medium,31.92,Medium
+625,2025-03-20 00:00:00,2025-03-20,3,0,3,Porur,Car,Cloudy,None,40,20,20,0.5,Low,34.96,Low
+626,2025-03-20 03:00:00,2025-03-20,3,3,3,Anna Nagar,SUV,Clear,None,30,9,21,0.3,Low,28.12,Low
+627,2025-03-20 06:00:00,2025-03-20,3,6,3,Anna Nagar,SUV,Clear,None,60,16,44,0.267,Low,27.36,Low
+628,2025-03-20 09:00:00,2025-03-20,3,9,3,Anna Nagar,Car,Clear,None,60,35,25,0.583,Medium,33.68,Medium
+629,2025-03-20 12:00:00,2025-03-20,3,12,3,Velachery,SUV,Clear,None,30,11,19,0.367,Low,27.7,Low
+630,2025-03-20 15:00:00,2025-03-20,3,15,3,Guindy,Car,Clear,Sale,50,32,18,0.64,Medium,33.05,Medium
+631,2025-03-20 18:00:00,2025-03-20,3,18,3,Adyar,SUV,Clear,None,50,23,27,0.46,Low,32.62,Low
+632,2025-03-20 21:00:00,2025-03-20,3,21,3,Koyambedu,SUV,Cloudy,None,100,50,50,0.5,Low,34.85,Low
+633,2025-03-21 00:00:00,2025-03-21,4,0,3,T Nagar,SUV,Clear,Weekend,100,46,54,0.46,Low,28.23,Low
+634,2025-03-21 03:00:00,2025-03-21,4,3,3,OMR-Perungudi,Car,Clear,Festival,40,25,15,0.625,Medium,35.75,Medium
+635,2025-03-21 06:00:00,2025-03-21,4,6,3,Adyar,SUV,Clear,None,60,16,44,0.267,Low,28.57,Low
+636,2025-03-21 09:00:00,2025-03-21,4,9,3,Koyambedu,Bike,Rain,None,30,16,14,0.533,Low,35.83,Low
+637,2025-03-21 12:00:00,2025-03-21,4,12,3,Tambaram,Bike,Cloudy,None,40,18,22,0.45,Low,28.03,Low
+638,2025-03-21 15:00:00,2025-03-21,4,15,3,Tambaram,Car,Cloudy,None,80,31,49,0.388,Low,26.95,Low
+639,2025-03-21 18:00:00,2025-03-21,4,18,3,T Nagar,Car,Clear,None,80,40,40,0.5,Low,28.94,Low
+640,2025-03-21 21:00:00,2025-03-21,4,21,3,T Nagar,SUV,Cloudy,None,60,17,43,0.283,Low,24.98,Low
+641,2025-03-22 00:00:00,2025-03-22,5,0,3,Guindy,SUV,Clear,None,60,30,30,0.5,Low,30.51,Low
+642,2025-03-22 03:00:00,2025-03-22,5,3,3,OMR-Perungudi,Car,Clear,None,80,53,27,0.662,Medium,36.73,Medium
+643,2025-03-22 06:00:00,2025-03-22,5,6,3,OMR-Perungudi,Bike,Clear,Sale,40,28,12,0.7,Medium,37.68,Medium
+644,2025-03-22 09:00:00,2025-03-22,5,9,3,Guindy,SUV,Cloudy,None,80,55,25,0.688,Medium,34.04,Medium
+645,2025-03-22 12:00:00,2025-03-22,5,12,3,Velachery,Car,Cloudy,None,50,27,23,0.54,Low,31.21,Low
+646,2025-03-22 15:00:00,2025-03-22,5,15,3,T Nagar,Bike,Clear,None,40,20,20,0.5,Low,29.15,Low
+647,2025-03-22 18:00:00,2025-03-22,5,18,3,Koyambedu,SUV,Cloudy,None,80,48,32,0.6,Medium,36.84,Medium
+648,2025-03-22 21:00:00,2025-03-22,5,21,3,Anna Nagar,Car,Clear,None,30,16,14,0.533,Low,32.41,Low
+649,2025-03-23 00:00:00,2025-03-23,6,0,3,Anna Nagar,SUV,Clear,Sale,60,43,17,0.717,Medium,36.09,Medium
+650,2025-03-23 03:00:00,2025-03-23,6,3,3,Porur,Bike,Cloudy,None,40,25,15,0.625,Medium,37.3,Medium
+651,2025-03-23 06:00:00,2025-03-23,6,6,3,Velachery,SUV,Clear,None,30,20,10,0.667,Medium,33.81,Medium
+652,2025-03-23 09:00:00,2025-03-23,6,9,3,Velachery,Car,Clear,None,50,44,6,0.88,High,37.45,High
+653,2025-03-23 12:00:00,2025-03-23,6,12,3,Mylapore,SUV,Clear,None,60,31,29,0.517,Low,32.07,Low
+654,2025-03-23 15:00:00,2025-03-23,6,15,3,Anna Nagar,SUV,Cloudy,None,50,24,26,0.48,Low,31.34,Low
+655,2025-03-23 18:00:00,2025-03-23,6,18,3,Velachery,Car,Clear,Festival,40,39,1,0.975,High,39.52,High
+656,2025-03-23 21:00:00,2025-03-23,6,21,3,Adyar,Car,Clear,None,30,16,14,0.533,Low,34.07,Low
+657,2025-03-24 00:00:00,2025-03-24,0,0,3,Anna Nagar,SUV,Rain,None,30,13,17,0.433,Low,30.54,Low
+658,2025-03-24 03:00:00,2025-03-24,0,3,3,Guindy,SUV,Clear,None,40,14,26,0.35,Low,27.58,Low
+659,2025-03-24 06:00:00,2025-03-24,0,6,3,Tambaram,Car,Clear,Weekend,50,24,26,0.48,Low,28.75,Low
+660,2025-03-24 09:00:00,2025-03-24,0,9,3,OMR-Perungudi,SUV,Clear,Weekend,100,71,29,0.71,Medium,37.66,Medium
+661,2025-03-24 12:00:00,2025-03-24,0,12,3,T Nagar,Bike,Clear,None,60,18,42,0.3,Low,25.47,Low
+662,2025-03-24 15:00:00,2025-03-24,0,15,3,Porur,Bike,Clear,None,50,15,35,0.3,Low,30.62,Low
+663,2025-03-24 18:00:00,2025-03-24,0,18,3,Adyar,SUV,Clear,None,50,30,20,0.6,Medium,35.37,Medium
+664,2025-03-24 21:00:00,2025-03-24,0,21,3,Adyar,Car,Rain,None,60,23,37,0.383,Low,31.0,Low
+665,2025-03-25 00:00:00,2025-03-25,1,0,3,OMR-Perungudi,Car,Rain,None,40,15,25,0.375,Low,30.72,Low
+666,2025-03-25 03:00:00,2025-03-25,1,3,3,Adyar,Car,Cloudy,None,80,31,49,0.388,Low,31.04,Low
+667,2025-03-25 06:00:00,2025-03-25,1,6,3,Tambaram,SUV,Clear,Festival,30,19,11,0.633,Medium,31.33,Medium
+668,2025-03-25 09:00:00,2025-03-25,1,9,3,Porur,Bike,Rain,None,30,24,6,0.8,High,41.29,High
+669,2025-03-25 12:00:00,2025-03-25,1,12,3,Mylapore,Bike,Clear,Sale,30,10,20,0.333,Low,28.69,Low
+670,2025-03-25 15:00:00,2025-03-25,1,15,3,Velachery,SUV,Rain,Weekend,30,19,11,0.633,Medium,33.05,Medium
+671,2025-03-25 18:00:00,2025-03-25,1,18,3,Guindy,SUV,Clear,Weekend,100,82,18,0.82,High,36.49,High
+672,2025-03-25 21:00:00,2025-03-25,1,21,3,Velachery,Bike,Clear,None,80,15,65,0.188,Low,24.48,Low
+673,2025-03-26 00:00:00,2025-03-26,2,0,3,Velachery,Car,Clear,None,80,26,54,0.325,Low,27.1,Low
+674,2025-03-26 03:00:00,2025-03-26,2,3,3,Adyar,Bike,Clear,None,50,16,34,0.32,Low,29.63,Low
+675,2025-03-26 06:00:00,2025-03-26,2,6,3,Tambaram,Car,Clear,None,50,12,38,0.24,Low,24.27,Low
+676,2025-03-26 09:00:00,2025-03-26,2,9,3,Anna Nagar,Bike,Clear,None,80,43,37,0.537,Low,32.65,Low
+677,2025-03-26 12:00:00,2025-03-26,2,12,3,Mylapore,Car,Clear,None,50,13,37,0.26,Low,27.17,Low
+678,2025-03-26 15:00:00,2025-03-26,2,15,3,Mylapore,Car,Rain,None,50,29,21,0.58,Medium,33.29,Medium
+679,2025-03-26 18:00:00,2025-03-26,2,18,3,Anna Nagar,SUV,Cloudy,None,100,70,30,0.7,Medium,35.96,Medium
+680,2025-03-26 21:00:00,2025-03-26,2,21,3,T Nagar,Car,Clear,Weekend,40,23,17,0.575,Medium,30.29,Medium
+681,2025-03-27 00:00:00,2025-03-27,3,0,3,Adyar,Bike,Clear,None,50,20,30,0.4,Low,31.44,Low
+682,2025-03-27 03:00:00,2025-03-27,3,3,3,Porur,Bike,Clear,None,40,10,30,0.25,Low,29.61,Low
+683,2025-03-27 06:00:00,2025-03-27,3,6,3,OMR-Perungudi,Car,Clear,None,100,31,69,0.31,Low,29.38,Low
+684,2025-03-27 09:00:00,2025-03-27,3,9,3,Anna Nagar,Car,Cloudy,None,30,20,10,0.667,Medium,35.25,Medium
+685,2025-03-27 12:00:00,2025-03-27,3,12,3,Anna Nagar,SUV,Clear,Weekend,40,15,25,0.375,Low,29.37,Low
+686,2025-03-27 15:00:00,2025-03-27,3,15,3,Velachery,Car,Rain,None,80,39,41,0.487,Low,30.21,Low
+687,2025-03-27 18:00:00,2025-03-27,3,18,3,T Nagar,Car,Cloudy,None,30,18,12,0.6,Medium,30.99,Medium
+688,2025-03-27 21:00:00,2025-03-27,3,21,3,Velachery,Car,Rain,None,50,20,30,0.4,Low,28.56,Low
+689,2025-03-28 00:00:00,2025-03-28,4,0,3,Anna Nagar,Bike,Cloudy,None,80,35,45,0.438,Low,30.65,Low
+690,2025-03-28 03:00:00,2025-03-28,4,3,3,T Nagar,Car,Clear,None,60,23,37,0.383,Low,26.94,Low
+691,2025-03-28 06:00:00,2025-03-28,4,6,3,Anna Nagar,Car,Rain,None,50,20,30,0.4,Low,29.94,Low
+692,2025-03-28 09:00:00,2025-03-28,4,9,3,Koyambedu,Bike,Cloudy,None,80,58,22,0.725,Medium,39.61,Medium
+693,2025-03-28 12:00:00,2025-03-28,4,12,3,Guindy,Bike,Clear,None,80,21,59,0.263,Low,25.98,Low
+694,2025-03-28 15:00:00,2025-03-28,4,15,3,Anna Nagar,SUV,Rain,None,60,29,31,0.483,Low,31.49,Low
+695,2025-03-28 18:00:00,2025-03-28,4,18,3,Adyar,Car,Clear,Sale,100,85,15,0.85,High,40.54,High
+696,2025-03-28 21:00:00,2025-03-28,4,21,3,Guindy,Bike,Clear,None,100,33,67,0.33,Low,27.15,Low
+697,2025-03-29 00:00:00,2025-03-29,5,0,3,Tambaram,Car,Clear,None,80,44,36,0.55,Medium,30.01,Medium
+698,2025-03-29 03:00:00,2025-03-29,5,3,3,T Nagar,Bike,Clear,None,50,21,29,0.42,Low,27.74,Low
+699,2025-03-29 06:00:00,2025-03-29,5,6,3,T Nagar,Car,Cloudy,None,60,38,22,0.633,Medium,31.41,Medium
+700,2025-03-29 09:00:00,2025-03-29,5,9,3,Anna Nagar,SUV,Clear,None,30,23,7,0.767,Medium,37.15,Medium
+701,2025-03-29 12:00:00,2025-03-29,5,12,3,T Nagar,Bike,Rain,None,40,23,17,0.575,Medium,30.23,Medium
+702,2025-03-29 15:00:00,2025-03-29,5,15,3,Tambaram,SUV,Clear,None,40,25,15,0.625,Medium,31.05,Medium
+703,2025-03-29 18:00:00,2025-03-29,5,18,3,Tambaram,SUV,Cloudy,None,80,60,20,0.75,Medium,33.57,Medium
+704,2025-03-29 21:00:00,2025-03-29,5,21,3,Koyambedu,Bike,Clear,None,40,17,23,0.425,Low,33.01,Low
+705,2025-03-30 00:00:00,2025-03-30,6,0,3,OMR-Perungudi,Car,Clear,None,50,20,30,0.4,Low,31.39,Low
+706,2025-03-30 03:00:00,2025-03-30,6,3,3,Adyar,Car,Clear,None,80,46,34,0.575,Medium,34.97,Medium
+707,2025-03-30 06:00:00,2025-03-30,6,6,3,Tambaram,SUV,Clear,None,80,34,46,0.425,Low,27.7,Low
+708,2025-03-30 09:00:00,2025-03-30,6,9,3,Anna Nagar,SUV,Clear,None,50,46,4,0.92,High,40.22,High
+709,2025-03-30 12:00:00,2025-03-30,6,12,3,Anna Nagar,Car,Rain,Weekend,30,17,13,0.567,Medium,33.16,Medium
+710,2025-03-30 15:00:00,2025-03-30,6,15,3,Tambaram,Car,Clear,Weekend,100,79,21,0.79,Medium,34.14,Medium
+711,2025-03-30 18:00:00,2025-03-30,6,18,3,Tambaram,SUV,Rain,None,50,44,6,0.88,High,35.78,High
+712,2025-03-30 21:00:00,2025-03-30,6,21,3,Guindy,Car,Cloudy,Sale,100,75,25,0.75,Medium,35.22,Medium
+713,2025-03-31 00:00:00,2025-03-31,0,0,3,OMR-Perungudi,Bike,Cloudy,Weekend,100,46,54,0.46,Low,32.45,Low
+714,2025-03-31 03:00:00,2025-03-31,0,3,3,Adyar,Bike,Clear,None,100,38,62,0.38,Low,30.91,Low
+715,2025-03-31 06:00:00,2025-03-31,0,6,3,Porur,SUV,Clear,None,40,14,26,0.35,Low,31.49,Low
+716,2025-03-31 09:00:00,2025-03-31,0,9,3,Koyambedu,SUV,Cloudy,Weekend,60,50,10,0.833,High,42.11,High
+717,2025-03-31 12:00:00,2025-03-31,0,12,3,T Nagar,SUV,Rain,None,40,18,22,0.45,Low,27.9,Low
+718,2025-03-31 15:00:00,2025-03-31,0,15,3,Adyar,Car,Rain,None,100,44,56,0.44,Low,32.15,Low
+719,2025-03-31 18:00:00,2025-03-31,0,18,3,Tambaram,Bike,Clear,None,100,57,43,0.57,Medium,30.28,Medium
+720,2025-03-31 21:00:00,2025-03-31,0,21,3,Anna Nagar,SUV,Clear,Weekend,100,47,53,0.47,Low,31.22,Low
+721,2025-04-01 00:00:00,2025-04-01,1,0,4,Tambaram,SUV,Clear,None,60,22,38,0.367,Low,26.74,Low
+722,2025-04-01 03:00:00,2025-04-01,1,3,4,Velachery,Car,Clear,None,50,11,39,0.22,Low,25.03,Low
+723,2025-04-01 06:00:00,2025-04-01,1,6,4,T Nagar,Car,Clear,None,60,15,45,0.25,Low,24.36,Low
+724,2025-04-01 09:00:00,2025-04-01,1,9,4,Guindy,Bike,Clear,Weekend,60,47,13,0.783,Medium,35.73,Medium
+725,2025-04-01 12:00:00,2025-04-01,1,12,4,Velachery,SUV,Clear,Festival,60,40,20,0.667,Medium,33.54,Medium
+726,2025-04-01 15:00:00,2025-04-01,1,15,4,Adyar,Car,Cloudy,None,40,15,25,0.375,Low,30.56,Low
+727,2025-04-01 18:00:00,2025-04-01,1,18,4,Porur,Car,Rain,None,30,20,10,0.667,Medium,38.72,Medium
+728,2025-04-01 21:00:00,2025-04-01,1,21,4,Tambaram,Car,Clear,Weekend,40,20,20,0.5,Low,28.96,Low
+729,2025-04-02 00:00:00,2025-04-02,2,0,4,OMR-Perungudi,Bike,Rain,None,30,12,18,0.4,Low,31.01,Low
+730,2025-04-02 03:00:00,2025-04-02,2,3,4,T Nagar,Bike,Clear,Weekend,60,24,36,0.4,Low,27.34,Low
+731,2025-04-02 06:00:00,2025-04-02,2,6,4,Anna Nagar,Car,Clear,None,30,11,19,0.367,Low,29.24,Low
+732,2025-04-02 09:00:00,2025-04-02,2,9,4,Guindy,SUV,Rain,None,100,60,40,0.6,Medium,32.37,Medium
+733,2025-04-02 12:00:00,2025-04-02,2,12,4,Porur,Car,Clear,None,100,38,62,0.38,Low,32.27,Low
+734,2025-04-02 15:00:00,2025-04-02,2,15,4,Guindy,Car,Clear,None,80,17,63,0.212,Low,25.04,Low
+735,2025-04-02 18:00:00,2025-04-02,2,18,4,Tambaram,SUV,Clear,None,30,20,10,0.667,Medium,32.28,Medium
+736,2025-04-02 21:00:00,2025-04-02,2,21,4,Koyambedu,Car,Clear,None,60,23,37,0.383,Low,32.38,Low
+737,2025-04-03 00:00:00,2025-04-03,3,0,4,Porur,Bike,Clear,None,30,11,19,0.367,Low,32.0,Low
+738,2025-04-03 03:00:00,2025-04-03,3,3,4,Mylapore,SUV,Clear,Weekend,60,33,27,0.55,Low,32.86,Low
+739,2025-04-03 06:00:00,2025-04-03,3,6,4,OMR-Perungudi,Bike,Rain,None,60,34,26,0.567,Medium,34.66,Medium
+740,2025-04-03 09:00:00,2025-04-03,3,9,4,Anna Nagar,Bike,Clear,None,60,41,19,0.683,Medium,35.49,Medium
+741,2025-04-03 12:00:00,2025-04-03,3,12,4,Adyar,SUV,Clear,None,50,10,40,0.2,Low,27.2,Low
+742,2025-04-03 15:00:00,2025-04-03,3,15,4,Velachery,Bike,Cloudy,None,30,8,22,0.267,Low,26.25,Low
+743,2025-04-03 18:00:00,2025-04-03,3,18,4,Koyambedu,SUV,Cloudy,None,40,23,17,0.575,Medium,36.53,Medium
+744,2025-04-03 21:00:00,2025-04-03,3,21,4,Guindy,SUV,Rain,None,80,35,45,0.438,Low,29.17,Low
+745,2025-04-04 00:00:00,2025-04-04,4,0,4,Adyar,SUV,Clear,None,60,23,37,0.383,Low,31.1,Low
+746,2025-04-04 03:00:00,2025-04-04,4,3,4,T Nagar,SUV,Clear,None,80,23,57,0.287,Low,25.25,Low
+747,2025-04-04 06:00:00,2025-04-04,4,6,4,Koyambedu,Car,Cloudy,None,40,16,24,0.4,Low,32.53,Low
+748,2025-04-04 09:00:00,2025-04-04,4,9,4,Anna Nagar,Bike,Clear,Weekend,40,26,14,0.65,Medium,35.06,Medium
+749,2025-04-04 12:00:00,2025-04-04,4,12,4,Velachery,SUV,Rain,None,100,38,62,0.38,Low,28.2,Low
+750,2025-04-04 15:00:00,2025-04-04,4,15,4,Anna Nagar,Car,Rain,None,80,25,55,0.312,Low,28.29,Low
+751,2025-04-04 18:00:00,2025-04-04,4,18,4,Velachery,Bike,Clear,None,60,32,28,0.533,Low,30.94,Low
+752,2025-04-04 21:00:00,2025-04-04,4,21,4,OMR-Perungudi,SUV,Clear,Weekend,60,22,38,0.367,Low,30.49,Low
+753,2025-04-05 00:00:00,2025-04-05,5,0,4,Koyambedu,Bike,Clear,None,80,36,44,0.45,Low,33.76,Low
+754,2025-04-05 03:00:00,2025-04-05,5,3,4,Anna Nagar,Car,Clear,None,40,25,15,0.625,Medium,34.16,Medium
+755,2025-04-05 06:00:00,2025-04-05,5,6,4,Velachery,SUV,Cloudy,Festival,80,63,17,0.787,Medium,35.82,Medium
+756,2025-04-05 09:00:00,2025-04-05,5,9,4,Tambaram,SUV,Cloudy,None,60,59,1,0.983,High,37.64,High
+757,2025-04-05 12:00:00,2025-04-05,5,12,4,Koyambedu,Car,Clear,None,60,34,26,0.567,Medium,36.3,Medium
+758,2025-04-05 15:00:00,2025-04-05,5,15,4,Koyambedu,Bike,Clear,None,80,44,36,0.55,Low,35.77,Low
+759,2025-04-05 18:00:00,2025-04-05,5,18,4,Tambaram,Bike,Cloudy,None,100,74,26,0.74,Medium,33.34,Medium
+760,2025-04-05 21:00:00,2025-04-05,5,21,4,Tambaram,Bike,Cloudy,None,30,18,12,0.6,Medium,31.09,Medium
+761,2025-04-06 00:00:00,2025-04-06,6,0,4,Porur,Car,Cloudy,Weekend,60,38,22,0.633,Medium,37.69,Medium
+762,2025-04-06 03:00:00,2025-04-06,6,3,4,Anna Nagar,Bike,Clear,Sale,50,37,13,0.74,Medium,36.65,Medium
+763,2025-04-06 06:00:00,2025-04-06,6,6,4,Porur,Car,Cloudy,None,100,76,24,0.76,Medium,40.52,Medium
+764,2025-04-06 09:00:00,2025-04-06,6,9,4,Mylapore,Bike,Clear,Weekend,40,36,4,0.9,High,39.67,High
+765,2025-04-06 12:00:00,2025-04-06,6,12,4,OMR-Perungudi,Car,Clear,Weekend,50,37,13,0.74,Medium,38.36,Medium
+766,2025-04-06 15:00:00,2025-04-06,6,15,4,Velachery,SUV,Clear,None,50,24,26,0.48,Low,29.95,Low
+767,2025-04-06 18:00:00,2025-04-06,6,18,4,Koyambedu,Car,Rain,None,30,26,4,0.867,High,42.52,High
+768,2025-04-06 21:00:00,2025-04-06,6,21,4,T Nagar,Bike,Clear,None,40,27,13,0.675,Medium,32.09,Medium
+769,2025-04-07 00:00:00,2025-04-07,0,0,4,Adyar,Bike,Clear,None,50,15,35,0.3,Low,29.21,Low
+770,2025-04-07 03:00:00,2025-04-07,0,3,4,Velachery,SUV,Clear,None,100,49,51,0.49,Low,30.36,Low
+771,2025-04-07 06:00:00,2025-04-07,0,6,4,Mylapore,SUV,Clear,Sale,40,24,16,0.6,Medium,34.01,Medium
+772,2025-04-07 09:00:00,2025-04-07,0,9,4,Tambaram,SUV,Rain,None,50,32,18,0.64,Medium,31.43,Medium
+773,2025-04-07 12:00:00,2025-04-07,0,12,4,Velachery,SUV,Clear,None,50,20,30,0.4,Low,28.57,Low
+774,2025-04-07 15:00:00,2025-04-07,0,15,4,Adyar,Bike,Cloudy,None,40,18,22,0.45,Low,32.48,Low
+775,2025-04-07 18:00:00,2025-04-07,0,18,4,Guindy,SUV,Cloudy,None,80,54,26,0.675,Medium,33.85,Medium
+776,2025-04-07 21:00:00,2025-04-07,0,21,4,T Nagar,SUV,Cloudy,Weekend,60,22,38,0.367,Low,26.74,Low
+777,2025-04-08 00:00:00,2025-04-08,1,0,4,T Nagar,Bike,Cloudy,None,40,13,27,0.325,Low,25.79,Low
+778,2025-04-08 03:00:00,2025-04-08,1,3,4,Porur,Bike,Rain,Weekend,60,32,28,0.533,Low,35.45,Low
+779,2025-04-08 06:00:00,2025-04-08,1,6,4,Porur,SUV,Cloudy,None,40,15,25,0.375,Low,32.08,Low
+780,2025-04-08 09:00:00,2025-04-08,1,9,4,Guindy,SUV,Clear,None,80,52,28,0.65,Medium,33.28,Medium
+781,2025-04-08 12:00:00,2025-04-08,1,12,4,Tambaram,Bike,Cloudy,None,80,32,48,0.4,Low,27.1,Low
+782,2025-04-08 15:00:00,2025-04-08,1,15,4,Velachery,SUV,Rain,None,60,19,41,0.317,Low,27.11,Low
+783,2025-04-08 18:00:00,2025-04-08,1,18,4,Tambaram,SUV,Cloudy,None,50,33,17,0.66,Medium,31.89,Medium
+784,2025-04-08 21:00:00,2025-04-08,1,21,4,Porur,Car,Cloudy,None,40,17,23,0.425,Low,33.26,Low
+785,2025-04-09 00:00:00,2025-04-09,2,0,4,Koyambedu,SUV,Cloudy,None,60,25,35,0.417,Low,33.18,Low
+786,2025-04-09 03:00:00,2025-04-09,2,3,4,T Nagar,Bike,Clear,None,100,44,56,0.44,Low,27.86,Low
+787,2025-04-09 06:00:00,2025-04-09,2,6,4,Guindy,SUV,Clear,Festival,60,43,17,0.717,Medium,34.55,Medium
+788,2025-04-09 09:00:00,2025-04-09,2,9,4,Adyar,SUV,Clear,Festival,50,47,3,0.94,High,42.39,High
+789,2025-04-09 12:00:00,2025-04-09,2,12,4,Mylapore,Car,Clear,None,100,34,66,0.34,Low,28.82,Low
+790,2025-04-09 15:00:00,2025-04-09,2,15,4,OMR-Perungudi,SUV,Clear,None,40,9,31,0.225,Low,27.49,Low
+791,2025-04-09 18:00:00,2025-04-09,2,18,4,Porur,Car,Cloudy,Weekend,100,78,22,0.78,Medium,40.94,Medium
+792,2025-04-09 21:00:00,2025-04-09,2,21,4,Tambaram,SUV,Clear,None,100,37,63,0.37,Low,26.6,Low
+793,2025-04-10 00:00:00,2025-04-10,3,0,4,Porur,Bike,Clear,Festival,60,40,20,0.667,Medium,38.51,Medium
+794,2025-04-10 03:00:00,2025-04-10,3,3,4,Koyambedu,Car,Clear,None,50,12,38,0.24,Low,29.35,Low
+795,2025-04-10 06:00:00,2025-04-10,3,6,4,Koyambedu,Car,Clear,Weekend,80,31,49,0.388,Low,32.28,Low
+796,2025-04-10 09:00:00,2025-04-10,3,9,4,OMR-Perungudi,Bike,Clear,Weekend,30,24,6,0.8,High,39.65,High
+797,2025-04-10 12:00:00,2025-04-10,3,12,4,Guindy,Car,Clear,Weekend,30,14,16,0.467,Low,29.82,Low
+798,2025-04-10 15:00:00,2025-04-10,3,15,4,Tambaram,Bike,Rain,Sale,60,41,19,0.683,Medium,32.32,Medium
+799,2025-04-10 18:00:00,2025-04-10,3,18,4,Anna Nagar,Car,Clear,Weekend,50,36,14,0.72,Medium,36.3,Medium
+800,2025-04-10 21:00:00,2025-04-10,3,21,4,Mylapore,SUV,Clear,None,50,18,32,0.36,Low,28.98,Low
+801,2025-04-11 00:00:00,2025-04-11,4,0,4,T Nagar,Car,Clear,None,30,13,17,0.433,Low,27.65,Low
+802,2025-04-11 03:00:00,2025-04-11,4,3,4,Koyambedu,Car,Cloudy,None,40,14,26,0.35,Low,31.32,Low
+803,2025-04-11 06:00:00,2025-04-11,4,6,4,Anna Nagar,Bike,Clear,None,80,29,51,0.362,Low,29.08,Low
+804,2025-04-11 09:00:00,2025-04-11,4,9,4,Mylapore,SUV,Clear,None,60,34,26,0.567,Medium,33.15,Medium
+805,2025-04-11 12:00:00,2025-04-11,4,12,4,Tambaram,SUV,Cloudy,Weekend,30,14,16,0.467,Low,28.37,Low
+806,2025-04-11 15:00:00,2025-04-11,4,15,4,Adyar,Car,Cloudy,None,30,11,19,0.367,Low,30.35,Low
+807,2025-04-11 18:00:00,2025-04-11,4,18,4,Adyar,Car,Clear,Weekend,100,74,26,0.74,Medium,38.27,Medium
+808,2025-04-11 21:00:00,2025-04-11,4,21,4,Guindy,Car,Clear,None,80,25,55,0.312,Low,26.89,Low
+809,2025-04-12 00:00:00,2025-04-12,5,0,4,Porur,SUV,Clear,None,50,32,18,0.64,Medium,37.62,Medium
+810,2025-04-12 03:00:00,2025-04-12,5,3,4,Tambaram,Bike,Rain,Weekend,60,40,20,0.667,Medium,31.85,Medium
+811,2025-04-12 06:00:00,2025-04-12,5,6,4,Mylapore,Bike,Clear,Festival,50,41,9,0.82,High,38.14,High
+812,2025-04-12 09:00:00,2025-04-12,5,9,4,T Nagar,Car,Rain,None,40,33,7,0.825,High,34.85,High
+813,2025-04-12 12:00:00,2025-04-12,5,12,4,T Nagar,SUV,Clear,None,80,52,28,0.65,Medium,31.62,Medium
+814,2025-04-12 15:00:00,2025-04-12,5,15,4,T Nagar,SUV,Clear,Weekend,60,40,20,0.667,Medium,31.98,Medium
+815,2025-04-12 18:00:00,2025-04-12,5,18,4,Koyambedu,Car,Clear,None,30,26,4,0.867,High,42.63,High
+816,2025-04-12 21:00:00,2025-04-12,5,21,4,T Nagar,Bike,Clear,None,30,12,18,0.4,Low,27.4,Low
+817,2025-04-13 00:00:00,2025-04-13,6,0,4,Velachery,Car,Cloudy,None,80,47,33,0.588,Medium,31.99,Medium
+818,2025-04-13 03:00:00,2025-04-13,6,3,4,T Nagar,SUV,Clear,None,50,30,20,0.6,Medium,30.82,Medium
+819,2025-04-13 06:00:00,2025-04-13,6,6,4,Porur,Car,Clear,None,80,43,37,0.537,Low,35.59,Low
+820,2025-04-13 09:00:00,2025-04-13,6,9,4,OMR-Perungudi,Car,Clear,None,100,87,13,0.87,High,40.91,High
+821,2025-04-13 12:00:00,2025-04-13,6,12,4,Mylapore,SUV,Cloudy,None,40,21,19,0.525,Low,32.27,Low
+822,2025-04-13 15:00:00,2025-04-13,6,15,4,Adyar,Car,Clear,None,50,32,18,0.64,Medium,36.3,Medium
+823,2025-04-13 18:00:00,2025-04-13,6,18,4,OMR-Perungudi,Bike,Cloudy,Weekend,60,59,1,0.983,High,43.29,High
+824,2025-04-13 21:00:00,2025-04-13,6,21,4,Tambaram,Car,Cloudy,None,40,21,19,0.525,Low,29.56,Low
+825,2025-04-14 00:00:00,2025-04-14,0,0,4,Koyambedu,SUV,Rain,None,100,39,61,0.39,Low,32.52,Low
+826,2025-04-14 03:00:00,2025-04-14,0,3,4,Velachery,SUV,Rain,Festival,100,85,15,0.85,High,36.99,High
+827,2025-04-14 06:00:00,2025-04-14,0,6,4,Adyar,Bike,Clear,Sale,60,41,19,0.683,Medium,37.0,Medium
+828,2025-04-14 09:00:00,2025-04-14,0,9,4,T Nagar,Bike,Rain,Weekend,30,23,7,0.767,Medium,33.65,Medium
+829,2025-04-14 12:00:00,2025-04-14,0,12,4,Tambaram,Car,Cloudy,None,100,35,65,0.35,Low,26.23,Low
+830,2025-04-14 15:00:00,2025-04-14,0,15,4,T Nagar,Car,Cloudy,Weekend,30,14,16,0.467,Low,28.59,Low
+831,2025-04-14 18:00:00,2025-04-14,0,18,4,Tambaram,Bike,Rain,Weekend,50,35,15,0.7,Medium,32.46,Medium
+832,2025-04-14 21:00:00,2025-04-14,0,21,4,Velachery,Bike,Clear,Weekend,50,20,30,0.4,Low,28.49,Low
+833,2025-04-15 00:00:00,2025-04-15,1,0,4,Guindy,Bike,Clear,None,60,16,44,0.267,Low,26.1,Low
+834,2025-04-15 03:00:00,2025-04-15,1,3,4,Guindy,Car,Clear,Weekend,100,41,59,0.41,Low,28.72,Low
+835,2025-04-15 06:00:00,2025-04-15,1,6,4,T Nagar,Bike,Rain,None,40,17,23,0.425,Low,27.69,Low
+836,2025-04-15 09:00:00,2025-04-15,1,9,4,Koyambedu,Bike,Cloudy,None,100,65,35,0.65,Medium,38.01,Medium
+837,2025-04-15 12:00:00,2025-04-15,1,12,4,Koyambedu,SUV,Rain,Weekend,30,20,10,0.667,Medium,38.56,Medium
+838,2025-04-15 15:00:00,2025-04-15,1,15,4,Anna Nagar,Bike,Clear,Weekend,60,23,37,0.383,Low,29.72,Low
+839,2025-04-15 18:00:00,2025-04-15,1,18,4,Mylapore,Car,Cloudy,None,30,21,9,0.7,Medium,36.03,Medium
+840,2025-04-15 21:00:00,2025-04-15,1,21,4,OMR-Perungudi,SUV,Clear,None,100,33,67,0.33,Low,29.89,Low
+841,2025-04-16 00:00:00,2025-04-16,2,0,4,Tambaram,Car,Cloudy,None,80,30,50,0.375,Low,26.77,Low
+842,2025-04-16 03:00:00,2025-04-16,2,3,4,Guindy,SUV,Clear,Festival,100,70,30,0.7,Medium,34.31,Medium
+843,2025-04-16 06:00:00,2025-04-16,2,6,4,Guindy,SUV,Clear,Weekend,40,15,25,0.375,Low,28.19,Low
+844,2025-04-16 09:00:00,2025-04-16,2,9,4,T Nagar,Bike,Clear,None,30,19,11,0.633,Medium,31.35,Medium
+845,2025-04-16 12:00:00,2025-04-16,2,12,4,Mylapore,Car,Clear,None,40,15,25,0.375,Low,29.19,Low
+846,2025-04-16 15:00:00,2025-04-16,2,15,4,Tambaram,SUV,Clear,None,50,19,31,0.38,Low,27.01,Low
+847,2025-04-16 18:00:00,2025-04-16,2,18,4,Guindy,Bike,Clear,Weekend,60,45,15,0.75,Medium,35.05,Medium
+848,2025-04-16 21:00:00,2025-04-16,2,21,4,Koyambedu,Bike,Clear,None,60,33,27,0.55,Low,35.8,Low
+849,2025-04-17 00:00:00,2025-04-17,3,0,4,Velachery,Bike,Clear,Festival,60,36,24,0.6,Medium,32.32,Medium
+850,2025-04-17 03:00:00,2025-04-17,3,3,4,Guindy,Car,Clear,None,30,9,21,0.3,Low,26.81,Low
+851,2025-04-17 06:00:00,2025-04-17,3,6,4,Koyambedu,SUV,Rain,None,80,30,50,0.375,Low,32.21,Low
+852,2025-04-17 09:00:00,2025-04-17,3,9,4,Adyar,Bike,Rain,None,100,64,36,0.64,Medium,36.16,Medium
+853,2025-04-17 12:00:00,2025-04-17,3,12,4,T Nagar,SUV,Clear,Weekend,40,17,23,0.425,Low,27.54,Low
+854,2025-04-17 15:00:00,2025-04-17,3,15,4,Koyambedu,Bike,Clear,None,60,27,33,0.45,Low,33.61,Low
+855,2025-04-17 18:00:00,2025-04-17,3,18,4,Velachery,Bike,Clear,Festival,30,29,1,0.967,High,39.52,High
+856,2025-04-17 21:00:00,2025-04-17,3,21,4,Tambaram,SUV,Clear,Sale,100,50,50,0.5,Low,29.08,Low
+857,2025-04-18 00:00:00,2025-04-18,4,0,4,Tambaram,Bike,Rain,None,100,36,64,0.36,Low,26.54,Low
+858,2025-04-18 03:00:00,2025-04-18,4,3,4,Anna Nagar,Bike,Clear,Festival,100,69,31,0.69,Medium,35.62,Medium
+859,2025-04-18 06:00:00,2025-04-18,4,6,4,Koyambedu,Bike,Rain,None,40,15,25,0.375,Low,32.33,Low
+860,2025-04-18 09:00:00,2025-04-18,4,9,4,Adyar,Bike,Clear,Weekend,60,46,14,0.767,Medium,38.95,Medium
+861,2025-04-18 12:00:00,2025-04-18,4,12,4,Velachery,SUV,Cloudy,None,60,24,36,0.4,Low,28.49,Low
+862,2025-04-18 15:00:00,2025-04-18,4,15,4,Koyambedu,SUV,Clear,Festival,30,16,14,0.533,Low,35.42,Low
+863,2025-04-18 18:00:00,2025-04-18,4,18,4,Koyambedu,SUV,Clear,None,80,58,22,0.725,Medium,39.63,Medium
+864,2025-04-18 21:00:00,2025-04-18,4,21,4,T Nagar,Bike,Cloudy,Weekend,80,51,29,0.637,Medium,31.59,Medium
+865,2025-04-19 00:00:00,2025-04-19,5,0,4,OMR-Perungudi,Car,Clear,None,40,19,21,0.475,Low,32.96,Low
+866,2025-04-19 03:00:00,2025-04-19,5,3,4,Velachery,Bike,Cloudy,None,60,32,28,0.533,Low,31.0,Low
+867,2025-04-19 06:00:00,2025-04-19,5,6,4,OMR-Perungudi,SUV,Cloudy,None,60,35,25,0.583,Medium,35.07,Medium
+868,2025-04-19 09:00:00,2025-04-19,5,9,4,Adyar,Bike,Clear,None,50,40,10,0.8,High,39.7,High
+869,2025-04-19 12:00:00,2025-04-19,5,12,4,Mylapore,SUV,Cloudy,None,40,25,15,0.625,Medium,34.13,Medium
+870,2025-04-19 15:00:00,2025-04-19,5,15,4,OMR-Perungudi,Bike,Clear,Weekend,50,41,9,0.82,High,39.78,High
+871,2025-04-19 18:00:00,2025-04-19,5,18,4,OMR-Perungudi,SUV,Clear,None,100,77,23,0.77,Medium,38.85,Medium
+872,2025-04-19 21:00:00,2025-04-19,5,21,4,Porur,SUV,Cloudy,None,100,50,50,0.5,Low,34.72,Low
+873,2025-04-20 00:00:00,2025-04-20,6,0,4,Anna Nagar,SUV,Cloudy,None,80,36,44,0.45,Low,30.9,Low
+874,2025-04-20 03:00:00,2025-04-20,6,3,4,Velachery,SUV,Clear,None,50,24,26,0.48,Low,29.91,Low
+875,2025-04-20 06:00:00,2025-04-20,6,6,4,Guindy,Bike,Cloudy,Festival,100,86,14,0.86,High,37.2,High
+876,2025-04-20 09:00:00,2025-04-20,6,9,4,Guindy,Car,Clear,None,30,28,2,0.933,High,38.46,High
+877,2025-04-20 12:00:00,2025-04-20,6,12,4,T Nagar,Car,Clear,None,100,49,51,0.49,Low,28.79,Low
+878,2025-04-20 15:00:00,2025-04-20,6,15,4,Porur,SUV,Cloudy,None,100,58,42,0.58,Medium,36.48,Medium
+879,2025-04-20 18:00:00,2025-04-20,6,18,4,Porur,Bike,Clear,Festival,40,39,1,0.975,High,45.17,High
+880,2025-04-20 21:00:00,2025-04-20,6,21,4,Velachery,Car,Cloudy,Weekend,80,62,18,0.775,Medium,35.65,Medium
+881,2025-04-21 00:00:00,2025-04-21,0,0,4,OMR-Perungudi,SUV,Cloudy,None,60,35,25,0.583,Medium,35.05,Medium
+882,2025-04-21 03:00:00,2025-04-21,0,3,4,Porur,Bike,Rain,None,100,39,61,0.39,Low,32.37,Low
+883,2025-04-21 06:00:00,2025-04-21,0,6,4,Guindy,Car,Clear,None,100,31,69,0.31,Low,26.87,Low
+884,2025-04-21 09:00:00,2025-04-21,0,9,4,Porur,Bike,Cloudy,None,40,29,11,0.725,Medium,39.41,Medium
+885,2025-04-21 12:00:00,2025-04-21,0,12,4,Adyar,SUV,Cloudy,None,100,43,57,0.43,Low,32.0,Low
+886,2025-04-21 15:00:00,2025-04-21,0,15,4,OMR-Perungudi,Car,Cloudy,None,100,53,47,0.53,Low,33.92,Low
+887,2025-04-21 18:00:00,2025-04-21,0,18,4,Porur,Car,Cloudy,None,60,41,19,0.683,Medium,38.62,Medium
+888,2025-04-21 21:00:00,2025-04-21,0,21,4,Anna Nagar,Bike,Clear,None,100,32,68,0.32,Low,28.36,Low
+889,2025-04-22 00:00:00,2025-04-22,1,0,4,Porur,Bike,Clear,None,80,32,48,0.4,Low,32.58,Low
+890,2025-04-22 03:00:00,2025-04-22,1,3,4,T Nagar,Car,Rain,None,50,26,24,0.52,Low,29.34,Low
+891,2025-04-22 06:00:00,2025-04-22,1,6,4,Anna Nagar,SUV,Cloudy,None,50,22,28,0.44,Low,30.82,Low
+892,2025-04-22 09:00:00,2025-04-22,1,9,4,Koyambedu,SUV,Cloudy,None,100,67,33,0.67,Medium,38.48,Medium
+893,2025-04-22 12:00:00,2025-04-22,1,12,4,Tambaram,Car,Clear,Festival,30,22,8,0.733,Medium,33.24,Medium
+894,2025-04-22 15:00:00,2025-04-22,1,15,4,Anna Nagar,Bike,Clear,None,80,35,45,0.438,Low,30.78,Low
+895,2025-04-22 18:00:00,2025-04-22,1,18,4,OMR-Perungudi,Car,Clear,None,80,57,23,0.713,Medium,37.71,Medium
+896,2025-04-22 21:00:00,2025-04-22,1,21,4,Tambaram,SUV,Clear,None,50,20,30,0.4,Low,27.23,Low
+897,2025-04-23 00:00:00,2025-04-23,2,0,4,OMR-Perungudi,SUV,Cloudy,Sale,60,34,26,0.567,Medium,34.73,Medium
+898,2025-04-23 03:00:00,2025-04-23,2,3,4,T Nagar,SUV,Clear,None,30,11,19,0.367,Low,26.51,Low
+899,2025-04-23 06:00:00,2025-04-23,2,6,4,Koyambedu,Bike,Clear,None,80,36,44,0.45,Low,33.64,Low
+900,2025-04-23 09:00:00,2025-04-23,2,9,4,Guindy,Bike,Clear,None,30,16,14,0.533,Low,31.1,Low
+901,2025-04-23 12:00:00,2025-04-23,2,12,4,T Nagar,SUV,Clear,Weekend,80,40,40,0.5,Low,28.99,Low
+902,2025-04-23 15:00:00,2025-04-23,2,15,4,Mylapore,Car,Rain,None,60,24,36,0.4,Low,29.89,Low
+903,2025-04-23 18:00:00,2025-04-23,2,18,4,Tambaram,SUV,Clear,None,80,48,32,0.6,Medium,30.84,Medium
+904,2025-04-23 21:00:00,2025-04-23,2,21,4,OMR-Perungudi,SUV,Clear,None,30,14,16,0.467,Low,32.36,Low
+905,2025-04-24 00:00:00,2025-04-24,3,0,4,Adyar,SUV,Clear,None,100,37,63,0.37,Low,30.56,Low
+906,2025-04-24 03:00:00,2025-04-24,3,3,4,Guindy,SUV,Clear,Weekend,100,47,53,0.47,Low,29.95,Low
+907,2025-04-24 06:00:00,2025-04-24,3,6,4,Anna Nagar,Car,Clear,None,30,7,23,0.233,Low,26.78,Low
+908,2025-04-24 09:00:00,2025-04-24,3,9,4,Velachery,Car,Clear,None,30,20,10,0.667,Medium,33.47,Medium
+909,2025-04-24 12:00:00,2025-04-24,3,12,4,Koyambedu,Bike,Clear,Weekend,40,21,19,0.525,Low,35.27,Low
+910,2025-04-24 15:00:00,2025-04-24,3,15,4,Guindy,Car,Clear,None,60,31,29,0.517,Low,30.89,Low
+911,2025-04-24 18:00:00,2025-04-24,3,18,4,OMR-Perungudi,SUV,Cloudy,None,30,18,12,0.6,Medium,35.53,Medium
+912,2025-04-24 21:00:00,2025-04-24,3,21,4,Koyambedu,SUV,Clear,None,30,11,19,0.367,Low,31.94,Low
+913,2025-04-25 00:00:00,2025-04-25,4,0,4,Velachery,Car,Clear,Festival,50,33,17,0.66,Medium,33.66,Medium
+914,2025-04-25 03:00:00,2025-04-25,4,3,4,Porur,Car,Cloudy,None,60,30,30,0.5,Low,34.93,Low
+915,2025-04-25 06:00:00,2025-04-25,4,6,4,Mylapore,Bike,Clear,None,40,14,26,0.35,Low,28.78,Low
+916,2025-04-25 09:00:00,2025-04-25,4,9,4,OMR-Perungudi,SUV,Clear,Sale,50,41,9,0.82,High,40.02,High
+917,2025-04-25 12:00:00,2025-04-25,4,12,4,Tambaram,Car,Clear,None,30,12,18,0.4,Low,27.18,Low
+918,2025-04-25 15:00:00,2025-04-25,4,15,4,T Nagar,SUV,Clear,None,30,11,19,0.367,Low,26.57,Low
+919,2025-04-25 18:00:00,2025-04-25,4,18,4,Velachery,SUV,Cloudy,None,50,30,20,0.6,Medium,32.23,Medium
+920,2025-04-25 21:00:00,2025-04-25,4,21,4,Tambaram,SUV,Cloudy,None,40,16,24,0.4,Low,27.12,Low
+921,2025-04-26 00:00:00,2025-04-26,5,0,4,Anna Nagar,Bike,Cloudy,None,40,26,14,0.65,Medium,34.79,Medium
+922,2025-04-26 03:00:00,2025-04-26,5,3,4,Adyar,Car,Cloudy,None,30,14,16,0.467,Low,32.89,Low
+923,2025-04-26 06:00:00,2025-04-26,5,6,4,OMR-Perungudi,SUV,Clear,None,60,32,28,0.533,Low,34.19,Low
+924,2025-04-26 09:00:00,2025-04-26,5,9,4,Velachery,Bike,Cloudy,None,50,38,12,0.76,Medium,35.25,Medium
+925,2025-04-26 12:00:00,2025-04-26,5,12,4,Tambaram,Car,Cloudy,None,50,33,17,0.66,Medium,31.8,Medium
+926,2025-04-26 15:00:00,2025-04-26,5,15,4,Porur,Bike,Clear,None,80,33,47,0.412,Low,32.82,Low
+927,2025-04-26 18:00:00,2025-04-26,5,18,4,Mylapore,SUV,Clear,None,50,37,13,0.74,Medium,36.56,Medium
+928,2025-04-26 21:00:00,2025-04-26,5,21,4,Anna Nagar,Bike,Cloudy,None,80,47,33,0.588,Medium,33.69,Medium
+929,2025-04-27 00:00:00,2025-04-27,6,0,4,Anna Nagar,SUV,Cloudy,None,30,21,9,0.7,Medium,35.57,Medium
+930,2025-04-27 03:00:00,2025-04-27,6,3,4,Guindy,SUV,Clear,Weekend,50,32,18,0.64,Medium,33.19,Medium
+931,2025-04-27 06:00:00,2025-04-27,6,6,4,Tambaram,Bike,Clear,None,60,29,31,0.483,Low,28.74,Low
+932,2025-04-27 09:00:00,2025-04-27,6,9,4,Mylapore,Car,Cloudy,None,80,77,3,0.963,High,41.02,High
+933,2025-04-27 12:00:00,2025-04-27,6,12,4,Porur,SUV,Clear,Weekend,40,21,19,0.525,Low,35.54,Low
+934,2025-04-27 15:00:00,2025-04-27,6,15,4,Velachery,SUV,Clear,None,100,35,65,0.35,Low,27.69,Low
+935,2025-04-27 18:00:00,2025-04-27,6,18,4,T Nagar,Car,Cloudy,None,80,68,12,0.85,High,35.21,High
+936,2025-04-27 21:00:00,2025-04-27,6,21,4,T Nagar,SUV,Rain,None,80,46,34,0.575,Medium,30.26,Medium
+937,2025-04-28 00:00:00,2025-04-28,0,0,4,Mylapore,Car,Clear,Festival,100,57,43,0.57,Medium,33.25,Medium
+938,2025-04-28 03:00:00,2025-04-28,0,3,4,Koyambedu,SUV,Clear,Weekend,100,53,47,0.53,Low,35.38,Low
+939,2025-04-28 06:00:00,2025-04-28,0,6,4,OMR-Perungudi,SUV,Clear,None,30,11,19,0.367,Low,30.65,Low
+940,2025-04-28 09:00:00,2025-04-28,0,9,4,Adyar,Car,Cloudy,None,80,47,33,0.588,Medium,35.11,Medium
+941,2025-04-28 12:00:00,2025-04-28,0,12,4,Mylapore,SUV,Rain,None,40,13,27,0.325,Low,28.49,Low
+942,2025-04-28 15:00:00,2025-04-28,0,15,4,Anna Nagar,Car,Rain,Festival,100,80,20,0.8,Medium,37.84,Medium
+943,2025-04-28 18:00:00,2025-04-28,0,18,4,Adyar,Car,Clear,None,60,39,21,0.65,Medium,36.5,Medium
+944,2025-04-28 21:00:00,2025-04-28,0,21,4,T Nagar,Bike,Rain,None,100,42,58,0.42,Low,27.6,Low
+945,2025-04-29 00:00:00,2025-04-29,1,0,4,Guindy,Car,Rain,Weekend,60,42,18,0.7,Medium,34.19,Medium
+946,2025-04-29 03:00:00,2025-04-29,1,3,4,Tambaram,Bike,Clear,None,30,8,22,0.267,Low,24.76,Low
+947,2025-04-29 06:00:00,2025-04-29,1,6,4,Porur,SUV,Clear,None,80,18,62,0.225,Low,28.92,Low
+948,2025-04-29 09:00:00,2025-04-29,1,9,4,Guindy,Car,Rain,None,50,31,19,0.62,Medium,32.81,Medium
+949,2025-04-29 12:00:00,2025-04-29,1,12,4,OMR-Perungudi,SUV,Rain,None,50,21,29,0.42,Low,31.83,Low
+950,2025-04-29 15:00:00,2025-04-29,1,15,4,Guindy,Bike,Clear,Weekend,50,24,26,0.48,Low,30.25,Low
+951,2025-04-29 18:00:00,2025-04-29,1,18,4,Koyambedu,Car,Clear,None,30,17,13,0.567,Medium,36.54,Medium
+952,2025-04-29 21:00:00,2025-04-29,1,21,4,Adyar,Car,Clear,None,30,11,19,0.367,Low,30.83,Low
+953,2025-04-30 00:00:00,2025-04-30,2,0,4,Anna Nagar,Car,Cloudy,None,40,11,29,0.275,Low,27.54,Low
+954,2025-04-30 03:00:00,2025-04-30,2,3,4,Adyar,Bike,Cloudy,Weekend,60,37,23,0.617,Medium,35.74,Medium
+955,2025-04-30 06:00:00,2025-04-30,2,6,4,Mylapore,Bike,Clear,None,60,21,39,0.35,Low,28.8,Low
+956,2025-04-30 09:00:00,2025-04-30,2,9,4,T Nagar,Car,Clear,None,40,28,12,0.7,Medium,32.41,Medium
+957,2025-04-30 12:00:00,2025-04-30,2,12,4,Anna Nagar,Car,Rain,None,100,46,54,0.46,Low,31.06,Low
+958,2025-04-30 15:00:00,2025-04-30,2,15,4,T Nagar,Bike,Clear,None,40,15,25,0.375,Low,26.96,Low
+959,2025-04-30 18:00:00,2025-04-30,2,18,4,Koyambedu,SUV,Rain,None,80,58,22,0.725,Medium,39.67,Medium
+960,2025-04-30 21:00:00,2025-04-30,2,21,4,Porur,Bike,Cloudy,None,30,12,18,0.4,Low,32.98,Low
+961,2025-05-01 00:00:00,2025-05-01,3,0,5,Mylapore,Car,Clear,None,40,16,24,0.4,Low,29.95,Low
+962,2025-05-01 03:00:00,2025-05-01,3,3,5,Koyambedu,Car,Clear,None,40,18,22,0.45,Low,33.86,Low
+963,2025-05-01 06:00:00,2025-05-01,3,6,5,Tambaram,Bike,Clear,None,60,22,38,0.367,Low,26.58,Low
+964,2025-05-01 09:00:00,2025-05-01,3,9,5,Guindy,SUV,Clear,None,40,26,14,0.65,Medium,33.41,Medium
+965,2025-05-01 12:00:00,2025-05-01,3,12,5,Guindy,SUV,Clear,None,40,14,26,0.35,Low,27.48,Low
+966,2025-05-01 15:00:00,2025-05-01,3,15,5,Koyambedu,Car,Clear,Weekend,30,18,12,0.6,Medium,36.64,Medium
+967,2025-05-01 18:00:00,2025-05-01,3,18,5,Velachery,SUV,Rain,None,60,38,22,0.633,Medium,32.83,Medium
+968,2025-05-01 21:00:00,2025-05-01,3,21,5,T Nagar,Bike,Clear,None,100,49,51,0.49,Low,28.89,Low
+969,2025-05-02 00:00:00,2025-05-02,4,0,5,T Nagar,Bike,Clear,None,100,35,65,0.35,Low,26.24,Low
+970,2025-05-02 03:00:00,2025-05-02,4,3,5,Guindy,SUV,Cloudy,None,50,13,37,0.26,Low,26.02,Low
+971,2025-05-02 06:00:00,2025-05-02,4,6,5,Koyambedu,Car,Clear,None,30,11,19,0.367,Low,31.78,Low
+972,2025-05-02 09:00:00,2025-05-02,4,9,5,Velachery,Bike,Clear,None,50,27,23,0.54,Low,31.31,Low
+973,2025-05-02 12:00:00,2025-05-02,4,12,5,Adyar,SUV,Cloudy,None,30,13,17,0.433,Low,32.26,Low
+974,2025-05-02 15:00:00,2025-05-02,4,15,5,OMR-Perungudi,Car,Clear,None,30,9,21,0.3,Low,29.16,Low
+975,2025-05-02 18:00:00,2025-05-02,4,18,5,Tambaram,SUV,Clear,None,60,34,26,0.567,Medium,30.16,Medium
+976,2025-05-02 21:00:00,2025-05-02,4,21,5,Koyambedu,SUV,Clear,None,50,10,40,0.2,Low,28.29,Low
+977,2025-05-03 00:00:00,2025-05-03,5,0,5,Tambaram,Car,Cloudy,None,80,42,38,0.525,Low,29.43,Low
+978,2025-05-03 03:00:00,2025-05-03,5,3,5,Guindy,Bike,Clear,Festival,80,51,29,0.637,Medium,33.02,Medium
+979,2025-05-03 06:00:00,2025-05-03,5,6,5,OMR-Perungudi,SUV,Rain,None,80,39,41,0.487,Low,33.0,Low
+980,2025-05-03 09:00:00,2025-05-03,5,9,5,Tambaram,SUV,Clear,None,100,84,16,0.84,High,35.13,High
+981,2025-05-03 12:00:00,2025-05-03,5,12,5,Velachery,Car,Cloudy,None,100,62,38,0.62,Medium,32.77,Medium
+982,2025-05-03 15:00:00,2025-05-03,5,15,5,Velachery,SUV,Cloudy,None,40,24,16,0.6,Medium,32.23,Medium
+983,2025-05-03 18:00:00,2025-05-03,5,18,5,Koyambedu,Bike,Clear,None,100,70,30,0.7,Medium,39.18,Medium
+984,2025-05-03 21:00:00,2025-05-03,5,21,5,T Nagar,SUV,Clear,Weekend,30,19,11,0.633,Medium,31.63,Medium
+985,2025-05-04 00:00:00,2025-05-04,6,0,5,Guindy,Car,Clear,None,30,16,14,0.533,Low,31.01,Low
+986,2025-05-04 03:00:00,2025-05-04,6,3,5,Koyambedu,Bike,Rain,Festival,30,25,5,0.833,High,41.65,High
+987,2025-05-04 06:00:00,2025-05-04,6,6,5,Koyambedu,SUV,Cloudy,None,100,68,32,0.68,Medium,38.69,Medium
+988,2025-05-04 09:00:00,2025-05-04,6,9,5,T Nagar,Car,Clear,None,40,34,6,0.85,High,35.3,High
+989,2025-05-04 12:00:00,2025-05-04,6,12,5,OMR-Perungudi,SUV,Cloudy,None,50,27,23,0.54,Low,34.23,Low
+990,2025-05-04 15:00:00,2025-05-04,6,15,5,OMR-Perungudi,Car,Clear,None,100,53,47,0.53,Low,34.02,Low
+991,2025-05-04 18:00:00,2025-05-04,6,18,5,Tambaram,Car,Rain,None,40,35,5,0.875,High,35.78,High
+992,2025-05-04 21:00:00,2025-05-04,6,21,5,Porur,SUV,Clear,None,60,22,38,0.367,Low,31.92,Low
+993,2025-05-05 00:00:00,2025-05-05,0,0,5,Adyar,Car,Cloudy,None,80,29,51,0.362,Low,30.46,Low
+994,2025-05-05 03:00:00,2025-05-05,0,3,5,OMR-Perungudi,SUV,Clear,Festival,50,30,20,0.6,Medium,35.33,Medium
+995,2025-05-05 06:00:00,2025-05-05,0,6,5,Tambaram,SUV,Clear,Sale,50,23,27,0.46,Low,28.46,Low
+996,2025-05-05 09:00:00,2025-05-05,0,9,5,Adyar,Bike,Clear,Weekend,60,42,18,0.7,Medium,37.44,Medium
+997,2025-05-05 12:00:00,2025-05-05,0,12,5,Anna Nagar,SUV,Clear,None,60,30,30,0.5,Low,31.78,Low
+998,2025-05-05 15:00:00,2025-05-05,0,15,5,Porur,Bike,Cloudy,Weekend,50,28,22,0.56,Medium,35.91,Medium
+999,2025-05-05 18:00:00,2025-05-05,0,18,5,OMR-Perungudi,Bike,Clear,None,80,44,36,0.55,Medium,34.47,Medium
+1000,2025-05-05 21:00:00,2025-05-05,0,21,5,Koyambedu,Bike,Cloudy,Festival,60,44,16,0.733,Medium,39.68,Medium
+1001,2025-05-06 00:00:00,2025-05-06,1,0,5,Mylapore,Bike,Clear,Weekend,80,47,33,0.588,Medium,33.52,Medium
+1002,2025-05-06 03:00:00,2025-05-06,1,3,5,Velachery,SUV,Rain,None,60,30,30,0.5,Low,30.53,Low
+1003,2025-05-06 06:00:00,2025-05-06,1,6,5,Adyar,SUV,Clear,None,50,18,32,0.36,Low,30.34,Low
+1004,2025-05-06 09:00:00,2025-05-06,1,9,5,T Nagar,Car,Clear,Weekend,100,67,33,0.67,Medium,32.03,Medium
+1005,2025-05-06 12:00:00,2025-05-06,1,12,5,Guindy,SUV,Clear,Festival,100,71,29,0.71,Medium,34.34,Medium
+1006,2025-05-06 15:00:00,2025-05-06,1,15,5,Anna Nagar,SUV,Clear,None,60,23,37,0.383,Low,29.55,Low
+1007,2025-05-06 18:00:00,2025-05-06,1,18,5,Porur,Car,Cloudy,Weekend,40,33,7,0.825,High,41.75,High
+1008,2025-05-06 21:00:00,2025-05-06,1,21,5,Mylapore,Bike,Cloudy,None,100,43,57,0.43,Low,30.53,Low
+1009,2025-05-07 00:00:00,2025-05-07,2,0,5,Adyar,SUV,Clear,None,40,17,23,0.425,Low,31.98,Low
+1010,2025-05-07 03:00:00,2025-05-07,2,3,5,Tambaram,Car,Clear,Festival,40,24,16,0.6,Medium,30.93,Medium
+1011,2025-05-07 06:00:00,2025-05-07,2,6,5,Mylapore,Car,Rain,None,80,43,37,0.537,Low,32.6,Low
+1012,2025-05-07 09:00:00,2025-05-07,2,9,5,Mylapore,SUV,Clear,None,50,31,19,0.62,Medium,34.19,Medium
+1013,2025-05-07 12:00:00,2025-05-07,2,12,5,Porur,SUV,Cloudy,None,60,33,27,0.55,Low,35.79,Low
+1014,2025-05-07 15:00:00,2025-05-07,2,15,5,Porur,Car,Clear,None,60,18,42,0.3,Low,30.37,Low
+1015,2025-05-07 18:00:00,2025-05-07,2,18,5,OMR-Perungudi,SUV,Clear,None,60,44,16,0.733,Medium,38.29,Medium
+1016,2025-05-07 21:00:00,2025-05-07,2,21,5,Tambaram,Bike,Cloudy,Weekend,60,31,29,0.517,Low,29.28,Low
+1017,2025-05-08 00:00:00,2025-05-08,3,0,5,Velachery,Car,Clear,None,100,30,70,0.3,Low,26.63,Low
+1018,2025-05-08 03:00:00,2025-05-08,3,3,5,T Nagar,Bike,Clear,None,100,31,69,0.31,Low,25.6,Low
+1019,2025-05-08 06:00:00,2025-05-08,3,6,5,Tambaram,Bike,Clear,Weekend,80,36,44,0.45,Low,28.0,Low
+1020,2025-05-08 09:00:00,2025-05-08,3,9,5,Adyar,Bike,Cloudy,None,50,33,17,0.66,Medium,36.74,Medium
+1021,2025-05-08 12:00:00,2025-05-08,3,12,5,Anna Nagar,Bike,Clear,None,60,24,36,0.4,Low,29.76,Low
+1022,2025-05-08 15:00:00,2025-05-08,3,15,5,Tambaram,Car,Clear,None,60,18,42,0.3,Low,25.47,Low
+1023,2025-05-08 18:00:00,2025-05-08,3,18,5,Koyambedu,Bike,Clear,None,100,60,40,0.6,Medium,36.92,Medium
+1024,2025-05-08 21:00:00,2025-05-08,3,21,5,Adyar,Car,Clear,None,80,42,38,0.525,Low,33.79,Low
+1025,2025-05-09 00:00:00,2025-05-09,4,0,5,Anna Nagar,Bike,Clear,Weekend,60,36,24,0.6,Medium,34.04,Medium
+1026,2025-05-09 03:00:00,2025-05-09,4,3,5,Anna Nagar,Bike,Cloudy,None,100,41,59,0.41,Low,30.22,Low
+1027,2025-05-09 06:00:00,2025-05-09,4,6,5,Porur,Bike,Clear,None,50,18,32,0.36,Low,31.63,Low
+1028,2025-05-09 09:00:00,2025-05-09,4,9,5,Velachery,Bike,Clear,None,100,61,39,0.61,Medium,32.52,Medium
+1029,2025-05-09 12:00:00,2025-05-09,4,12,5,Mylapore,Bike,Cloudy,None,100,43,57,0.43,Low,30.5,Low
+1030,2025-05-09 15:00:00,2025-05-09,4,15,5,Tambaram,Bike,Rain,None,50,17,33,0.34,Low,26.27,Low
+1031,2025-05-09 18:00:00,2025-05-09,4,18,5,Tambaram,SUV,Clear,None,30,17,13,0.567,Medium,30.43,Medium
+1032,2025-05-09 21:00:00,2025-05-09,4,21,5,Koyambedu,SUV,Cloudy,None,40,10,30,0.25,Low,29.32,Low
+1033,2025-05-10 00:00:00,2025-05-10,5,0,5,Anna Nagar,Bike,Cloudy,None,50,30,20,0.6,Medium,33.72,Medium
+1034,2025-05-10 03:00:00,2025-05-10,5,3,5,Mylapore,SUV,Clear,None,30,17,13,0.567,Medium,33.52,Medium
+1035,2025-05-10 06:00:00,2025-05-10,5,6,5,Anna Nagar,Bike,Rain,None,40,23,17,0.575,Medium,33.31,Medium
+1036,2025-05-10 09:00:00,2025-05-10,5,9,5,Koyambedu,Car,Rain,None,80,78,2,0.975,High,45.17,High
+1037,2025-05-10 12:00:00,2025-05-10,5,12,5,Anna Nagar,Bike,Clear,None,50,22,28,0.44,Low,30.55,Low
+1038,2025-05-10 15:00:00,2025-05-10,5,15,5,Porur,Bike,Clear,None,80,33,47,0.412,Low,32.92,Low
+1039,2025-05-10 18:00:00,2025-05-10,5,18,5,Tambaram,Bike,Rain,None,100,88,12,0.88,High,35.8,High
+1040,2025-05-10 21:00:00,2025-05-10,5,21,5,Anna Nagar,Car,Clear,Weekend,40,29,11,0.725,Medium,36.53,Medium
+1041,2025-05-11 00:00:00,2025-05-11,6,0,5,Porur,Car,Clear,None,100,66,34,0.66,Medium,38.36,Medium
+1042,2025-05-11 03:00:00,2025-05-11,6,3,5,Guindy,Bike,Rain,None,30,17,13,0.567,Medium,31.84,Medium
+1043,2025-05-11 06:00:00,2025-05-11,6,6,5,OMR-Perungudi,Car,Clear,None,30,18,12,0.6,Medium,35.76,Medium
+1044,2025-05-11 09:00:00,2025-05-11,6,9,5,Velachery,Bike,Clear,None,50,39,11,0.78,Medium,35.68,Medium
+1045,2025-05-11 12:00:00,2025-05-11,6,12,5,Porur,SUV,Clear,None,40,21,19,0.525,Low,35.15,Low
+1046,2025-05-11 15:00:00,2025-05-11,6,15,5,Anna Nagar,Car,Clear,None,40,24,16,0.6,Medium,33.89,Medium
+1047,2025-05-11 18:00:00,2025-05-11,6,18,5,Tambaram,SUV,Clear,Weekend,50,48,2,0.96,High,37.14,High
+1048,2025-05-11 21:00:00,2025-05-11,6,21,5,Porur,SUV,Rain,None,80,39,41,0.487,Low,34.45,Low
+1049,2025-05-12 00:00:00,2025-05-12,0,0,5,OMR-Perungudi,SUV,Clear,None,40,19,21,0.475,Low,32.69,Low
+1050,2025-05-12 03:00:00,2025-05-12,0,3,5,Koyambedu,Bike,Cloudy,None,60,29,31,0.483,Low,34.59,Low
+1051,2025-05-12 06:00:00,2025-05-12,0,6,5,Tambaram,Bike,Cloudy,None,60,20,40,0.333,Low,25.94,Low
+1052,2025-05-12 09:00:00,2025-05-12,0,9,5,Porur,Car,Clear,None,50,32,18,0.64,Medium,37.64,Medium
+1053,2025-05-12 12:00:00,2025-05-12,0,12,5,T Nagar,Bike,Cloudy,Weekend,80,43,37,0.537,Low,29.71,Low
+1054,2025-05-12 15:00:00,2025-05-12,0,15,5,Porur,Bike,Cloudy,None,60,24,36,0.4,Low,32.66,Low
+1055,2025-05-12 18:00:00,2025-05-12,0,18,5,Mylapore,Bike,Clear,None,50,28,22,0.56,Medium,33.01,Medium
+1056,2025-05-12 21:00:00,2025-05-12,0,21,5,Koyambedu,Car,Clear,Festival,40,24,16,0.6,Medium,36.88,Medium
+1057,2025-05-13 00:00:00,2025-05-13,1,0,5,Guindy,SUV,Clear,None,80,28,52,0.35,Low,27.58,Low
+1058,2025-05-13 03:00:00,2025-05-13,1,3,5,Guindy,SUV,Clear,None,60,27,33,0.45,Low,29.39,Low
+1059,2025-05-13 06:00:00,2025-05-13,1,6,5,Adyar,SUV,Rain,Festival,80,62,18,0.775,Medium,39.01,Medium
+1060,2025-05-13 09:00:00,2025-05-13,1,9,5,Porur,Bike,Clear,None,50,29,21,0.58,Medium,36.32,Medium
+1061,2025-05-13 12:00:00,2025-05-13,1,12,5,Guindy,Bike,Clear,Weekend,40,21,19,0.525,Low,31.05,Low
+1062,2025-05-13 15:00:00,2025-05-13,1,15,5,Velachery,SUV,Clear,None,100,12,88,0.12,Low,23.31,Low
+1063,2025-05-13 18:00:00,2025-05-13,1,18,5,Koyambedu,Car,Clear,None,60,42,18,0.7,Medium,38.95,Medium
+1064,2025-05-13 21:00:00,2025-05-13,1,21,5,OMR-Perungudi,Bike,Clear,None,30,6,24,0.2,Low,27.36,Low
+1065,2025-05-14 00:00:00,2025-05-14,2,0,5,Anna Nagar,Car,Clear,None,100,32,68,0.32,Low,28.36,Low
+1066,2025-05-14 03:00:00,2025-05-14,2,3,5,Anna Nagar,Bike,Clear,None,30,8,22,0.267,Low,27.16,Low
+1067,2025-05-14 06:00:00,2025-05-14,2,6,5,Mylapore,Bike,Cloudy,None,50,14,36,0.28,Low,27.47,Low
+1068,2025-05-14 09:00:00,2025-05-14,2,9,5,Velachery,Car,Cloudy,None,40,29,11,0.725,Medium,34.66,Medium
+1069,2025-05-14 12:00:00,2025-05-14,2,12,5,OMR-Perungudi,Bike,Rain,None,60,24,36,0.4,Low,31.13,Low
+1070,2025-05-14 15:00:00,2025-05-14,2,15,5,Guindy,Car,Cloudy,None,30,12,18,0.4,Low,28.71,Low
+1071,2025-05-14 18:00:00,2025-05-14,2,18,5,Guindy,Car,Rain,None,60,41,19,0.683,Medium,33.78,Medium
+1072,2025-05-14 21:00:00,2025-05-14,2,21,5,Mylapore,Car,Clear,Festival,100,69,31,0.69,Medium,35.63,Medium
+1073,2025-05-15 00:00:00,2025-05-15,3,0,5,Mylapore,Bike,Clear,None,60,21,39,0.35,Low,29.05,Low
+1074,2025-05-15 03:00:00,2025-05-15,3,3,5,Anna Nagar,SUV,Cloudy,Festival,100,58,42,0.58,Medium,33.43,Medium
+1075,2025-05-15 06:00:00,2025-05-15,3,6,5,OMR-Perungudi,Car,Cloudy,None,30,14,16,0.467,Low,32.52,Low
+1076,2025-05-15 09:00:00,2025-05-15,3,9,5,Tambaram,Car,Clear,Weekend,30,20,10,0.667,Medium,32.25,Medium
+1077,2025-05-15 12:00:00,2025-05-15,3,12,5,Adyar,Bike,Clear,None,100,23,77,0.23,Low,27.67,Low
+1078,2025-05-15 15:00:00,2025-05-15,3,15,5,Koyambedu,Car,Clear,None,30,9,21,0.3,Low,30.82,Low
+1079,2025-05-15 18:00:00,2025-05-15,3,18,5,Koyambedu,Bike,Clear,None,100,72,28,0.72,Medium,39.55,Medium
+1080,2025-05-15 21:00:00,2025-05-15,3,21,5,Velachery,SUV,Clear,None,40,17,23,0.425,Low,28.9,Low
+1081,2025-05-16 00:00:00,2025-05-16,4,0,5,Tambaram,Car,Clear,None,100,32,68,0.32,Low,25.8,Low
+1082,2025-05-16 03:00:00,2025-05-16,4,3,5,OMR-Perungudi,SUV,Clear,None,30,10,20,0.333,Low,29.67,Low
+1083,2025-05-16 06:00:00,2025-05-16,4,6,5,Tambaram,Bike,Clear,Festival,60,37,23,0.617,Medium,31.24,Medium
+1084,2025-05-16 09:00:00,2025-05-16,4,9,5,Tambaram,Bike,Rain,None,100,85,15,0.85,High,35.23,High
+1085,2025-05-16 12:00:00,2025-05-16,4,12,5,Mylapore,Car,Cloudy,None,80,33,47,0.412,Low,30.13,Low
+1086,2025-05-16 15:00:00,2025-05-16,4,15,5,Koyambedu,Bike,Clear,None,40,15,25,0.375,Low,32.3,Low
+1087,2025-05-16 18:00:00,2025-05-16,4,18,5,Porur,Car,Clear,Weekend,80,64,16,0.8,High,41.33,High
+1088,2025-05-16 21:00:00,2025-05-16,4,21,5,OMR-Perungudi,SUV,Cloudy,None,40,16,24,0.4,Low,31.26,Low
+1089,2025-05-17 00:00:00,2025-05-17,5,0,5,Tambaram,Bike,Cloudy,None,60,32,28,0.533,Low,29.71,Low
+1090,2025-05-17 03:00:00,2025-05-17,5,3,5,Anna Nagar,SUV,Clear,None,30,15,15,0.5,Low,32.18,Low
+1091,2025-05-17 06:00:00,2025-05-17,5,6,5,Adyar,SUV,Cloudy,Festival,50,43,7,0.86,High,40.68,High
+1092,2025-05-17 09:00:00,2025-05-17,5,9,5,Guindy,SUV,Clear,None,40,31,9,0.775,Medium,35.69,Medium
+1093,2025-05-17 12:00:00,2025-05-17,5,12,5,Anna Nagar,Bike,Clear,None,80,47,33,0.588,Medium,33.65,Medium
+1094,2025-05-17 15:00:00,2025-05-17,5,15,5,Velachery,Car,Clear,None,30,16,14,0.533,Low,31.1,Low
+1095,2025-05-17 18:00:00,2025-05-17,5,18,5,Anna Nagar,Car,Clear,None,30,25,5,0.833,High,38.6,High
+1096,2025-05-17 21:00:00,2025-05-17,5,21,5,T Nagar,Bike,Clear,None,80,42,38,0.525,Low,29.42,Low
+1097,2025-05-18 00:00:00,2025-05-18,6,0,5,OMR-Perungudi,Bike,Clear,None,80,43,37,0.537,Low,34.1,Low
+1098,2025-05-18 03:00:00,2025-05-18,6,3,5,Adyar,Car,Clear,None,80,30,50,0.375,Low,30.66,Low
+1099,2025-05-18 06:00:00,2025-05-18,6,6,5,Mylapore,Bike,Cloudy,None,30,19,11,0.633,Medium,34.54,Medium
+1100,2025-05-18 09:00:00,2025-05-18,6,9,5,OMR-Perungudi,Bike,Clear,Weekend,100,93,7,0.93,High,42.2,High
+1101,2025-05-18 12:00:00,2025-05-18,6,12,5,T Nagar,Car,Clear,None,80,49,31,0.613,Medium,30.98,Medium
+1102,2025-05-18 15:00:00,2025-05-18,6,15,5,Porur,Car,Rain,Weekend,30,15,15,0.5,Low,34.76,Low
+1103,2025-05-18 18:00:00,2025-05-18,6,18,5,Velachery,Car,Clear,None,100,95,5,0.95,High,38.9,High
+1104,2025-05-18 21:00:00,2025-05-18,6,21,5,OMR-Perungudi,Car,Cloudy,None,100,55,45,0.55,Low,34.36,Low
+1105,2025-05-19 00:00:00,2025-05-19,0,0,5,OMR-Perungudi,SUV,Cloudy,None,100,47,53,0.47,Low,32.7,Low
+1106,2025-05-19 03:00:00,2025-05-19,0,3,5,Koyambedu,Bike,Cloudy,None,50,15,35,0.3,Low,30.41,Low
+1107,2025-05-19 06:00:00,2025-05-19,0,6,5,Velachery,SUV,Clear,Festival,40,28,12,0.7,Medium,34.21,Medium
+1108,2025-05-19 09:00:00,2025-05-19,0,9,5,Tambaram,Bike,Rain,None,100,60,40,0.6,Medium,30.72,Medium
+1109,2025-05-19 12:00:00,2025-05-19,0,12,5,Tambaram,Bike,Rain,None,50,19,31,0.38,Low,26.84,Low
+1110,2025-05-19 15:00:00,2025-05-19,0,15,5,Guindy,SUV,Cloudy,None,100,53,47,0.53,Low,31.08,Low
+1111,2025-05-19 18:00:00,2025-05-19,0,18,5,Adyar,SUV,Clear,None,80,47,33,0.588,Medium,35.1,Medium
+1112,2025-05-19 21:00:00,2025-05-19,0,21,5,Porur,Bike,Clear,Sale,50,28,22,0.56,Medium,36.26,Medium
+1113,2025-05-20 00:00:00,2025-05-20,1,0,5,T Nagar,Car,Clear,None,100,42,58,0.42,Low,27.55,Low
+1114,2025-05-20 03:00:00,2025-05-20,1,3,5,OMR-Perungudi,Bike,Clear,Sale,40,24,16,0.6,Medium,35.21,Medium
+1115,2025-05-20 06:00:00,2025-05-20,1,6,5,Adyar,SUV,Clear,Weekend,40,19,21,0.475,Low,32.98,Low
+1116,2025-05-20 09:00:00,2025-05-20,1,9,5,Porur,SUV,Clear,None,80,50,30,0.625,Medium,37.59,Medium
+1117,2025-05-20 12:00:00,2025-05-20,1,12,5,Anna Nagar,Car,Clear,None,30,16,14,0.533,Low,32.74,Low
+1118,2025-05-20 15:00:00,2025-05-20,1,15,5,Porur,Bike,Clear,Weekend,50,23,27,0.46,Low,34.05,Low
+1119,2025-05-20 18:00:00,2025-05-20,1,18,5,Porur,Car,Clear,None,30,18,12,0.6,Medium,37.31,Medium
+1120,2025-05-20 21:00:00,2025-05-20,1,21,5,Velachery,Bike,Clear,None,100,43,57,0.43,Low,29.2,Low
+1121,2025-05-21 00:00:00,2025-05-21,2,0,5,Koyambedu,SUV,Clear,None,30,13,17,0.433,Low,33.47,Low
+1122,2025-05-21 03:00:00,2025-05-21,2,3,5,Koyambedu,Bike,Clear,None,60,27,33,0.45,Low,33.61,Low
+1123,2025-05-21 06:00:00,2025-05-21,2,6,5,Tambaram,Car,Rain,None,60,29,31,0.483,Low,28.66,Low
+1124,2025-05-21 09:00:00,2025-05-21,2,9,5,Koyambedu,Car,Cloudy,None,30,16,14,0.533,Low,35.63,Low
+1125,2025-05-21 12:00:00,2025-05-21,2,12,5,Porur,Car,Clear,None,80,38,42,0.475,Low,34.38,Low
+1126,2025-05-21 15:00:00,2025-05-21,2,15,5,Tambaram,SUV,Clear,None,80,21,59,0.263,Low,24.65,Low
+1127,2025-05-21 18:00:00,2025-05-21,2,18,5,Guindy,Car,Clear,Festival,60,55,5,0.917,High,38.47,High
+1128,2025-05-21 21:00:00,2025-05-21,2,21,5,Adyar,Car,Clear,None,60,17,43,0.283,Low,29.0,Low
+1129,2025-05-22 00:00:00,2025-05-22,3,0,5,Tambaram,SUV,Cloudy,None,30,11,19,0.367,Low,26.75,Low
+1130,2025-05-22 03:00:00,2025-05-22,3,3,5,Guindy,SUV,Clear,None,50,19,31,0.38,Low,28.11,Low
+1131,2025-05-22 06:00:00,2025-05-22,3,6,5,Anna Nagar,Bike,Clear,None,40,15,25,0.375,Low,29.44,Low
+1132,2025-05-22 09:00:00,2025-05-22,3,9,5,Koyambedu,SUV,Rain,None,40,29,11,0.725,Medium,39.42,Medium
+1133,2025-05-22 12:00:00,2025-05-22,3,12,5,Adyar,Bike,Cloudy,None,40,20,20,0.5,Low,33.54,Low
+1134,2025-05-22 15:00:00,2025-05-22,3,15,5,Koyambedu,Bike,Clear,None,30,12,18,0.4,Low,32.34,Low
+1135,2025-05-22 18:00:00,2025-05-22,3,18,5,Tambaram,Car,Clear,None,40,23,17,0.575,Medium,30.45,Medium
+1136,2025-05-22 21:00:00,2025-05-22,3,21,5,Porur,Bike,Cloudy,Sale,40,26,14,0.65,Medium,38.19,Medium
+1137,2025-05-23 00:00:00,2025-05-23,4,0,5,Koyambedu,Car,Rain,None,40,21,19,0.525,Low,35.34,Low
+1138,2025-05-23 03:00:00,2025-05-23,4,3,5,Adyar,Car,Cloudy,None,100,28,72,0.28,Low,28.83,Low
+1139,2025-05-23 06:00:00,2025-05-23,4,6,5,Velachery,Car,Rain,None,100,48,52,0.48,Low,30.03,Low
+1140,2025-05-23 09:00:00,2025-05-23,4,9,5,Porur,Bike,Cloudy,None,30,21,9,0.7,Medium,38.82,Medium
+1141,2025-05-23 12:00:00,2025-05-23,4,12,5,Mylapore,SUV,Clear,None,60,20,40,0.333,Low,28.46,Low
+1142,2025-05-23 15:00:00,2025-05-23,4,15,5,Adyar,SUV,Cloudy,None,40,20,20,0.5,Low,33.14,Low
+1143,2025-05-23 18:00:00,2025-05-23,4,18,5,Mylapore,SUV,Clear,Festival,80,71,9,0.887,High,39.58,High
+1144,2025-05-23 21:00:00,2025-05-23,4,21,5,T Nagar,Car,Cloudy,None,60,23,37,0.383,Low,27.02,Low
+1145,2025-05-24 00:00:00,2025-05-24,5,0,5,Porur,SUV,Clear,None,40,21,19,0.525,Low,35.15,Low
+1146,2025-05-24 03:00:00,2025-05-24,5,3,5,Koyambedu,Car,Cloudy,None,50,28,22,0.56,Medium,36.12,Medium
+1147,2025-05-24 06:00:00,2025-05-24,5,6,5,Velachery,SUV,Cloudy,None,60,28,32,0.467,Low,29.93,Low
+1148,2025-05-24 09:00:00,2025-05-24,5,9,5,Tambaram,SUV,Rain,None,30,22,8,0.733,Medium,33.41,Medium
+1149,2025-05-24 12:00:00,2025-05-24,5,12,5,Guindy,SUV,Clear,Sale,40,34,6,0.85,High,37.21,High
+1150,2025-05-24 15:00:00,2025-05-24,5,15,5,Velachery,Car,Clear,None,50,23,27,0.46,Low,29.74,Low
+1151,2025-05-24 18:00:00,2025-05-24,5,18,5,Anna Nagar,SUV,Clear,None,40,28,12,0.7,Medium,35.87,Medium
+1152,2025-05-24 21:00:00,2025-05-24,5,21,5,T Nagar,Bike,Clear,None,30,11,19,0.367,Low,26.44,Low
+1153,2025-05-25 00:00:00,2025-05-25,6,0,5,Mylapore,SUV,Clear,Festival,60,47,13,0.783,Medium,37.42,Medium
+1154,2025-05-25 03:00:00,2025-05-25,6,3,5,Tambaram,SUV,Clear,None,50,21,29,0.42,Low,27.63,Low
+1155,2025-05-25 06:00:00,2025-05-25,6,6,5,Porur,Car,Rain,None,30,22,8,0.733,Medium,40.01,Medium
+1156,2025-05-25 09:00:00,2025-05-25,6,9,5,OMR-Perungudi,Bike,Clear,None,50,43,7,0.86,High,40.82,High
+1157,2025-05-25 12:00:00,2025-05-25,6,12,5,Anna Nagar,SUV,Clear,Festival,30,23,7,0.767,Medium,37.34,Medium
+1158,2025-05-25 15:00:00,2025-05-25,6,15,5,Koyambedu,SUV,Clear,None,100,71,29,0.71,Medium,39.34,Medium
+1159,2025-05-25 18:00:00,2025-05-25,6,18,5,Anna Nagar,Bike,Rain,Sale,60,59,1,0.983,High,41.4,High
+1160,2025-05-25 21:00:00,2025-05-25,6,21,5,Mylapore,SUV,Cloudy,None,80,43,37,0.537,Low,32.57,Low
+1161,2025-05-26 00:00:00,2025-05-26,0,0,5,OMR-Perungudi,Bike,Rain,Weekend,100,35,65,0.35,Low,30.25,Low
+1162,2025-05-26 03:00:00,2025-05-26,0,3,5,OMR-Perungudi,Car,Rain,None,40,25,15,0.625,Medium,35.69,Medium
+1163,2025-05-26 06:00:00,2025-05-26,0,6,5,Koyambedu,SUV,Clear,None,40,10,30,0.25,Low,29.16,Low
+1164,2025-05-26 09:00:00,2025-05-26,0,9,5,Velachery,SUV,Rain,None,40,22,18,0.55,Low,31.36,Low
+1165,2025-05-26 12:00:00,2025-05-26,0,12,5,T Nagar,Bike,Clear,Weekend,50,28,22,0.56,Medium,29.93,Medium
+1166,2025-05-26 15:00:00,2025-05-26,0,15,5,Porur,SUV,Cloudy,Festival,60,53,7,0.883,High,42.9,High
+1167,2025-05-26 18:00:00,2025-05-26,0,18,5,Porur,Car,Clear,Festival,40,39,1,0.975,High,45.17,High
+1168,2025-05-26 21:00:00,2025-05-26,0,21,5,T Nagar,SUV,Cloudy,None,80,34,46,0.425,Low,27.65,Low
+1169,2025-05-27 00:00:00,2025-05-27,1,0,5,Adyar,Bike,Cloudy,None,80,34,46,0.425,Low,31.85,Low
+1170,2025-05-27 03:00:00,2025-05-27,1,3,5,Velachery,SUV,Clear,Festival,100,72,28,0.72,Medium,34.58,Medium
+1171,2025-05-27 06:00:00,2025-05-27,1,6,5,Mylapore,Bike,Clear,None,100,41,59,0.41,Low,30.13,Low
+1172,2025-05-27 09:00:00,2025-05-27,1,9,5,Mylapore,Car,Clear,None,60,37,23,0.617,Medium,34.33,Medium
+1173,2025-05-27 12:00:00,2025-05-27,1,12,5,Guindy,Car,Rain,Weekend,30,17,13,0.567,Medium,31.55,Medium
+1174,2025-05-27 15:00:00,2025-05-27,1,15,5,Adyar,Bike,Rain,None,40,17,23,0.425,Low,31.8,Low
+1175,2025-05-27 18:00:00,2025-05-27,1,18,5,Koyambedu,Car,Rain,None,60,37,23,0.617,Medium,37.39,Medium
+1176,2025-05-27 21:00:00,2025-05-27,1,21,5,Guindy,Bike,Cloudy,Festival,60,39,21,0.65,Medium,33.43,Medium
+1177,2025-05-28 00:00:00,2025-05-28,2,0,5,Tambaram,SUV,Cloudy,None,60,15,45,0.25,Low,24.4,Low
+1178,2025-05-28 03:00:00,2025-05-28,2,3,5,OMR-Perungudi,Car,Cloudy,None,80,30,50,0.375,Low,30.7,Low
+1179,2025-05-28 06:00:00,2025-05-28,2,6,5,OMR-Perungudi,Car,Cloudy,None,30,9,21,0.3,Low,29.23,Low
+1180,2025-05-28 09:00:00,2025-05-28,2,9,5,Adyar,Car,Rain,None,80,47,33,0.588,Medium,35.25,Medium
+1181,2025-05-28 12:00:00,2025-05-28,2,12,5,OMR-Perungudi,Car,Cloudy,None,60,24,36,0.4,Low,31.16,Low
+1182,2025-05-28 15:00:00,2025-05-28,2,15,5,Adyar,Bike,Rain,None,50,27,23,0.54,Low,34.21,Low
+1183,2025-05-28 18:00:00,2025-05-28,2,18,5,Mylapore,Car,Cloudy,None,40,28,12,0.7,Medium,35.93,Medium
+1184,2025-05-28 21:00:00,2025-05-28,2,21,5,OMR-Perungudi,Car,Cloudy,None,40,10,30,0.25,Low,28.27,Low
+1185,2025-05-29 00:00:00,2025-05-29,3,0,5,OMR-Perungudi,SUV,Clear,None,30,8,22,0.267,Low,28.61,Low
+1186,2025-05-29 03:00:00,2025-05-29,3,3,5,OMR-Perungudi,Car,Clear,None,40,17,23,0.425,Low,31.8,Low
+1187,2025-05-29 06:00:00,2025-05-29,3,6,5,Anna Nagar,Car,Cloudy,None,60,18,42,0.3,Low,27.97,Low
+1188,2025-05-29 09:00:00,2025-05-29,3,9,5,Mylapore,SUV,Cloudy,None,30,18,12,0.6,Medium,34.12,Medium
+1189,2025-05-29 12:00:00,2025-05-29,3,12,5,Anna Nagar,SUV,Clear,Festival,100,69,31,0.69,Medium,35.74,Medium
+1190,2025-05-29 15:00:00,2025-05-29,3,15,5,Mylapore,Bike,Clear,None,100,27,73,0.27,Low,27.4,Low
+1191,2025-05-29 18:00:00,2025-05-29,3,18,5,OMR-Perungudi,Bike,Clear,Weekend,80,58,22,0.725,Medium,38.08,Medium
+1192,2025-05-29 21:00:00,2025-05-29,3,21,5,T Nagar,SUV,Clear,Weekend,40,15,25,0.375,Low,26.54,Low
+1193,2025-05-30 00:00:00,2025-05-30,4,0,5,Anna Nagar,SUV,Clear,Weekend,40,17,23,0.425,Low,30.35,Low
+1194,2025-05-30 03:00:00,2025-05-30,4,3,5,T Nagar,Bike,Cloudy,None,60,24,36,0.4,Low,27.3,Low
+1195,2025-05-30 06:00:00,2025-05-30,4,6,5,Porur,Car,Rain,None,100,30,70,0.3,Low,30.54,Low
+1196,2025-05-30 09:00:00,2025-05-30,4,9,5,T Nagar,Bike,Clear,Festival,80,75,5,0.938,High,36.83,High
+1197,2025-05-30 12:00:00,2025-05-30,4,12,5,Mylapore,Bike,Cloudy,Weekend,80,40,40,0.5,Low,31.87,Low
+1198,2025-05-30 15:00:00,2025-05-30,4,15,5,Adyar,Bike,Clear,None,40,16,24,0.4,Low,31.16,Low
+1199,2025-05-30 18:00:00,2025-05-30,4,18,5,Mylapore,SUV,Clear,None,30,19,11,0.633,Medium,34.23,Medium
+1200,2025-05-30 21:00:00,2025-05-30,4,21,5,Porur,Car,Cloudy,None,80,39,41,0.487,Low,34.57,Low
