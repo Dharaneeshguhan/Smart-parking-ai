@@ -16,7 +16,6 @@ import MyParkingSlotsPage from './pages/owner/MyParkingSlotsPage';
 import EarningsPage from './pages/owner/EarningsPage';
 import AddNewSlotPage from './pages/owner/AddNewSlotPage';
 import BookingsPage from './pages/owner/BookingsPage';
-import AnalysisPage from './pages/owner/AnalysisPage';
 import OwnerSettingsPage from './pages/owner/OwnerSettingsPage';
 import OwnerLayout from './layouts/OwnerLayout';
 import UserLayout from './layouts/UserLayout';
@@ -68,7 +67,7 @@ function App() {
           <Route path="earnings" element={<EarningsPage />} />
           <Route path="add-slot" element={<AddNewSlotPage />} />
           <Route path="bookings" element={<BookingsPage />} />
-          <Route path="analysis" element={<AnalysisPage />} />
+          <Route path="profile" element={<ProfilePage />} />
           <Route path="settings" element={<OwnerSettingsPage />} />
         </Route>
 
@@ -82,12 +81,7 @@ function App() {
         <Route path="/favorites" element={<Navigate to="/user/favorites" replace />} />
         <Route path="/payments" element={<Navigate to="/user/payments" replace />} />
         <Route path="/owner-dashboard" element={<Navigate to="/owner/dashboard" replace />} />
-        <Route path="/owner/parking-slots" element={<Navigate to="/owner/parking-slots" replace />} />
-        <Route path="/owner/earnings" element={<Navigate to="/owner/earnings" replace />} />
-        <Route path="/owner/add-slot" element={<Navigate to="/owner/add-slot" replace />} />
-        <Route path="/owner/bookings" element={<Navigate to="/owner/bookings" replace />} />
-        <Route path="/owner/analysis" element={<Navigate to="/owner/analysis" replace />} />
-        <Route path="/owner/settings" element={<Navigate to="/owner/settings" replace />} />
+        <Route path="/my-bookings" element={<Navigate to="/user/bookings" replace />} />
 
         {/* Catch all */}
         <Route path="*" element={<Navigate to="/" replace />} />

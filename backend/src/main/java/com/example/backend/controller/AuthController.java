@@ -25,4 +25,14 @@ public class AuthController {
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
         return authService.registerUser(signUpRequest);
     }
+
+    @GetMapping("/profile")
+    public ResponseEntity<?> getProfile(org.springframework.security.core.Authentication authentication) {
+        return authService.getProfile(authentication.getName());
+    }
+
+    @PutMapping("/profile")
+    public ResponseEntity<?> updateProfile(@RequestBody com.example.backend.entity.User userDetails, org.springframework.security.core.Authentication authentication) {
+        return authService.updateProfile(authentication.getName(), userDetails);
+    }
 }

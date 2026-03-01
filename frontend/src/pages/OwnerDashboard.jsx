@@ -368,14 +368,18 @@ const OwnerDashboard = () => {
                       </div>
                     </div>
                     <div className="flex items-center justify-end space-x-2 mt-3">
-                      <Button size="small" variant="outline">
-                        <Eye className="h-4 w-4 mr-1" />
-                        View
-                      </Button>
-                      <Button size="small" variant="outline">
-                        <Edit className="h-4 w-4 mr-1" />
-                        Edit
-                      </Button>
+                      <Link to="/owner/parking-slots">
+                        <Button size="small" variant="outline">
+                          <Eye className="h-4 w-4 mr-1" />
+                          View
+                        </Button>
+                      </Link>
+                      <Link to={`/owner/parking-slots`}>
+                        <Button size="small" variant="outline">
+                          <Edit className="h-4 w-4 mr-1" />
+                          Edit
+                        </Button>
+                      </Link>
                     </div>
                   </div>
                 ))}
@@ -420,10 +424,12 @@ const OwnerDashboard = () => {
                             Complete
                           </Button>
                         )}
-                        <Button size="small" variant="outline">
-                          <Eye className="h-4 w-4 mr-1" />
-                          Details
-                        </Button>
+                        <Link to="/owner/bookings">
+                          <Button size="small" variant="outline">
+                            <Eye className="h-4 w-4 mr-1" />
+                            Details
+                          </Button>
+                        </Link>
                       </div>
                     </div>
                   </div>

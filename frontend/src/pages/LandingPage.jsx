@@ -97,7 +97,7 @@ const LandingPage = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
-      
+
       <section className="relative bg-gradient-to-br from-primary-600 to-primary-800 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
           <div className="text-center">
@@ -123,7 +123,7 @@ const LandingPage = () => {
             </div>
           </div>
         </div>
-        
+
         <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-gray-50 to-transparent"></div>
       </section>
 
@@ -137,7 +137,7 @@ const LandingPage = () => {
               Our AI-driven platform makes parking smarter, faster, and more efficient for everyone.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {features.map((feature, index) => (
               <Card key={index} className="text-center hover:scale-105 transition-transform duration-300">
@@ -160,7 +160,7 @@ const LandingPage = () => {
             </h2>
             <p className="text-lg text-gray-600">Join our growing community of smart parkers</p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {stats.map((stat, index) => (
               <Card key={index} className="text-center">
@@ -185,7 +185,7 @@ const LandingPage = () => {
             </h2>
             <p className="text-lg text-gray-600">Real experiences from real users</p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
               <Card key={index}>
@@ -250,7 +250,7 @@ const LandingPage = () => {
                 Making parking smarter with AI-powered predictions and real-time availability.
               </p>
             </div>
-            
+
             <div>
               <h3 className="font-semibold mb-4">Quick Links</h3>
               <ul className="space-y-2 text-gray-400 text-sm">
@@ -260,7 +260,7 @@ const LandingPage = () => {
                 <li><Link to="/contact" className="hover:text-white">Contact</Link></li>
               </ul>
             </div>
-            
+
             <div>
               <h3 className="font-semibold mb-4">Support</h3>
               <ul className="space-y-2 text-gray-400 text-sm">
@@ -270,7 +270,7 @@ const LandingPage = () => {
                 <li><Link to="/privacy" className="hover:text-white">Privacy Policy</Link></li>
               </ul>
             </div>
-            
+
             <div>
               <h3 className="font-semibold mb-4">Connect</h3>
               <ul className="space-y-2 text-gray-400 text-sm">
@@ -281,7 +281,7 @@ const LandingPage = () => {
               </ul>
             </div>
           </div>
-          
+
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400 text-sm">
             <p>&copy; 2024 SmartPark. All rights reserved.</p>
           </div>

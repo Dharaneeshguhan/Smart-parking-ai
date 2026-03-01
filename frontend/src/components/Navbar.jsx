@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { Menu, X, Car, User, LogOut } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Navbar = ({ user, onLogout, showProfile = true }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navigation = [
     { name: 'Home', href: '/' },
-    { name: 'Find Parking', href: '/search' },
-    { name: 'Dashboard', href: '/dashboard' },
-    { name: 'Owner Portal', href: '/owner-dashboard' },
+    { name: 'Find Parking', href: '/user/search' },
+    { name: 'Dashboard', href: '/user/dashboard' },
+    { name: 'Owner Portal', href: '/owner/dashboard' },
   ];
 
   return (
@@ -22,13 +23,13 @@ const Navbar = ({ user, onLogout, showProfile = true }) => {
             </div>
             <div className="hidden md:ml-6 md:flex md:space-x-8">
               {navigation.map((item) => (
-                <a
+                <Link
                   key={item.name}
-                  href={item.href}
+                  to={item.href}
                   className="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
                 >
                   {item.name}
-                </a>
+                </Link>
               ))}
             </div>
           </div>
@@ -81,14 +82,14 @@ const Navbar = ({ user, onLogout, showProfile = true }) => {
         <div className="md:hidden">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t">
             {navigation.map((item) => (
-              <a
+              <Link
                 key={item.name}
-                href={item.href}
+                to={item.href}
                 className="text-gray-700 hover:text-primary-600 block px-3 py-2 rounded-md text-base font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.name}
-              </a>
+              </Link>
             ))}
             {showProfile && user ? (
               <>
@@ -108,20 +109,20 @@ const Navbar = ({ user, onLogout, showProfile = true }) => {
               </>
             ) : (
               <div className="border-t pt-4 mt-4 space-y-2">
-                <a
-                  href="/login"
+                <Link
+                  to="/login"
                   className="text-gray-700 hover:text-primary-600 block px-3 py-2 rounded-md text-base font-medium"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Login
-                </a>
-                <a
-                  href="/signup"
+                </Link>
+                <Link
+                  to="/signup"
                   className="btn-primary block text-center"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Sign Up
-                </a>
+                </Link>
               </div>
             )}
           </div>

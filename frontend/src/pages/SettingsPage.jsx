@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Bell,
@@ -19,30 +19,37 @@ import Card, { CardHeader, CardTitle, CardContent } from '../components/Card';
 import Button from '../components/Button';
 
 const SettingsPage = () => {
-  const [settings, setSettings] = useState({
-    notifications: {
-      email: true,
-      push: true,
-      sms: false,
-      bookingReminders: true,
-      promotional: false
-    },
-    preferences: {
-      language: 'en',
-      timezone: 'UTC-5',
-      currency: 'USD',
-      darkMode: false,
-      autoBook: false
-    },
-    privacy: {
-      profileVisibility: 'public',
-      locationSharing: true,
-      dataAnalytics: true,
-      marketingEmails: false
-    }
+  const [settings, setSettings] = useState(() => {
+    const saved = localStorage.getItem('user_settings');
+    return saved ? JSON.parse(saved) : {
+      notifications: {
+        email: true,
+        push: true,
+        sms: false,
+        bookingReminders: true,
+        promotional: false
+      },
+      preferences: {
+        language: 'en',
+        timezone: 'UTC+5:30',
+        currency: 'INR',
+        darkMode: false,
+        autoBook: false
+      },
+      privacy: {
+        profileVisibility: 'public',
+        locationSharing: true,
+        dataAnalytics: true,
+        marketingEmails: false
+      }
+    };
   });
 
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    localStorage.setItem('user_settings', JSON.stringify(settings));
+  }, [settings]);
 
   const handleToggle = (category, setting) => {
     setSettings(prev => ({
@@ -67,11 +74,12 @@ const SettingsPage = () => {
   const handleSave = async () => {
     setLoading(true);
     try {
-      // Save settings to API
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      console.log('Settings saved:', settings);
+      // Simulate API sync
+      await new Promise(resolve => setTimeout(resolve, 1200));
+      localStorage.setItem('user_settings', JSON.stringify(settings));
+      console.log('User settings synchronized:', settings);
     } catch (error) {
-      console.error('Error saving settings:', error);
+      console.error('Error synchronizing settings:', error);
     } finally {
       setLoading(false);
     }
@@ -84,398 +92,137 @@ const SettingsPage = () => {
   };
 
   const handleDeleteAccount = () => {
-    if (window.confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
-      // Handle account deletion
-      console.log('Account deletion requested');
+    if (window.confirm('CRITICAL ACTION: Are you sure you want to permanently erase your account and all associated data?')) {
+      console.log('Account deletion protocols initiated');
     }
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex-1">
-      <div className="flex flex-col">
-        <div className="flex-1">
-          <div className="sticky top-0 z-10 bg-white shadow-sm border-b border-gray-200">
-            <div className="px-6 py-4">
-              <div className="flex items-center justify-between">
-                <div>
-                  <h1 className="text-2xl font-bold text-gray-900">Settings</h1>
-                  <p className="text-sm text-gray-600">Manage your account preferences</p>
-                </div>
-                <Button onClick={handleSave} loading={loading}>
-                  Save Changes
-                </Button>
-              </div>
-            </div>
+    <div className="min-h-screen bg-slate-50/50 flex-1">
+      <div className="flex flex-col max-w-5xl mx-auto p-8">
+
+        {/* HEADER */}
+        <div className="flex items-center justify-between mb-10">
+          <div>
+            <h1 className="text-4xl font-black text-slate-900 tracking-tight">System Configuration</h1>
+            <p className="text-slate-500 font-medium mt-1">Manage your digital footprint and application behavior</p>
+          </div>
+          <Button onClick={handleSave} loading={loading} className="px-8 shadow-lg shadow-primary-500/20">
+            Sync Preferences
+          </Button>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+          {/* LEFT NAV (SCROLL SPY STYLE) */}
+          <div className="md:col-span-1 space-y-1">
+            <button className="w-full text-left px-4 py-3 rounded-xl bg-white shadow-sm border border-slate-200 text-primary-600 font-black flex items-center gap-3">
+              <Bell className="h-4 w-4" /> Communications
+            </button>
+            <button className="w-full text-left px-4 py-3 rounded-xl hover:bg-white transition-all text-slate-500 font-bold flex items-center gap-3">
+              <Globe className="h-4 w-4" /> Globalization
+            </button>
+            <button className="w-full text-left px-4 py-3 rounded-xl hover:bg-white transition-all text-slate-500 font-bold flex items-center gap-3">
+              <Shield className="h-4 w-4" /> Privacy Protocol
+            </button>
+            <button className="w-full text-left px-4 py-3 rounded-xl hover:bg-white transition-all text-slate-500 font-bold flex items-center gap-3">
+              <CreditCard className="h-4 w-4" /> Billing & Vault
+            </button>
           </div>
 
-          <div className="p-6">
-            <div className="max-w-4xl mx-auto space-y-6">
-              {/* Notifications */}
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center">
-                    <Bell className="h-5 w-5 mr-2 text-primary-600" />
-                    Notifications
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <h4 className="font-medium text-gray-900">Email Notifications</h4>
-                        <p className="text-sm text-gray-600">Receive booking confirmations and updates via email</p>
-                      </div>
-                      <button
-                        onClick={() => handleToggle('notifications', 'email')}
-                        className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${settings.notifications.email ? 'bg-primary-600' : 'bg-gray-200'
-                          }`}
-                      >
-                        <span
-                          className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${settings.notifications.email ? 'translate-x-6' : 'translate-x-1'
-                            }`}
-                        />
-                      </button>
-                    </div>
+          {/* MAIN CONTENT */}
+          <div className="md:col-span-2 space-y-8">
 
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <h4 className="font-medium text-gray-900">Push Notifications</h4>
-                        <p className="text-sm text-gray-600">Get instant updates on your mobile device</p>
+            {/* NOTIFICATIONS */}
+            <section className="bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 overflow-hidden">
+              <div className="px-8 py-6 border-b border-slate-50 bg-slate-50/50">
+                <h3 className="text-lg font-black text-slate-800 flex items-center gap-2">
+                  <Mail className="h-5 w-5 text-primary-500" />
+                  Communication Hub
+                </h3>
+              </div>
+              <div className="p-8 space-y-6">
+                {[
+                  { id: 'email', title: 'Intelligence Reports', desc: 'Detailed booking summaries via secure email', icon: Mail },
+                  { id: 'push', title: 'Real-time Pulse', desc: 'Instant alerts on your primary device', icon: Smartphone },
+                  { id: 'sms', title: 'Direct Link', desc: 'Critical status updates via encrypted SMS', icon: Smartphone },
+                  { id: 'bookingReminders', title: 'Operational Alerts', desc: 'Advance warnings before scheduled arrival', icon: Bell }
+                ].map(item => (
+                  <div key={item.id} className="flex items-center justify-between group">
+                    <div className="flex items-center gap-4">
+                      <div className="p-3 bg-slate-50 text-slate-400 group-hover:bg-primary-50 group-hover:text-primary-500 rounded-2xl transition-all">
+                        <item.icon className="h-5 w-5" />
                       </div>
-                      <button
-                        onClick={() => handleToggle('notifications', 'push')}
-                        className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${settings.notifications.push ? 'bg-primary-600' : 'bg-gray-200'
-                          }`}
-                      >
-                        <span
-                          className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${settings.notifications.push ? 'translate-x-6' : 'translate-x-1'
-                            }`}
-                        />
-                      </button>
-                    </div>
-
-                    <div className="flex items-center justify-between">
                       <div>
-                        <h4 className="font-medium text-gray-900">SMS Notifications</h4>
-                        <p className="text-sm text-gray-600">Receive text messages for important updates</p>
+                        <h4 className="font-bold text-slate-900 leading-tight">{item.title}</h4>
+                        <p className="text-xs text-slate-500 font-medium">{item.desc}</p>
                       </div>
-                      <button
-                        onClick={() => handleToggle('notifications', 'sms')}
-                        className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${settings.notifications.sms ? 'bg-primary-600' : 'bg-gray-200'
-                          }`}
-                      >
-                        <span
-                          className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${settings.notifications.sms ? 'translate-x-6' : 'translate-x-1'
-                            }`}
-                        />
-                      </button>
                     </div>
-
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <h4 className="font-medium text-gray-900">Booking Reminders</h4>
-                        <p className="text-sm text-gray-600">Get reminders before your booking starts</p>
-                      </div>
-                      <button
-                        onClick={() => handleToggle('notifications', 'bookingReminders')}
-                        className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${settings.notifications.bookingReminders ? 'bg-primary-600' : 'bg-gray-200'
-                          }`}
-                      >
-                        <span
-                          className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${settings.notifications.bookingReminders ? 'translate-x-6' : 'translate-x-1'
-                            }`}
-                        />
-                      </button>
-                    </div>
-
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <h4 className="font-medium text-gray-900">Promotional Emails</h4>
-                        <p className="text-sm text-gray-600">Receive special offers and promotions</p>
-                      </div>
-                      <button
-                        onClick={() => handleToggle('notifications', 'promotional')}
-                        className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${settings.notifications.promotional ? 'bg-primary-600' : 'bg-gray-200'
-                          }`}
-                      >
-                        <span
-                          className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${settings.notifications.promotional ? 'translate-x-6' : 'translate-x-1'
-                            }`}
-                        />
-                      </button>
-                    </div>
+                    <button
+                      onClick={() => handleToggle('notifications', item.id)}
+                      className={`relative inline-flex h-7 w-12 items-center rounded-full transition-all duration-300 ${settings.notifications[item.id] ? 'bg-primary-500' : 'bg-slate-200'}`}
+                    >
+                      <span className={`inline-block h-5 w-5 transform rounded-full bg-white shadow-md transition-transform duration-300 ${settings.notifications[item.id] ? 'translate-x-6' : 'translate-x-1'}`} />
+                    </button>
                   </div>
-                </CardContent>
-              </Card>
+                ))}
+              </div>
+            </section>
 
-              {/* Preferences */}
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center">
-                    <Globe className="h-5 w-5 mr-2 text-primary-600" />
-                    Preferences
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <h4 className="font-medium text-gray-900">Language</h4>
-                        <p className="text-sm text-gray-600">Choose your preferred language</p>
-                      </div>
-                      <select
-                        value={settings.preferences.language}
-                        onChange={(e) => handleSelect('preferences', 'language', e.target.value)}
-                        className="input-field w-32"
-                      >
-                        <option value="en">English</option>
-                        <option value="es">Spanish</option>
-                        <option value="fr">French</option>
-                        <option value="de">German</option>
-                      </select>
-                    </div>
+            {/* PREFERENCES */}
+            <section className="bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 overflow-hidden">
+              <div className="px-8 py-6 border-b border-slate-50 bg-slate-50/50">
+                <h3 className="text-lg font-black text-slate-800 flex items-center gap-2">
+                  <Globe className="h-5 w-5 text-indigo-500" />
+                  Global Standards
+                </h3>
+              </div>
+              <div className="p-8 grid grid-cols-1 sm:grid-cols-2 gap-8">
+                <div className="space-y-2">
+                  <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Linguistic Engine</label>
+                  <select
+                    value={settings.preferences.language}
+                    onChange={(e) => handleSelect('preferences', 'language', e.target.value)}
+                    className="w-full px-4 py-3 bg-slate-50 border-2 border-transparent focus:border-indigo-500 rounded-2xl outline-none font-bold text-slate-900 transition-all appearance-none cursor-pointer"
+                  >
+                    <option value="en">English (US)</option>
+                    <option value="es">Español</option>
+                    <option value="fr">Français</option>
+                  </select>
+                </div>
+                <div className="space-y-2">
+                  <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Currency Unit</label>
+                  <select
+                    value={settings.preferences.currency}
+                    onChange={(e) => handleSelect('preferences', 'currency', e.target.value)}
+                    className="w-full px-4 py-3 bg-slate-50 border-2 border-transparent focus:border-indigo-500 rounded-2xl outline-none font-bold text-slate-900 transition-all appearance-none cursor-pointer"
+                  >
+                    <option value="INR">INR (₹)</option>
+                    <option value="USD">USD ($)</option>
+                    <option value="EUR">EUR (€)</option>
+                  </select>
+                </div>
+              </div>
+            </section>
 
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <h4 className="font-medium text-gray-900">Timezone</h4>
-                        <p className="text-sm text-gray-600">Set your local timezone</p>
-                      </div>
-                      <select
-                        value={settings.preferences.timezone}
-                        onChange={(e) => handleSelect('preferences', 'timezone', e.target.value)}
-                        className="input-field w-32"
-                      >
-                        <option value="UTC-5">EST</option>
-                        <option value="UTC-6">CST</option>
-                        <option value="UTC-7">MST</option>
-                        <option value="UTC-8">PST</option>
-                      </select>
-                    </div>
+            {/* DANGER ZONE */}
+            <section className="bg-red-50/30 rounded-3xl border-2 border-red-100 overflow-hidden">
+              <div className="p-8 flex items-center justify-between">
+                <div>
+                  <h4 className="text-red-900 font-black text-xl">Operational Shutdown</h4>
+                  <p className="text-red-600/70 font-medium text-sm mt-1">Permanently terminate access and wipe data</p>
+                </div>
+                <div className="flex gap-4">
+                  <button onClick={handleLogout} className="px-4 py-2 font-bold text-red-700 bg-white border-2 border-red-200 rounded-xl hover:bg-red-50 transition-all flex items-center gap-2">
+                    <LogOut className="h-4 w-4" /> Exit
+                  </button>
+                  <button onClick={handleDeleteAccount} className="px-4 py-2 font-bold text-white bg-red-600 rounded-xl hover:bg-red-700 shadow-lg shadow-red-600/20 flex items-center gap-2">
+                    <Trash2 className="h-4 w-4" /> Purge Account
+                  </button>
+                </div>
+              </div>
+            </section>
 
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <h4 className="font-medium text-gray-900">Currency</h4>
-                        <p className="text-sm text-gray-600">Display prices in your currency</p>
-                      </div>
-                      <select
-                        value={settings.preferences.currency}
-                        onChange={(e) => handleSelect('preferences', 'currency', e.target.value)}
-                        className="input-field w-32"
-                      >
-                        <option value="USD">USD</option>
-                        <option value="EUR">EUR</option>
-                        <option value="GBP">GBP</option>
-                        <option value="CAD">CAD</option>
-                      </select>
-                    </div>
-
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <h4 className="font-medium text-gray-900">Dark Mode</h4>
-                        <p className="text-sm text-gray-600">Use dark theme for the interface</p>
-                      </div>
-                      <button
-                        onClick={() => handleToggle('preferences', 'darkMode')}
-                        className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${settings.preferences.darkMode ? 'bg-primary-600' : 'bg-gray-200'
-                          }`}
-                      >
-                        <span
-                          className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${settings.preferences.darkMode ? 'translate-x-6' : 'translate-x-1'
-                            }`}
-                        />
-                      </button>
-                    </div>
-
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <h4 className="font-medium text-gray-900">Auto-booking</h4>
-                        <p className="text-sm text-gray-600">Automatically book favorite spots when available</p>
-                      </div>
-                      <button
-                        onClick={() => handleToggle('preferences', 'autoBook')}
-                        className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${settings.preferences.autoBook ? 'bg-primary-600' : 'bg-gray-200'
-                          }`}
-                      >
-                        <span
-                          className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${settings.preferences.autoBook ? 'translate-x-6' : 'translate-x-1'
-                            }`}
-                        />
-                      </button>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Privacy */}
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center">
-                    <Shield className="h-5 w-5 mr-2 text-primary-600" />
-                    Privacy & Security
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <h4 className="font-medium text-gray-900">Profile Visibility</h4>
-                        <p className="text-sm text-gray-600">Control who can see your profile</p>
-                      </div>
-                      <select
-                        value={settings.privacy.profileVisibility}
-                        onChange={(e) => handleSelect('privacy', 'profileVisibility', e.target.value)}
-                        className="input-field w-32"
-                      >
-                        <option value="public">Public</option>
-                        <option value="private">Private</option>
-                        <option value="friends">Friends Only</option>
-                      </select>
-                    </div>
-
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <h4 className="font-medium text-gray-900">Location Sharing</h4>
-                        <p className="text-sm text-gray-600">Share your location for better recommendations</p>
-                      </div>
-                      <button
-                        onClick={() => handleToggle('privacy', 'locationSharing')}
-                        className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${settings.privacy.locationSharing ? 'bg-primary-600' : 'bg-gray-200'
-                          }`}
-                      >
-                        <span
-                          className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${settings.privacy.locationSharing ? 'translate-x-6' : 'translate-x-1'
-                            }`}
-                        />
-                      </button>
-                    </div>
-
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <h4 className="font-medium text-gray-900">Data Analytics</h4>
-                        <p className="text-sm text-gray-600">Help us improve with anonymous usage data</p>
-                      </div>
-                      <button
-                        onClick={() => handleToggle('privacy', 'dataAnalytics')}
-                        className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${settings.privacy.dataAnalytics ? 'bg-primary-600' : 'bg-gray-200'
-                          }`}
-                      >
-                        <span
-                          className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${settings.privacy.dataAnalytics ? 'translate-x-6' : 'translate-x-1'
-                            }`}
-                        />
-                      </button>
-                    </div>
-
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <h4 className="font-medium text-gray-900">Marketing Emails</h4>
-                        <p className="text-sm text-gray-600">Receive marketing and promotional emails</p>
-                      </div>
-                      <button
-                        onClick={() => handleToggle('privacy', 'marketingEmails')}
-                        className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${settings.privacy.marketingEmails ? 'bg-primary-600' : 'bg-gray-200'
-                          }`}
-                      >
-                        <span
-                          className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${settings.privacy.marketingEmails ? 'translate-x-6' : 'translate-x-1'
-                            }`}
-                        />
-                      </button>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Account Actions */}
-              <Card>
-                <CardHeader>
-                  <CardTitle>Account Management</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    <Link to="/payment-methods">
-                      <div className="flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
-                        <div className="flex items-center">
-                          <CreditCard className="h-5 w-5 text-gray-600 mr-3" />
-                          <div>
-                            <h4 className="font-medium text-gray-900">Payment Methods</h4>
-                            <p className="text-sm text-gray-600">Manage your payment options</p>
-                          </div>
-                        </div>
-                        <ChevronRight className="h-5 w-5 text-gray-400" />
-                      </div>
-                    </Link>
-
-                    <Link to="/connected-devices">
-                      <div className="flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
-                        <div className="flex items-center">
-                          <Smartphone className="h-5 w-5 text-gray-600 mr-3" />
-                          <div>
-                            <h4 className="font-medium text-gray-900">Connected Devices</h4>
-                            <p className="text-sm text-gray-600">Manage your connected devices</p>
-                          </div>
-                        </div>
-                        <ChevronRight className="h-5 w-5 text-gray-400" />
-                      </div>
-                    </Link>
-
-                    <div className="flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
-                      <div className="flex items-center">
-                        <Download className="h-5 w-5 text-gray-600 mr-3" />
-                        <div>
-                          <h4 className="font-medium text-gray-900">Download Your Data</h4>
-                          <p className="text-sm text-gray-600">Request a copy of your data</p>
-                        </div>
-                      </div>
-                      <ChevronRight className="h-5 w-5 text-gray-400" />
-                    </div>
-
-                    <div className="flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
-                      <div className="flex items-center">
-                        <HelpCircle className="h-5 w-5 text-gray-600 mr-3" />
-                        <div>
-                          <h4 className="font-medium text-gray-900">Help & Support</h4>
-                          <p className="text-sm text-gray-600">Get help with your account</p>
-                        </div>
-                      </div>
-                      <ChevronRight className="h-5 w-5 text-gray-400" />
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Danger Zone */}
-              <Card className="border-red-200">
-                <CardHeader>
-                  <CardTitle className="text-red-600">Danger Zone</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between p-3 border border-red-200 rounded-lg">
-                      <div>
-                        <h4 className="font-medium text-red-900">Log Out</h4>
-                        <p className="text-sm text-red-600">Sign out of your account</p>
-                      </div>
-                      <Button variant="outline" onClick={handleLogout} className="border-red-300 text-red-600 hover:bg-red-50">
-                        <LogOut className="h-4 w-4 mr-2" />
-                        Log Out
-                      </Button>
-                    </div>
-
-                    <div className="flex items-center justify-between p-3 border border-red-200 rounded-lg">
-                      <div>
-                        <h4 className="font-medium text-red-900">Delete Account</h4>
-                        <p className="text-sm text-red-600">Permanently delete your account and data</p>
-                      </div>
-                      <Button variant="danger" onClick={handleDeleteAccount}>
-                        <Trash2 className="h-4 w-4 mr-2" />
-                        Delete Account
-                      </Button>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
           </div>
         </div>
       </div>

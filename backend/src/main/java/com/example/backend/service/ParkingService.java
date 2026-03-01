@@ -178,6 +178,41 @@ public class ParkingService {
                 .collect(Collectors.toList());
     }
 
+    public List<ParkingSearchResponse> getNearbyParking(double userLat, double userLng) {
+        List<ParkingSlot> allSlots = parkingSlotRepository.findAll();
+        List<ParkingSearchResponse> responseList = new ArrayList<>();
+
+        LocalDateTime now = LocalDateTime.now();
+        int hourOfDay = now.getHour();
+        int dayOfWeek = now.getDayOfWeek().getValue() - 1;
+        if (dayOfWeek < 0) dayOfWeek = 6;
+        int month = now.getMonthValue();
+
+        String trafficLevel = calculateTrafficLevel(hourOfDay, dayOfWeek);
+        double trafficScore = mapTrafficToScore(trafficLevel);
+
+        for (ParkingSlot slot : allSlots) {
+            double distance = DistanceUtil.calculateDistance(userLat, userLng, slot.getLatitude(), slot.getLongitude());
+            
+            int predictedAvailability = getMlAvailability(slot, hourOfDay, dayOfWeek, month, trafficScore);
+            
+            // Priority Ranking: 1. Distance, 2. Availability, 3. Price
+            // We use the score for sorting. Lower is better for distance and price, higher is better for availability.
+            // Let's create a combined score or just sort the list.
+            
+            ParkingSearchResponse pResponse = new ParkingSearchResponse(slot, distance, trafficLevel, predictedAvailability, distance);
+            pResponse.setScore(distance); // Primary sort factor
+            responseList.add(pResponse);
+        }
+
+        return responseList.stream()
+                .sorted(Comparator.comparingDouble(ParkingSearchResponse::getDistance)
+                        .thenComparing(Comparator.comparingInt(ParkingSearchResponse::getPredictedAvailableSpots).reversed())
+                        .thenComparingDouble(ParkingSearchResponse::getPricePerHour))
+                .limit(10)
+                .collect(Collectors.toList());
+    }
+
     private String calculateTrafficLevel(int hourOfDay, int dayOfWeek) {
         // Simple Real-time traffic logic
         // 8 AM - 10 AM, 5 PM (17) - 8 PM (20) are High

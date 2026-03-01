@@ -19,16 +19,29 @@ const BookingsPage = () => {
     try {
       setLoading(true);
       const response = await ownerAPI.getBookings();
-      const mappedData = response.data.map(booking => ({
-        ...booking,
-        bookingId: `BK${booking.id.toString().padStart(3, '0')}`,
-        customerName: booking.userName || 'Customer',
-        parkingSlot: booking.parkingSlotName,
-        slotNumber: 'Standard', // backend doesn't have slot number yet
-        duration: 0, // Should be calculated if needed
-        status: booking.status.toLowerCase(),
-        totalAmount: booking.totalAmount || 0.0
-      }));
+      const mappedData = response.data.map(booking => {
+        const start = new Date(booking.startTime);
+        const end = new Date(booking.endTime);
+        const durationHours = Math.max(1, Math.round((end - start) / (1000 * 60 * 60)));
+
+        return {
+          ...booking,
+          bookingId: `BK${booking.id.toString().padStart(3, '0')}`,
+          customerName: booking.userName || 'Customer',
+          customerEmail: booking.userEmail || 'N/A',
+          customerPhone: booking.userPhone || 'N/A',
+          vehicleNumber: booking.vehicleNumber || 'N/A',
+          vehicleType: booking.vehicleType || 'Car',
+          parkingSlot: booking.parkingSlotName || 'Unnamed Slot',
+          slotNumber: booking.slotNumber || 'Standard',
+          duration: durationHours,
+          status: (booking.status || 'pending').toLowerCase(),
+          paymentStatus: (booking.paymentStatus || 'paid').toLowerCase(),
+          totalAmount: booking.totalAmount || 0.0,
+          bookingDate: booking.createdAt || booking.startTime,
+          notes: booking.notes || 'No notes provided'
+        };
+      });
       setBookings(mappedData);
     } catch (error) {
       console.error('Error fetching bookings:', error);
@@ -87,6 +100,11 @@ const BookingsPage = () => {
     const days = Math.floor(hours / 24);
     const remainingHours = hours % 24;
     return `${days}d ${remainingHours}h`;
+  };
+
+  const capitalize = (str) => {
+    if (!str) return 'N/A';
+    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
   };
 
   const viewBookingDetails = (booking) => {
@@ -400,13 +418,13 @@ const BookingsPage = () => {
                   <div>
                     <p className="text-sm text-gray-500">Booking Status</p>
                     <span className={`px-3 py-1 inline-flex text-sm leading-5 font-semibold rounded-full ${getStatusColor(selectedBooking.status)}`}>
-                      {selectedBooking.status.charAt(0).toUpperCase() + selectedBooking.status.slice(1)}
+                      {capitalize(selectedBooking.status)}
                     </span>
                   </div>
                   <div>
                     <p className="text-sm text-gray-500">Payment Status</p>
                     <span className={`px-3 py-1 inline-flex text-sm leading-5 font-semibold rounded-full ${getPaymentStatusColor(selectedBooking.paymentStatus)}`}>
-                      {selectedBooking.paymentStatus.charAt(0).toUpperCase() + selectedBooking.paymentStatus.slice(1)}
+                      {capitalize(selectedBooking.paymentStatus)}
                     </span>
                   </div>
                 </div>

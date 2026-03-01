@@ -10,7 +10,7 @@ const OwnerLayout = () => {
         <div className="hidden md:flex md:w-64 md:flex-shrink-0">
           <Sidebar role="owner" />
         </div>
-        
+
         {/* Main Content - Takes remaining space, full width */}
         <div className="flex-1 w-full min-w-0">
           {/* Mobile Menu Button - Only visible on mobile */}
@@ -21,7 +21,7 @@ const OwnerLayout = () => {
               </svg>
             </button>
           </div>
-          
+
           {/* Page Content - Outlet for nested routes */}
           <div className="w-full p-4 sm:p-6 lg:p-8">
             <Outlet />

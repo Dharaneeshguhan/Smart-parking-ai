@@ -89,4 +89,27 @@ public class AuthService {
         
         return ResponseEntity.ok("User registered successfully!");
     }
+
+    public ResponseEntity<?> getProfile(String email) {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        // Remove password from response
+        user.setPassword(null);
+        return ResponseEntity.ok(user);
+    }
+
+    public ResponseEntity<?> updateProfile(String email, User userDetails) {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        
+        user.setName(userDetails.getName());
+        user.setPhone(userDetails.getPhone());
+        user.setAddress(userDetails.getAddress());
+        user.setVehicleNumber(userDetails.getVehicleNumber());
+        user.setEmergencyContact(userDetails.getEmergencyContact());
+        
+        User savedUser = userRepository.save(user);
+        savedUser.setPassword(null);
+        return ResponseEntity.ok(savedUser);
+    }
 }

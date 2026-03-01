@@ -282,7 +282,7 @@ const DashboardPage = () => {
                 )}
               </CardContent>
               <CardFooter className="border-t p-4">
-                <Link to="/my-bookings" className="w-full">
+                <Link to="/user/bookings" className="w-full">
                   <Button variant="outline" className="w-full">View All History</Button>
                 </Link>
               </CardFooter>

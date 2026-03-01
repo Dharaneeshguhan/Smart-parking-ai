@@ -138,7 +138,7 @@ const BookingPage = () => {
 
       const response = await parkingAPI.bookParking(bookingPayload);
 
-      navigate('/my-bookings', { // Redirecting to my bookings directly for now
+      navigate('/user/bookings', { // Redirecting to my bookings directly for now
         state: {
           booking: response.data,
           parking: parking

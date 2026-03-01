@@ -28,7 +28,7 @@ const SignupPage = () => {
       ...prev,
       [name]: value
     }));
-    
+
     if (errors[name]) {
       setErrors(prev => ({
         ...prev,
@@ -39,19 +39,19 @@ const SignupPage = () => {
 
   const validateForm = () => {
     const newErrors = {};
-    
+
     if (!formData.name.trim()) {
       newErrors.name = 'Name is required';
     } else if (formData.name.trim().length < 2) {
       newErrors.name = 'Name must be at least 2 characters';
     }
-    
+
     if (!formData.email) {
       newErrors.email = 'Email is required';
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = 'Email is invalid';
     }
-    
+
     if (!formData.password) {
       newErrors.password = 'Password is required';
     } else if (formData.password.length < 6) {
@@ -59,33 +59,33 @@ const SignupPage = () => {
     } else if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/.test(formData.password)) {
       newErrors.password = 'Password must contain at least one uppercase letter, one lowercase letter, and one number';
     }
-    
+
     if (!formData.confirmPassword) {
       newErrors.confirmPassword = 'Please confirm your password';
     } else if (formData.password !== formData.confirmPassword) {
       newErrors.confirmPassword = 'Passwords do not match';
     }
-    
+
     if (!formData.role) {
       newErrors.role = 'Please select a role';
     }
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!validateForm()) return;
-    
+
     setLoading(true);
     setSignupError('');
-    
+
     try {
       const { confirmPassword, ...signupData } = formData;
       const response = await authAPI.register(signupData);
-      
+
       setSuccess(true);
       setTimeout(() => {
         navigate('/login');
@@ -121,7 +121,7 @@ const SignupPage = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
-      
+
       <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full space-y-8">
           <div className="text-center">
@@ -137,7 +137,7 @@ const SignupPage = () => {
               Join SmartPark and transform your parking experience
             </p>
           </div>
-          
+
           <Card>
             <CardContent>
               {signupError && (
@@ -146,7 +146,7 @@ const SignupPage = () => {
                   <span className="text-sm text-red-700">{signupError}</span>
                 </div>
               )}
-              
+
               <form className="space-y-6" onSubmit={handleSubmit}>
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
@@ -320,8 +320,8 @@ const SignupPage = () => {
                     </a>{' '}
                     and{' '}
                     <a href="#" className="text-primary-600 hover:text-primary-500">
-                  Privacy Policy
-                </a>
+                      Privacy Policy
+                    </a>
                   </label>
                 </div>
 

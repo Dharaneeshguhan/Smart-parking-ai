@@ -55,6 +55,7 @@ export const parkingAPI = {
   addToFavorites: (parkingId) => api.post(`/parking/${parkingId}/favorite`),
   removeFromFavorites: (parkingId) => api.delete(`/parking/${parkingId}/favorite`),
   getPaymentHistory: () => api.get('/bookings/payments'),
+  getNearbyParking: (lat, lng) => api.get('/parking/nearby', { params: { lat, lng } }),
 };
 
 export const ownerAPI = {

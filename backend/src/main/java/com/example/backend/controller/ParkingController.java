@@ -49,4 +49,11 @@ public class ParkingController {
     public ResponseEntity<List<Object>> getMyBookings() {
         return ResponseEntity.ok(List.of());
     }
+
+    @GetMapping("/nearby")
+    public ResponseEntity<List<ParkingSearchResponse>> getNearbyParking(
+            @RequestParam double lat,
+            @RequestParam double lng) {
+        return ResponseEntity.ok(parkingService.getNearbyParking(lat, lng));
+    }
 }
