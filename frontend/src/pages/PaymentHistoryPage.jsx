@@ -22,7 +22,7 @@ import Button from '../components/Button';
 import { parkingAPI } from '../services/api';
 
 const PaymentHistoryPage = () => {
-  const [payments, setPayments] = useState([]);
+  const [payments, setPayments] = useState(null);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
@@ -139,7 +139,7 @@ const PaymentHistoryPage = () => {
     }
   ];
 
-  const paymentsData = payments.length > 0 ? payments : mockPayments;
+  const paymentsData = payments || mockPayments;
 
   const filteredPayments = paymentsData.filter(payment => {
     const matchesSearch = payment.parkingName.toLowerCase().includes(searchQuery.toLowerCase()) ||

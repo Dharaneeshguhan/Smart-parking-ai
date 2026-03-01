@@ -66,6 +66,35 @@ public class BookingController {
         return ResponseEntity.ok(dtos);
     }
 
+    @GetMapping("/payments")
+    public ResponseEntity<List<java.util.Map<String, Object>>> getPayments(Authentication authentication) {
+        User user = userRepository.findByEmail(authentication.getName())
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        List<Booking> bookings = bookingRepository.findByUser(user);
+
+        List<java.util.Map<String, Object>> payments = bookings.stream()
+                .map(b -> {
+                    java.util.Map<String, Object> p = new java.util.HashMap<>();
+                    p.put("id", b.getId());
+                    p.put("transactionId", "TXN" + String.format("%06d", b.getId()));
+                    p.put("bookingId", "BK" + b.getId());
+                    p.put("parkingName", b.getParkingSlot().getName());
+                    p.put("date", b.getStartTime().toLocalDate().toString());
+                    p.put("time", b.getStartTime().toLocalTime().toString());
+                    p.put("amount", b.getTotalAmount());
+                    p.put("paymentMethod", "credit_card"); // default
+                    p.put("status", "completed"); // confirmed booking is completed payment
+                    p.put("type", "booking");
+                    p.put("description", "Parking at " + b.getParkingSlot().getName());
+                    p.put("createdAt", b.getCreatedAt().toString());
+                    return p;
+                })
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(payments);
+    }
+
     private BookingDto convertToDto(Booking booking) {
         BookingDto dto = new BookingDto();
         dto.setId(booking.getId());
