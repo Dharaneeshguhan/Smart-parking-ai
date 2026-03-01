@@ -45,6 +45,14 @@ public class User {
         inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private Set<Role> roles = new HashSet<>();
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+        name = "user_favorites",
+        joinColumns = @JoinColumn(name = "user_id"),
+        inverseJoinColumns = @JoinColumn(name = "slot_id")
+    )
+    private Set<ParkingSlot> favoriteSlots = new HashSet<>();
     
     @Column(name = "phone")
     private String phone;

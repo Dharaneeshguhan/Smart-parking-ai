@@ -15,8 +15,16 @@ public class ParkingSearchResponse {
     private String trafficLevel;
     private double pricePerHour;
     private int predictedAvailableSpots;
+    private int availableSpots;
     private double score;
     private int totalSpots;
+    
+    // UI Mock Fields for compatibility
+    private java.util.List<String> amenities;
+    private String operatingHours;
+    private String image;
+    private String lastVisited;
+    private int visitCount;
 
     public ParkingSearchResponse() {
     }
@@ -33,7 +41,15 @@ public class ParkingSearchResponse {
         this.distance = distance;
         this.trafficLevel = trafficLevel;
         this.predictedAvailableSpots = predictedAvailableSpots;
+        this.availableSpots = predictedAvailableSpots;
         this.score = score;
+        
+        // Defaults
+        this.amenities = java.util.List.of("Security", "24/7 Access", "EV Charging");
+        this.operatingHours = "24/7";
+        this.image = "https://images.unsplash.com/photo-1579532586980-284d4fd16b91?w=800";
+        this.visitCount = 0;
+        this.lastVisited = null;
     }
 
     public Long getId() {
@@ -106,6 +122,16 @@ public class ParkingSearchResponse {
 
     public void setPredictedAvailableSpots(int predictedAvailableSpots) {
         this.predictedAvailableSpots = predictedAvailableSpots;
+        this.availableSpots = predictedAvailableSpots;
+    }
+
+    public int getAvailableSpots() {
+        return availableSpots;
+    }
+
+    public void setAvailableSpots(int availableSpots) {
+        this.availableSpots = availableSpots;
+        this.predictedAvailableSpots = availableSpots;
     }
 
     public double getScore() {
@@ -122,5 +148,45 @@ public class ParkingSearchResponse {
 
     public void setTotalSpots(int totalSpots) {
         this.totalSpots = totalSpots;
+    }
+
+    public java.util.List<String> getAmenities() {
+        return amenities;
+    }
+
+    public void setAmenities(java.util.List<String> amenities) {
+        this.amenities = amenities;
+    }
+
+    public String getOperatingHours() {
+        return operatingHours;
+    }
+
+    public void setOperatingHours(String operatingHours) {
+        this.operatingHours = operatingHours;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getLastVisited() {
+        return lastVisited;
+    }
+
+    public void setLastVisited(String lastVisited) {
+        this.lastVisited = lastVisited;
+    }
+
+    public int getVisitCount() {
+        return visitCount;
+    }
+
+    public void setVisitCount(int visitCount) {
+        this.visitCount = visitCount;
     }
 }

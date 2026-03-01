@@ -49,7 +49,7 @@ const FavoritesPage = () => {
       name: 'Downtown Plaza Parking',
       address: '123 Main St, Downtown',
       distance: 0.5,
-      price: 8,
+      pricePerHour: 8,
       rating: 4.5,
       totalSpots: 100,
       availableSpots: 45,
@@ -65,7 +65,7 @@ const FavoritesPage = () => {
       name: 'City Center Garage',
       address: '456 Oak Ave, City Center',
       distance: 0.8,
-      price: 12,
+      pricePerHour: 12,
       rating: 4.2,
       totalSpots: 200,
       availableSpots: 23,
@@ -81,7 +81,7 @@ const FavoritesPage = () => {
       name: 'Airport Parking Lot',
       address: '789 Airport Rd',
       distance: 2.5,
-      price: 15,
+      pricePerHour: 15,
       rating: 4.7,
       totalSpots: 500,
       availableSpots: 180,
@@ -97,7 +97,7 @@ const FavoritesPage = () => {
       name: 'Shopping Mall Parking',
       address: '321 Commerce St',
       distance: 1.2,
-      price: 5,
+      pricePerHour: 5,
       rating: 4.0,
       totalSpots: 300,
       availableSpots: 120,
@@ -122,7 +122,7 @@ const FavoritesPage = () => {
       case 'name':
         return a.name.localeCompare(b.name);
       case 'price':
-        return a.price - b.price;
+        return (a.pricePerHour || a.price) - (b.pricePerHour || b.price);
       case 'distance':
         return a.distance - b.distance;
       case 'rating':
@@ -147,14 +147,16 @@ const FavoritesPage = () => {
   };
 
   const getAvailabilityColor = (available, total) => {
-    const percentage = (available / total) * 100;
+    const avail = available !== undefined ? available : 0;
+    const percentage = (avail / (total || 1)) * 100;
     if (percentage > 50) return 'text-green-600 bg-green-100';
     if (percentage > 20) return 'text-yellow-600 bg-yellow-100';
     return 'text-red-600 bg-red-100';
   };
 
   const getAvailabilityText = (available, total) => {
-    const percentage = (available / total) * 100;
+    const avail = available !== undefined ? available : 0;
+    const percentage = (avail / (total || 1)) * 100;
     if (percentage > 50) return 'High Availability';
     if (percentage > 20) return 'Limited Spots';
     return 'Almost Full';
@@ -256,7 +258,7 @@ const FavoritesPage = () => {
               <Card>
                 <CardContent className="text-center">
                   <div className="text-2xl font-bold text-green-600">
-                    ${favoritesData.reduce((sum, f) => sum + f.price, 0) / favoritesData.length || 0}
+                    ${favoritesData.reduce((sum, f) => sum + (f.pricePerHour || f.price || 0), 0) / favoritesData.length || 0}
                   </div>
                   <div className="text-sm text-gray-600">Avg Price/hr</div>
                 </CardContent>
@@ -279,7 +281,7 @@ const FavoritesPage = () => {
                     <Card key={favorite.id} className="overflow-hidden hover:shadow-xl transition-shadow duration-300">
                       <div className="relative">
                         <img
-                          src={favorite.image}
+                          src={favorite.image || 'https://images.unsplash.com/photo-1579532586980-284d4fd16b91?w=400'}
                           alt={favorite.name}
                           className="w-full h-48 object-cover"
                         />
@@ -290,8 +292,8 @@ const FavoritesPage = () => {
                           <Heart className="h-5 w-5 text-red-500 fill-current" />
                         </button>
                         <div className="absolute bottom-3 left-3">
-                          <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${getAvailabilityColor(favorite.availableSpots, favorite.totalSpots)}`}>
-                            {getAvailabilityText(favorite.availableSpots, favorite.totalSpots)}
+                          <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${getAvailabilityColor(favorite.predictedAvailableSpots ?? favorite.availableSpots, favorite.totalSpots)}`}>
+                            {getAvailabilityText(favorite.predictedAvailableSpots ?? favorite.availableSpots, favorite.totalSpots)}
                           </span>
                         </div>
                       </div>
@@ -317,19 +319,19 @@ const FavoritesPage = () => {
 
                         <div className="flex items-center justify-between mb-3">
                           <div>
-                            <span className="text-2xl font-bold text-gray-900">${favorite.price}</span>
+                            <span className="text-2xl font-bold text-gray-900">${favorite.pricePerHour || favorite.price}</span>
                             <span className="text-sm text-gray-600">/hour</span>
                           </div>
                           <div className="text-right">
                             <div className="text-sm text-gray-600">
-                              {favorite.availableSpots} of {favorite.totalSpots} spots
+                              {favorite.predictedAvailableSpots ?? favorite.availableSpots} of {favorite.totalSpots} spots
                             </div>
                           </div>
                         </div>
 
                         <div className="mb-4">
                           <div className="flex flex-wrap gap-1">
-                            {favorite.amenities.slice(0, 3).map((amenity, index) => (
+                            {(favorite.amenities || ['Covered', 'Security']).slice(0, 3).map((amenity, index) => (
                               <span
                                 key={index}
                                 className="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-gray-100 text-gray-700"
@@ -337,9 +339,9 @@ const FavoritesPage = () => {
                                 {amenity}
                               </span>
                             ))}
-                            {favorite.amenities.length > 3 && (
+                            {(favorite.amenities || []).length > 3 && (
                               <span className="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-gray-100 text-gray-700">
-                                +{favorite.amenities.length - 3} more
+                                +{(favorite.amenities || []).length - 3} more
                               </span>
                             )}
                           </div>
@@ -347,13 +349,13 @@ const FavoritesPage = () => {
 
                         <div className="flex items-center text-sm text-gray-600 mb-4">
                           <Clock className="h-4 w-4 mr-1" />
-                          {favorite.operatingHours}
+                          {favorite.operatingHours || '24/7'}
                         </div>
 
                         <div className="border-t pt-3">
                           <div className="flex items-center justify-between text-sm text-gray-600 mb-3">
-                            <span>Last visited: {new Date(favorite.lastVisited).toLocaleDateString()}</span>
-                            <span>{favorite.visitCount} visits</span>
+                            <span>Last visited: {favorite.lastVisited ? new Date(favorite.lastVisited).toLocaleDateString() : 'N/A'}</span>
+                            <span>{favorite.visitCount || 0} visits</span>
                           </div>
                           <Link to={`/booking/${favorite.id}`}>
                             <Button className="w-full">
@@ -372,7 +374,7 @@ const FavoritesPage = () => {
                       <CardContent>
                         <div className="flex items-start">
                           <img
-                            src={favorite.image}
+                            src={favorite.image || 'https://images.unsplash.com/photo-1579532586980-284d4fd16b91?w=400'}
                             alt={favorite.name}
                             className="w-24 h-24 object-cover rounded-lg mr-4"
                           />
@@ -401,21 +403,21 @@ const FavoritesPage = () => {
                               </div>
                               <div className="flex items-center">
                                 <Clock className="h-4 w-4 mr-1" />
-                                {favorite.operatingHours}
+                                {favorite.operatingHours || '24/7'}
                               </div>
                             </div>
 
                             <div className="flex items-center justify-between">
                               <div>
-                                <span className="text-xl font-bold text-gray-900">${favorite.price}</span>
+                                <span className="text-xl font-bold text-gray-900">${favorite.pricePerHour || favorite.price}</span>
                                 <span className="text-sm text-gray-600">/hour</span>
                                 <span className="ml-2 text-sm text-gray-600">
-                                  ({favorite.availableSpots}/{favorite.totalSpots} available)
+                                  ({favorite.predictedAvailableSpots ?? favorite.availableSpots}/{favorite.totalSpots} available)
                                 </span>
                               </div>
                               <div className="flex items-center space-x-2">
                                 <span className="text-sm text-gray-600">
-                                  {favorite.visitCount} visits
+                                  {favorite.visitCount || 0} visits
                                 </span>
                                 <Link to={`/booking/${favorite.id}`}>
                                   <Button size="small">Book Now</Button>

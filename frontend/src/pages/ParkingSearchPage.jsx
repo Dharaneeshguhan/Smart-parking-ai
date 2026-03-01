@@ -23,7 +23,7 @@ import Button from '../components/Button';
 import { parkingAPI } from '../services/api';
 import ParkingMap from '../components/ParkingMap';
 
-const CHENNAI_CENTER = { lat: 13.0827, lng: 80.2707 };
+const COIMBATORE_CENTER = { lat: 11.0168, lng: 76.9558 };
 
 const ParkingSearchPage = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -38,21 +38,34 @@ const ParkingSearchPage = () => {
   // Acquire user GPS on load
   useEffect(() => {
     if (!navigator.geolocation) {
-      setUserLocation(CHENNAI_CENTER);
+      console.warn("Geolocation not supported by this browser.");
+      setUserLocation(COIMBATORE_CENTER);
       return;
     }
 
+    const geoOptions = {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0
+    };
+
     navigator.geolocation.getCurrentPosition(
       (pos) => {
-        setUserLocation({
+        const coords = {
           lat: pos.coords.latitude,
           lng: pos.coords.longitude
-        });
+        };
+        console.log("Real-time location detected:", coords);
+        setUserLocation(coords);
+        // Pre-fetch spots around current location even without a destination set
+        fetchParkingSpots(coords.lat, coords.lng, null, null);
       },
-      () => {
-        console.warn("GPS Permission Denied. Falling back to Chennai Center.");
-        setUserLocation(CHENNAI_CENTER);
-      }
+      (err) => {
+        console.warn(`GPS Error (${err.code}): ${err.message}. Falling back to Coimbatore.`);
+        setUserLocation(COIMBATORE_CENTER);
+        fetchParkingSpots(COIMBATORE_CENTER.lat, COIMBATORE_CENTER.lng, null, null);
+      },
+      geoOptions
     );
 
     fetchFavorites();
@@ -156,6 +169,7 @@ const ParkingSearchPage = () => {
               parkingSpots={parkingSpots}
               bestSlotId={bestMatchId}
               onDestinationSelected={setDestinationLocation}
+              onUserLocationChange={setUserLocation}
               height="550px"
             />
 
@@ -281,6 +295,7 @@ const ParkingSearchPage = () => {
                 <h3 className="text-xl font-bold text-slate-800">Where are you heading?</h3>
                 <p className="text-slate-500 mt-2 max-w-[250px]">
                   Detect your location or tap on the map to find optimized parking near your destination.
+                  <br /><span className="text-[10px] text-primary-500 font-bold mt-2 inline-block italic">Tip: Drag the blue marker if GPS is inaccurate!</span>
                 </p>
                 <div className="mt-8 flex flex-col gap-3 w-full">
                   <div className="flex items-center gap-2 justify-center text-xs font-bold text-slate-400">

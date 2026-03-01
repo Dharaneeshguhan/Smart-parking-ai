@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo, useRef } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMap, useMapEvents } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -21,7 +21,7 @@ const icons = {
     user: createIcon('blue'),
     destination: createIcon('red'),
     parking: createIcon('green'),
-    best: createIcon('yellow')
+    best: createIcon('gold')
 };
 
 // Component to handle map clicks for destination selection
@@ -51,10 +51,28 @@ const ParkingMap = ({
     parkingSpots,
     bestSlotId,
     onDestinationSelected,
+    onUserLocationChange,
     height = "400px"
 }) => {
-    const defaultCenter = { lat: 13.0827, lng: 80.2707 };
-    const center = userLocation || defaultCenter;
+    const COIMBATORE_CENTER = { lat: 11.0168, lng: 76.9558 };
+    const center = userLocation || COIMBATORE_CENTER;
+
+    // Using a ref for the draggable marker to handle dragend events
+    const markerRef = useRef(null);
+    const eventHandlers = useMemo(
+        () => ({
+            dragend() {
+                const marker = markerRef.current;
+                if (marker != null) {
+                    const newPos = marker.getLatLng();
+                    if (onUserLocationChange) {
+                        onUserLocationChange({ lat: newPos.lat, lng: newPos.lng });
+                    }
+                }
+            },
+        }),
+        [onUserLocationChange],
+    );
 
     return (
         <div className="w-full relative rounded-xl overflow-hidden shadow-lg border border-slate-200">
@@ -69,10 +87,21 @@ const ParkingMap = ({
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
 
-                {/* User Location Marker */}
+                {/* User Location Marker (Draggable) */}
                 {userLocation && (
-                    <Marker position={userLocation} icon={icons.user}>
-                        <Popup>Your Location</Popup>
+                    <Marker
+                        position={userLocation}
+                        icon={icons.user}
+                        draggable={true}
+                        eventHandlers={eventHandlers}
+                        ref={markerRef}
+                    >
+                        <Popup>
+                            <div className="text-center">
+                                <p className="font-bold">Your Location</p>
+                                <p className="text-[10px] text-slate-500">Drag to adjust if GPS is inaccurate</p>
+                            </div>
+                        </Popup>
                     </Marker>
                 )}
 
@@ -100,7 +129,7 @@ const ParkingMap = ({
                                     <p className="text-xs text-slate-600">{spot.address}</p>
                                     <div className="mt-2 flex justify-between items-center border-t pt-2">
                                         <span className="font-bold text-primary-600">${spot.pricePerHour}/hr</span>
-                                        <span className="text-xs bg-slate-100 px-2 py-0.5 rounded">{spot.distance} km</span>
+                                        <span className="text-xs bg-slate-100 px-2 py-0.5 rounded">{spot.distance?.toFixed(2)} km</span>
                                     </div>
                                     <p className="text-[10px] mt-1 text-slate-400">Traffic: {spot.trafficLevel}</p>
                                 </div>

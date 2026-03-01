@@ -88,6 +88,12 @@ public class DataInitializer implements CommandLineRunner {
             parkingSlotRepository.save(new ParkingSlot("T Nagar Hub", "T Nagar, Chennai", 13.0405, 80.2337, 80.0, 200, 15, null, owner));
             parkingSlotRepository.save(new ParkingSlot("Chennai Central Station", "Park Town, Chennai", 13.0827, 80.2707, 40.0, 300, 250, null, owner));
             parkingSlotRepository.save(new ParkingSlot("Forum Vijaya Mall", "Vadapalani, Chennai", 13.0494, 80.2093, 120.0, 400, 80, null, owner));
+            
+            // Add Coimbatore based parking locations
+            parkingSlotRepository.save(new ParkingSlot("Brookefields Mall", "Brookebond Road, Coimbatore", 11.0117, 76.9629, 60.0, 150, 45, null, owner));
+            parkingSlotRepository.save(new ParkingSlot("Prozone Mall", "Sathy Road, Coimbatore", 11.0506, 76.9936, 80.0, 200, 120, null, owner));
+            parkingSlotRepository.save(new ParkingSlot("Railway Station Parking", "Coimbatore Junction", 11.0001, 76.9622, 30.0, 100, 10, null, owner));
+            parkingSlotRepository.save(new ParkingSlot("Gandhipuram Central Hub", "Gandhipuram, Coimbatore", 11.0173, 76.9681, 40.0, 250, 60, null, owner));
         }
     }
 }

@@ -63,7 +63,7 @@ const BookingPage = () => {
     rating: 4.5,
     totalSpots: 100,
     availableSpots: 45,
-    price: 8,
+    pricePerHour: 8,
     amenities: ['Covered', 'Security', 'EV Charging', 'Disabled Access', '24/7'],
     operatingHours: '24/7',
     description: 'Premium parking facility in the heart of downtown with state-of-the-art security and EV charging stations.',
@@ -114,7 +114,8 @@ const BookingPage = () => {
   };
 
   const calculateTotalPrice = () => {
-    return parking.price * bookingData.duration;
+    const rate = parking.pricePerHour || parking.price || 0;
+    return rate * bookingData.duration;
   };
 
   const handleBooking = async (e) => {
@@ -337,7 +338,7 @@ const BookingPage = () => {
               <CardContent>
                 <div className="mb-4">
                   <img
-                    src={parking.image}
+                    src={parking.image || 'https://images.unsplash.com/photo-1579532586980-284d4fd16b91?w=800'}
                     alt={parking.name}
                     className="w-full h-48 object-cover rounded-lg"
                   />
@@ -352,7 +353,7 @@ const BookingPage = () => {
                   </div>
                   <div className="flex items-center text-sm text-gray-600">
                     <Clock className="h-4 w-4 mr-2" />
-                    {parking.operatingHours}
+                    {parking.operatingHours || '24/7'}
                   </div>
                   <div className="flex items-center text-sm text-gray-600">
                     <Car className="h-4 w-4 mr-2" />
@@ -363,7 +364,7 @@ const BookingPage = () => {
                 <div className="border-t border-gray-200 pt-4 mb-4">
                   <h4 className="font-medium text-gray-900 mb-2">Amenities</h4>
                   <div className="flex flex-wrap gap-2">
-                    {parking.amenities.map((amenity, index) => (
+                    {(parking.amenities || ['Security', '24/7 Access']).map((amenity, index) => (
                       <span
                         key={index}
                         className="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-gray-100 text-gray-700"
@@ -379,7 +380,7 @@ const BookingPage = () => {
                   <div className="space-y-2">
                     <div className="flex justify-between text-sm">
                       <span className="text-gray-600">Base Price</span>
-                      <span className="font-medium">${parking.price}/hour</span>
+                      <span className="font-medium">${parking.pricePerHour || parking.price}/hour</span>
                     </div>
                     <div className="flex justify-between text-sm">
                       <span className="text-gray-600">Duration</span>

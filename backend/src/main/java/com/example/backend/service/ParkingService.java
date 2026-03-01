@@ -23,6 +23,9 @@ public class ParkingService {
     @Autowired
     private ParkingSlotRepository parkingSlotRepository;
 
+    @Autowired
+    private com.example.backend.repository.UserRepository userRepository;
+
     private final RestTemplate restTemplate = new RestTemplate();
     private final String ML_API_URL = "http://localhost:5000/predict";
 
@@ -97,6 +100,81 @@ public class ParkingService {
 
         return responseList.stream()
                 .sorted(Comparator.comparingDouble(ParkingSearchResponse::getScore))
+                .collect(Collectors.toList());
+    }
+
+    public ParkingSlot getParkingDetails(Long id) {
+        return parkingSlotRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Parking slot not found"));
+    }
+
+    public ParkingSearchResponse getDetailedResponse(Long id) {
+        ParkingSlot slot = getParkingDetails(id);
+        
+        LocalDateTime now = LocalDateTime.now();
+        int hourOfDay = now.getHour();
+        int dayOfWeek = now.getDayOfWeek().getValue() - 1;
+        if (dayOfWeek < 0) dayOfWeek = 6;
+        int month = now.getMonthValue();
+
+        String trafficLevel = calculateTrafficLevel(hourOfDay, dayOfWeek);
+        double trafficScore = mapTrafficToScore(trafficLevel);
+        
+        // Mocking distances as 0 for direct detail view
+        int predictedAvailability = getMlAvailability(slot, hourOfDay, dayOfWeek, month, trafficScore);
+        
+        return new ParkingSearchResponse(slot, 0.0, trafficLevel, predictedAvailability, 0.0);
+    }
+
+    private int getMlAvailability(ParkingSlot slot, int hour, int day, int month, double traffic) {
+        try {
+            Map<String, Object> mlPayload = Map.of(
+                    "day_of_week", day,
+                    "hour_of_day", hour,
+                    "month", month,
+                    "location", 0, 
+                    "weather", 0, 
+                    "event_type", 0, 
+                    "traffic_level", traffic,
+                    "total_slots", slot.getTotalSpots(),
+                    "price_per_hour_inr", slot.getPricePerHour()
+            );
+
+            ResponseEntity<Map> mlResponse = restTemplate.postForEntity(ML_API_URL, mlPayload, Map.class);
+            if (mlResponse.getStatusCode().is2xxSuccessful() && mlResponse.getBody() != null) {
+                Number predStr = (Number) mlResponse.getBody().get("predicted_available_slots");
+                int pred = predStr.intValue();
+                if (pred < 0) pred = 0;
+                if (pred > slot.getTotalSpots()) pred = slot.getTotalSpots();
+                return pred;
+            }
+        } catch (Exception e) {
+            System.err.println("Failed to fetch ML prediction: " + e.getMessage());
+        }
+        return slot.getAvailableSpots();
+    }
+
+    public void addToFavorites(Long slotId, String userEmail) {
+        com.example.backend.entity.User user = userRepository.findByEmail(userEmail)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        ParkingSlot slot = getParkingDetails(slotId);
+        user.getFavoriteSlots().add(slot);
+        userRepository.save(user);
+    }
+
+    public void removeFromFavorites(Long slotId, String userEmail) {
+        com.example.backend.entity.User user = userRepository.findByEmail(userEmail)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        user.getFavoriteSlots().removeIf(slot -> slot.getId().equals(slotId));
+        userRepository.save(user);
+    }
+
+    public List<ParkingSearchResponse> getFavorites(String userEmail) {
+        com.example.backend.entity.User user = userRepository.findByEmail(userEmail)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        
+        return user.getFavoriteSlots().stream()
+                .map(slot -> getDetailedResponse(slot.getId()))
                 .collect(Collectors.toList());
     }
 
