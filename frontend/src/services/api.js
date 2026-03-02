@@ -56,6 +56,10 @@ export const parkingAPI = {
   removeFromFavorites: (parkingId) => api.delete(`/parking/${parkingId}/favorite`),
   getPaymentHistory: () => api.get('/bookings/payments'),
   getNearbyParking: (lat, lng) => api.get('/parking/nearby', { params: { lat, lng } }),
+  getUnavailableTimeRanges: (slotId) => api.get(`/bookings/unavailable-times/${slotId}`),
+  downloadReceipt: (paymentId) => api.get(`/bookings/payments/${paymentId}/receipt`, {
+    responseType: 'blob'
+  }),
 };
 
 export const ownerAPI = {

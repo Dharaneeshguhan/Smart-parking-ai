@@ -22,7 +22,12 @@ const icons = {
     destination: createIcon('red'),
     parking: createIcon('green'),
     best: createIcon('gold'),
-    selected: createIcon('violet')
+    selected: createIcon('violet'),
+    // Availability status icons
+    high: createIcon('green'),
+    medium: createIcon('yellow'),
+    low: createIcon('orange'),
+    full: createIcon('red')
 };
 
 // Component to handle map clicks for destination selection
@@ -193,46 +198,94 @@ const ParkingMap = ({
 
                 {destinationLocation && <Marker position={destinationLocation} icon={icons.destination} />}
 
-                {parkingSpots.map((spot) => (
-                    <Marker
-                        key={spot.id}
-                        position={{ lat: spot.latitude, lng: spot.longitude }}
-                        icon={spot.id === selectedSpotId ? icons.selected : (spot.id === bestSlotId ? icons.best : icons.parking)}
-                        eventHandlers={{ click: () => onSpotSelect(spot.id) }}
-                    >
-                        <Popup>
-                            <div className="p-1 min-w-[150px]">
-                                <h3 className="font-black text-slate-900 leading-tight">{spot.name}</h3>
-                                <p className="text-[10px] text-slate-500 mt-1">{spot.address}</p>
-                                <div className="mt-3 grid grid-cols-2 gap-2 border-t pt-2 text-center">
-                                    <p className="text-xs font-black text-emerald-600">{spot.predictedAvailableSpots} spots</p>
-                                    <p className="text-xs font-black text-blue-600">₹{spot.pricePerHour}/hr</p>
+                {parkingSpots.map((spot) => {
+                    // Determine marker icon based on availability status
+                    let markerIcon = icons.parking; // default
+
+                    if (spot.id === selectedSpotId) {
+                        markerIcon = icons.selected;
+                    } else if (spot.id === bestSlotId) {
+                        markerIcon = icons.best;
+                    } else if (spot.availabilityStatus) {
+                        // Use availability status for color
+                        switch (spot.availabilityStatus.toLowerCase()) {
+                            case 'high':
+                                markerIcon = icons.high;
+                                break;
+                            case 'medium':
+                                markerIcon = icons.medium;
+                                break;
+                            case 'low':
+                                markerIcon = icons.low;
+                                break;
+                            case 'full':
+                                markerIcon = icons.full;
+                                break;
+                            default:
+                                markerIcon = icons.parking;
+                        }
+                    }
+
+                    return (
+                        <Marker
+                            key={spot.id}
+                            position={{ lat: spot.latitude, lng: spot.longitude }}
+                            icon={markerIcon}
+                            eventHandlers={{ click: () => onSpotSelect(spot.id) }}
+                        >
+                            <Popup>
+                                <div className="p-1 min-w-[150px]">
+                                    <h3 className="font-black text-slate-900 leading-tight">{spot.name}</h3>
+                                    <p className="text-[10px] text-slate-500 mt-1">{spot.address}</p>
+                                    <div className="mt-3 grid grid-cols-2 gap-2 border-t pt-2 text-center">
+                                        <p className="text-xs font-black text-emerald-600">{spot.availableSlots || spot.predictedAvailableSpots} spots</p>
+                                        <p className="text-xs font-black text-blue-600">₹{spot.pricePerHour}/hr</p>
+                                    </div>
+                                    {/* Availability Status Badge */}
+                                    {spot.availabilityStatus && (
+                                        <div className="mt-2 text-center">
+                                            <span className={`inline-block px-2 py-1 text-[10px] font-black uppercase tracking-wider rounded-full ${
+                                                spot.availabilityStatus === 'HIGH' ? 'bg-green-100 text-green-800' :
+                                                spot.availabilityStatus === 'MEDIUM' ? 'bg-yellow-100 text-yellow-800' :
+                                                spot.availabilityStatus === 'LOW' ? 'bg-orange-100 text-orange-800' :
+                                                'bg-red-100 text-red-800'
+                                            }`}>
+                                                {spot.availabilityStatus} ({spot.availabilityPercent}%)
+                                            </span>
+                                        </div>
+                                    )}
+                                    {/* AI Prediction */}
+                                    {spot.aiPredictedAvailability !== undefined && (
+                                        <div className="mt-1 text-center text-[9px] text-slate-500">
+                                            AI predicts: {spot.aiPredictedAvailability} available
+                                        </div>
+                                    )}
+                                    <button
+                                        onClick={() => navigate(`/user/booking/${spot.id}`)}
+                                        className="w-full mt-3 py-1.5 bg-primary-600 text-white text-xs font-bold rounded-lg hover:bg-primary-700 transition-colors"
+                                    >
+                                        Quick Book
+                                    </button>
+                                    <button
+                                        onClick={() => navigate(`/user/navigate/${spot.id}`, {
+                                            state: {
+                                                startLat: userLocation.lat,
+                                                startLng: userLocation.lng,
+                                                destLat: spot.latitude,
+                                                destLng: spot.longitude,
+                                                parkingName: spot.name
+                                            }
+                                        })}
+                                        className="w-full mt-2 py-2 bg-slate-900 text-white text-[10px] font-black uppercase tracking-wider rounded-xl hover:bg-black transition-all flex items-center justify-center gap-2 shadow-lg"
+                                    >
+                                        <Navigation className="h-3 w-3" />
+                                        Start Navigation
+                                    </button>
                                 </div>
-                                <button
-                                    onClick={() => navigate(`/user/booking/${spot.id}`)}
-                                    className="w-full mt-3 py-1.5 bg-primary-600 text-white text-xs font-bold rounded-lg hover:bg-primary-700 transition-colors"
-                                >
-                                    Quick Book
-                                </button>
-                                <button
-                                    onClick={() => navigate(`/user/navigate/${spot.id}`, {
-                                        state: {
-                                            startLat: userLocation.lat,
-                                            startLng: userLocation.lng,
-                                            destLat: spot.latitude,
-                                            destLng: spot.longitude,
-                                            parkingName: spot.name
-                                        }
-                                    })}
-                                    className="w-full mt-2 py-2 bg-slate-900 text-white text-[10px] font-black uppercase tracking-wider rounded-xl hover:bg-black transition-all flex items-center justify-center gap-2 shadow-lg"
-                                >
-                                    <Navigation className="h-3 w-3" />
-                                    Start Navigation
-                                </button>
-                            </div>
-                        </Popup>
-                    </Marker>
-                ))}
+                            </Popup>
+                        </Marker>
+                    );
+                })}
 
                 {routeCoords && (
                     <Polyline

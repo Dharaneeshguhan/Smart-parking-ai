@@ -16,7 +16,6 @@ import {
   Grid,
   List
 } from 'lucide-react';
-import Sidebar from '../components/Sidebar';
 import Card, { CardHeader, CardTitle, CardContent } from '../components/Card';
 import Button from '../components/Button';
 import { parkingAPI } from '../services/api';

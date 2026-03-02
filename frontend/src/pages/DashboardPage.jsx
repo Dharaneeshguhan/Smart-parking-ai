@@ -52,6 +52,18 @@ const DashboardPage = () => {
     const userData = JSON.parse(localStorage.getItem('user'));
     setUser(userData);
     fetchDashboardData();
+
+    // Listen for booking completion events
+    const handleBookingComplete = () => {
+      fetchDashboardData();
+    };
+
+    window.addEventListener('bookingCompleted', handleBookingComplete);
+
+    // Cleanup
+    return () => {
+      window.removeEventListener('bookingCompleted', handleBookingComplete);
+    };
   }, []);
 
   const fetchDashboardData = async () => {
@@ -124,7 +136,7 @@ const DashboardPage = () => {
       <div className="p-6 max-w-7xl mx-auto">
 
         {/* STATS */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-8">
           <Card className="border-l-4 border-l-blue-500 shadow-sm hover:shadow-md transition-shadow">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
@@ -144,7 +156,7 @@ const DashboardPage = () => {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-gray-500 uppercase tracking-wider">Total Spent</p>
-                  <p className="text-3xl font-bold text-gray-900 mt-1">${stats.totalSpent?.toFixed(2)}</p>
+                  <p className="text-3xl font-bold text-gray-900 mt-1">₹{stats.totalSpent?.toFixed(2)}</p>
                 </div>
                 <div className="bg-emerald-100 p-3 rounded-xl text-emerald-600">
                   <DollarSign className="h-6 w-6" />
@@ -176,6 +188,34 @@ const DashboardPage = () => {
                 </div>
                 <div className="bg-purple-100 p-3 rounded-xl text-purple-600">
                   <Activity className="h-6 w-6" />
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="border-l-4 border-l-green-500 shadow-sm hover:shadow-md transition-shadow">
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-medium text-gray-500 uppercase tracking-wider">Live Availability</p>
+                  <p className="text-3xl font-bold text-gray-900 mt-1">{Math.round((stats.availableSlots / (stats.availableSlots + 10)) * 100)}%</p>
+                  <div className="flex items-center mt-2">
+                    <ArrowUp className="h-4 w-4 text-green-500 mr-1" />
+                    <span className="text-sm text-green-600 font-medium">+2% from yesterday</span>
+                  </div>
+                </div>
+                <div className={`p-3 rounded-xl ${stats.availableSlots > 20 ? 'bg-green-100 text-green-600' : stats.availableSlots > 10 ? 'bg-yellow-100 text-yellow-600' : 'bg-red-100 text-red-600'}`}>
+                  <Activity className="h-6 w-6" />
+                </div>
+              </div>
+              <div className="mt-4 grid grid-cols-2 gap-4 text-sm">
+                <div className="text-center">
+                  <p className="text-gray-600">Occupied</p>
+                  <p className="font-bold text-gray-900">{10 - stats.availableSlots}</p>
+                </div>
+                <div className="text-center">
+                  <p className="text-gray-600">Free</p>
+                  <p className="font-bold text-gray-900">{stats.availableSlots}</p>
                 </div>
               </div>
             </CardContent>
@@ -260,7 +300,7 @@ const DashboardPage = () => {
                             </div>
                           </div>
                           <div className="text-right">
-                            <p className="font-bold text-slate-900">${booking.totalAmount?.toFixed(2)}</p>
+                            <p className="font-bold text-slate-900">₹{booking.totalAmount?.toFixed(2)}</p>
                             <span className="text-[10px] uppercase font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">
                               Completed
                             </span>

@@ -74,6 +74,61 @@ public class OwnerController {
         return ResponseEntity.ok(slots);
     }
 
+    @PutMapping("/slots/{id}")
+    public ResponseEntity<?> updateSlot(@PathVariable Long id, @RequestBody AddSlotRequest request, Authentication authentication) {
+        User owner = userRepository.findByEmail(authentication.getName())
+                .orElseThrow(() -> new RuntimeException("Owner not found"));
+
+        ParkingSlot slot = parkingSlotRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Parking slot not found"));
+
+        // Verify ownership
+        if (!slot.getOwner().getId().equals(owner.getId())) {
+            return ResponseEntity.status(403).body("You can only update your own slots");
+        }
+
+        // Update slot details
+        slot.setName(request.getName());
+        slot.setAddress(request.getAddress());
+        slot.setLatitude(request.getLatitude());
+        slot.setLongitude(request.getLongitude());
+        slot.setPricePerHour(request.getPricePerHour());
+        slot.setTotalSpots(request.getTotalSpots());
+        slot.setAvailableSpots(request.getTotalSpots()); // Reset available spots to total
+        slot.setDailyRate(request.getDailyRate());
+
+        ParkingSlot updatedSlot = parkingSlotRepository.save(slot);
+        return ResponseEntity.ok(updatedSlot);
+    }
+
+    @DeleteMapping("/slots/{id}")
+    public ResponseEntity<?> deleteSlot(@PathVariable Long id, Authentication authentication) {
+        User owner = userRepository.findByEmail(authentication.getName())
+                .orElseThrow(() -> new RuntimeException("Owner not found"));
+
+        ParkingSlot slot = parkingSlotRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Parking slot not found"));
+
+        // Verify ownership
+        if (!slot.getOwner().getId().equals(owner.getId())) {
+            return ResponseEntity.status(403).body("You can only delete your own slots");
+        }
+
+        // Check if slot has any active bookings
+        List<Booking> activeBookings = bookingRepository.findByParkingSlotInAndStatus(
+            List.of(slot), "CONFIRMED"
+        ).stream()
+        .filter(booking -> booking.getEndTime().isAfter(LocalDateTime.now()))
+        .collect(Collectors.toList());
+
+        if (!activeBookings.isEmpty()) {
+            return ResponseEntity.badRequest().body("Cannot delete slot with active bookings. Cancel all bookings first.");
+        }
+
+        parkingSlotRepository.delete(slot);
+        return ResponseEntity.ok().build();
+    }
+
     @GetMapping("/bookings")
     public ResponseEntity<List<BookingDto>> getMySlotBookings(Authentication authentication) {
         User owner = userRepository.findByEmail(authentication.getName())

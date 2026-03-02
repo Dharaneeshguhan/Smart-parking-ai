@@ -13,6 +13,8 @@ public class BookingDto {
     private Double totalAmount;
     private LocalDateTime createdAt;
     private String userName;
+    private Double latitude;
+    private Double longitude;
 
     public Long getId() {
         return id;
@@ -92,5 +94,21 @@ public class BookingDto {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
     }
 }

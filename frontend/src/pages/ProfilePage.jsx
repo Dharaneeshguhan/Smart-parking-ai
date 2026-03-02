@@ -19,7 +19,6 @@ import {
   AlertCircle,
   Lock
 } from 'lucide-react';
-import Sidebar from '../components/Sidebar';
 import Card, { CardHeader, CardTitle, CardContent, CardFooter } from '../components/Card';
 import Button from '../components/Button';
 import { authAPI } from '../services/api';

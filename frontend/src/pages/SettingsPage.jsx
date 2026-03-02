@@ -14,7 +14,6 @@ import {
   LogOut,
   ChevronRight
 } from 'lucide-react';
-import Sidebar from '../components/Sidebar';
 import Card, { CardHeader, CardTitle, CardContent } from '../components/Card';
 import Button from '../components/Button';
 

@@ -17,6 +17,7 @@ import {
 import Button from '../../components/Button';
 import useGeolocation from '../../hooks/useGeolocation';
 import { calculateDistance } from '../../utils/distance';
+import { parkingAPI } from '../../services/api';
 
 // Fix for default Leaflet marker icons
 delete L.Icon.Default.prototype._getIconUrl;
@@ -65,47 +66,147 @@ const RouteNavigationPage = () => {
     const [error, setError] = useState(null);
     const [stats, setStats] = useState({ distance: 0, duration: 0 });
 
+    const [fetchedDestination, setFetchedDestination] = useState(null);
+    const [routeInitialized, setRouteInitialized] = useState(false);
     const { location: currentGeoLocation } = useGeolocation();
     const lastFetchedRef = useRef(null);
 
+    // Fetch missing destination data if needed
+    useEffect(() => {
+        if (!state.destLat && parkingId) {
+            const fetchDest = async () => {
+                try {
+                    const response = await parkingAPI.getParkingDetails(parkingId);
+                    setFetchedDestination(response.data);
+                } catch (e) {
+                    console.error("Failed to fetch destination details:", e);
+                }
+            };
+            fetchDest();
+        }
+    }, [parkingId, state.destLat]);
+
     const start = useMemo(() => {
         // Prefer live GPS if available
-        if (currentGeoLocation.lat) return { lat: currentGeoLocation.lat, lng: currentGeoLocation.lng };
-        return {
-            lat: state.startLat || defaultCoords.lat,
-            lng: state.startLng || defaultCoords.lng
-        };
-    }, [currentGeoLocation.lat, currentGeoLocation.lng, state.startLat, state.startLng]);
+        if (currentGeoLocation && currentGeoLocation.lat != null) {
+            return { lat: currentGeoLocation.lat, lng: currentGeoLocation.lng };
+        }
 
-    const destination = useMemo(() => ({
-        lat: state.destLat || defaultCoords.lat,
-        lng: state.destLng || defaultCoords.lng,
-        name: state.parkingName || 'Parking Slot'
-    }), [state.destLat, state.destLng, state.parkingName]);
+        // Use state-passed coordinates if provided (strictly check not null/undefined)
+        if (state.startLat != null && state.startLng != null) {
+            return { lat: state.startLat, lng: state.startLng };
+        }
+
+        // Ultimate fallback
+        return defaultCoords;
+    }, [currentGeoLocation, state.startLat, state.startLng]);
+
+    const destination = useMemo(() => {
+        const lat = state.destLat ?? fetchedDestination?.latitude ?? defaultCoords.lat;
+        const lng = state.destLng ?? fetchedDestination?.longitude ?? defaultCoords.lng;
+        const name = state.parkingName || fetchedDestination?.name || 'Parking Slot';
+
+        return { lat, lng, name };
+    }, [state.destLat, state.destLng, state.parkingName, fetchedDestination]);
 
     const fetchRoute = useCallback(async () => {
+        if (!start.lat || !start.lng || !destination.lat || !destination.lng) {
+            console.log("[Route] Waiting for valid coordinates...", { start, destination });
+            return;
+        }
+
+        // Validate coordinates are valid numbers
+        if (isNaN(start.lat) || isNaN(start.lng) || isNaN(destination.lat) || isNaN(destination.lng)) {
+            console.error("[Route] Invalid coordinates detected:", { start, destination });
+            setError('Invalid coordinates. Please try again.');
+            return;
+        }
+
+        // Validate coordinate ranges
+        if (Math.abs(start.lat) > 90 || Math.abs(destination.lat) > 90 || 
+            Math.abs(start.lng) > 180 || Math.abs(destination.lng) > 180) {
+            console.error("[Route] Coordinates out of range:", { start, destination });
+            setError('Coordinates out of range. Please try again.');
+            return;
+        }
+
+        console.log("[Route] Fetching route with coordinates:", { start, destination });
+
         setLoading(true);
         setError(null);
         try {
             // OSRM expects [lng,lat]
             const url = `https://router.project-osrm.org/route/v1/driving/${start.lng},${start.lat};${destination.lng},${destination.lat}?overview=full&geometries=geojson`;
 
+            console.log("[Route] OSRM URL:", url);
             const response = await fetch(url);
             const data = await response.json();
+
+            console.log("[Route] OSRM Response:", data);
+            console.log("[Route] Response code:", data.code);
+            console.log("[Route] Routes array:", data.routes);
+            console.log("[Route] First route:", data.routes?.[0]);
 
             if (data.code !== 'Ok') {
                 throw new Error(data.message || 'Routing failed');
             }
 
+            if (!data.routes || data.routes.length === 0) {
+                throw new Error('No routes found');
+            }
+
             const routeData = data.routes[0];
+            console.log("[Route] Route data details:", {
+                distance: routeData.distance,
+                duration: routeData.duration,
+                distanceKm: routeData.distance / 1000,
+                durationMin: routeData.duration / 60,
+                geometry: routeData.geometry,
+                coordinates: routeData.geometry?.coordinates?.length
+            });
             // GeoJSON stores as [lng, lat], Leaflet needs [lat, lng]
             const coords = routeData.geometry.coordinates.map(coord => [coord[1], coord[0]]);
 
-            setRoute(coords);
-            setStats({
-                distance: (routeData.distance / 1000).toFixed(2), // KM
-                duration: Math.round(routeData.duration / 60) // Minutes
+            console.log("[Route] Route data:", { 
+                distance: routeData.distance, 
+                duration: routeData.duration,
+                coordsCount: coords.length 
             });
+
+            // Check if the route distance is too small (might indicate an error)
+            if (routeData.distance < 10) { // Less than 10 meters
+                console.warn("[Route] Route distance seems too small, calculating direct distance");
+                const directDistance = calculateDistance(start.lat, start.lng, destination.lat, destination.lng);
+                const estimatedDuration = Math.round((directDistance / 50) * 60); // Assuming 50 km/h average speed
+                
+                const finalStats = {
+                    distance: directDistance.toFixed(2),
+                    duration: estimatedDuration
+                };
+                console.log("[Route] Using direct distance stats:", finalStats);
+                setStats(finalStats);
+            } else {
+                // Calculate duration in minutes, but show more precision for short routes
+                const durationMinutes = routeData.duration / 60;
+                let displayDuration;
+                
+                if (durationMinutes < 1) {
+                    // For routes less than 1 minute, show "Less than 1 min"
+                    displayDuration = 1;
+                } else {
+                    // For longer routes, round to nearest minute
+                    displayDuration = Math.round(durationMinutes);
+                }
+                
+                const finalStats = {
+                    distance: (routeData.distance / 1000).toFixed(2), // KM
+                    duration: displayDuration // Minutes
+                };
+                console.log("[Route] Using OSRM stats:", finalStats, `(raw: ${durationMinutes.toFixed(2)} minutes)`);
+                setStats(finalStats);
+            }
+
+            setRoute(coords);
         } catch (err) {
             console.error('OSRM Error:', err);
             setError('Could not calculate route. Using direct view.');
@@ -115,16 +216,35 @@ const RouteNavigationPage = () => {
     }, [start, destination]);
 
     useEffect(() => {
-        // To save API hits, only re-calculate if we haven't yet OR if user moved > 50m
-        const distMoved = lastFetchedRef.current
-            ? calculateDistance(start.lat, start.lng, lastFetchedRef.current.lat, lastFetchedRef.current.lng)
-            : 100; // force first fetch
-
-        if (distMoved > 0.05) { // 50 meters
+        // Only fetch if we haven't initialized the route yet, OR if user moved significantly
+        if (!routeInitialized && !loading && start.lat && destination.lat) {
+            console.log("[Route] First time initialization");
             fetchRoute();
+            setRouteInitialized(true);
             lastFetchedRef.current = start;
+            return;
         }
-    }, [start, fetchRoute]);
+
+        // After initialization, only re-fetch if user moved more than 50 meters
+        if (routeInitialized && !loading) {
+            const distMoved = lastFetchedRef.current
+                ? calculateDistance(start.lat, start.lng, lastFetchedRef.current.lat, lastFetchedRef.current.lng)
+                : 0;
+
+            console.log("[Route] Distance moved:", distMoved, "meters");
+
+            if (distMoved > 0.05 && start.lat && destination.lat) { // 50 meters
+                console.log("[Route] User moved significantly, refetching route");
+                fetchRoute();
+                lastFetchedRef.current = start;
+            }
+        }
+    }, [start, destination, fetchRoute, routeInitialized, loading]);
+
+    // Log stats changes for debugging (can be removed in production)
+    // useEffect(() => {
+    //     console.log("[Route] Stats updated:", stats);
+    // }, [stats]);
 
     return (
         <div className="relative h-screen w-full flex flex-col overflow-hidden bg-slate-50">
@@ -193,50 +313,52 @@ const RouteNavigationPage = () => {
 
             {/* Map Container */}
             <div className="h-screen w-full z-0">
-                <MapContainer
-                    center={[start.lat, start.lng]}
-                    zoom={15}
-                    style={{ height: '100%', width: '100%' }}
-                    zoomControl={false}
-                >
-                    <TileLayer
-                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                    />
-
-                    {/* Start Marker */}
-                    <Marker position={[start.lat, start.lng]} icon={icons.start}>
-                        <Popup>
-                            <div className="text-xs font-bold text-center">Your Location</div>
-                        </Popup>
-                    </Marker>
-
-                    {/* Destination Marker */}
-                    <Marker position={[destination.lat, destination.lng]} icon={icons.end}>
-                        <Popup>
-                            <div className="text-xs font-bold text-center">
-                                <p className="text-primary-600 uppercase tracking-widest text-[8px] mb-1">Destination</p>
-                                {destination.name}
-                            </div>
-                        </Popup>
-                    </Marker>
-
-                    {/* Route Polyline */}
-                    {route && (
-                        <Polyline
-                            positions={route}
-                            pathOptions={{
-                                color: '#3b82f6',
-                                weight: 6,
-                                opacity: 0.8,
-                                lineJoin: 'round',
-                                lineCap: 'round'
-                            }}
+                {start.lat != null && start.lng != null && (
+                    <MapContainer
+                        center={[start.lat, start.lng]}
+                        zoom={15}
+                        style={{ height: '100%', width: '100%' }}
+                        zoomControl={false}
+                    >
+                        <TileLayer
+                            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                         />
-                    )}
 
-                    <MapBoundsHandler routeCoords={route} start={[start.lat, start.lng]} end={[destination.lat, destination.lng]} />
-                </MapContainer>
+                        {/* Start Marker */}
+                        <Marker position={[start.lat, start.lng]} icon={icons.start}>
+                            <Popup>
+                                <div className="text-xs font-bold text-center">Your Location</div>
+                            </Popup>
+                        </Marker>
+
+                        {/* Destination Marker */}
+                        <Marker position={[destination.lat, destination.lng]} icon={icons.end}>
+                            <Popup>
+                                <div className="text-xs font-bold text-center">
+                                    <p className="text-primary-600 uppercase tracking-widest text-[8px] mb-1">Destination</p>
+                                    {destination.name}
+                                </div>
+                            </Popup>
+                        </Marker>
+
+                        {/* Route Polyline */}
+                        {route && (
+                            <Polyline
+                                positions={route}
+                                pathOptions={{
+                                    color: '#3b82f6',
+                                    weight: 6,
+                                    opacity: 0.8,
+                                    lineJoin: 'round',
+                                    lineCap: 'round'
+                                }}
+                            />
+                        )}
+
+                        <MapBoundsHandler routeCoords={route} start={[start.lat, start.lng]} end={[destination.lat, destination.lng]} />
+                    </MapContainer>
+                )}
             </div>
 
             {/* Bottom Status (Mobile) */}

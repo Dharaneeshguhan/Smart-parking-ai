@@ -16,7 +16,6 @@ import {
   FileText,
   RefreshCw
 } from 'lucide-react';
-import Sidebar from '../components/Sidebar';
 import Card, { CardHeader, CardTitle, CardContent, CardFooter } from '../components/Card';
 import Button from '../components/Button';
 import { parkingAPI } from '../services/api';
@@ -228,9 +227,24 @@ const PaymentHistoryPage = () => {
     }
   };
 
-  const handleDownloadReceipt = (payment) => {
-    // Generate and download receipt
-    console.log('Downloading receipt for transaction:', payment.transactionId);
+  const handleDownloadReceipt = async (payment) => {
+    try {
+      const response = await parkingAPI.downloadReceipt(payment.id);
+
+      // Create blob and trigger download
+      const blob = new Blob([response.data], { type: 'text/plain' });
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `receipt_${payment.id}.txt`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error('Error downloading receipt:', error);
+      alert('Failed to download receipt. Please try again.');
+    }
   };
 
   const getTotalSpent = () => {
@@ -275,7 +289,7 @@ const PaymentHistoryPage = () => {
                     <Download className="h-4 w-4 mr-2" />
                     Export
                   </Button>
-                  <Link to="/payment-methods">
+                  <Link to="/user/settings">
                     <Button>
                       <CreditCard className="h-4 w-4 mr-2" />
                       Payment Methods
@@ -291,19 +305,19 @@ const PaymentHistoryPage = () => {
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
               <Card>
                 <CardContent className="text-center">
-                  <div className="text-2xl font-bold text-gray-900">${getTotalSpent().toFixed(2)}</div>
+                  <div className="text-2xl font-bold text-gray-900">₹{getTotalSpent().toFixed(2)}</div>
                   <div className="text-sm text-gray-600">Total Spent</div>
                 </CardContent>
               </Card>
               <Card>
                 <CardContent className="text-center">
-                  <div className="text-2xl font-bold text-green-600">${getTotalRefunded().toFixed(2)}</div>
+                  <div className="text-2xl font-bold text-green-600">₹{getTotalRefunded().toFixed(2)}</div>
                   <div className="text-sm text-gray-600">Total Refunded</div>
                 </CardContent>
               </Card>
               <Card>
                 <CardContent className="text-center">
-                  <div className="text-2xl font-bold text-yellow-600">${getPendingAmount().toFixed(2)}</div>
+                  <div className="text-2xl font-bold text-yellow-600">₹{getPendingAmount().toFixed(2)}</div>
                   <div className="text-sm text-gray-600">Pending</div>
                 </CardContent>
               </Card>
@@ -416,7 +430,7 @@ const PaymentHistoryPage = () => {
                             <div className="text-right">
                               <div className={`text-lg font-bold ${payment.type === 'refund' ? 'text-green-600' : 'text-gray-900'
                                 }`}>
-                                {payment.type === 'refund' ? '-' : ''}${payment.amount.toFixed(2)}
+                                {payment.type === 'refund' ? '-' : ''}₹{payment.amount.toFixed(2)}
                               </div>
                             </div>
                             {payment.status === 'completed' && (

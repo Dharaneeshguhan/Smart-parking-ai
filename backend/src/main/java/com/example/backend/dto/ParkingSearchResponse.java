@@ -19,6 +19,14 @@ public class ParkingSearchResponse {
     private double score;
     private int totalSpots;
     
+    // Availability fields
+    private int availabilityPercent;
+    private String availabilityStatus;
+    private int aiPredictedAvailability;
+    private boolean recommended;
+    private boolean available;
+    private String reason;
+
     // UI Mock Fields for compatibility
     private java.util.List<String> amenities;
     private String operatingHours;
@@ -188,5 +196,54 @@ public class ParkingSearchResponse {
 
     public void setVisitCount(int visitCount) {
         this.visitCount = visitCount;
+    }
+
+    // Availability field getters and setters
+    public int getAvailabilityPercent() {
+        return availabilityPercent;
+    }
+
+    public void setAvailabilityPercent(int availabilityPercent) {
+        this.availabilityPercent = availabilityPercent;
+    }
+
+    public String getAvailabilityStatus() {
+        return availabilityStatus;
+    }
+
+    public void setAvailabilityStatus(String availabilityStatus) {
+        this.availabilityStatus = availabilityStatus;
+    }
+
+    public int getAiPredictedAvailability() {
+        return aiPredictedAvailability;
+    }
+
+    public void setAiPredictedAvailability(int aiPredictedAvailability) {
+        this.aiPredictedAvailability = aiPredictedAvailability;
+    }
+
+    public boolean isRecommended() {
+        return recommended;
+    }
+
+    public void setRecommended(boolean recommended) {
+        this.recommended = recommended;
+    }
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
     }
 }

@@ -36,6 +36,7 @@ const BookingPage = () => {
   const [showSuccess, setShowSuccess] = useState(false);
   const [lastBooking, setLastBooking] = useState(null);
   const { location: userLocation } = useGeolocation();
+  const [unavailableTimeRanges, setUnavailableTimeRanges] = useState([]);
 
   useEffect(() => {
     fetchParkingDetails();
@@ -52,10 +53,21 @@ const BookingPage = () => {
     try {
       const response = await parkingAPI.getParkingDetails(id);
       setParkingDetails(response.data);
+      // Fetch unavailable time ranges for this slot
+      await fetchUnavailableTimeRanges(id);
     } catch (error) {
       console.error('Error fetching parking details:', error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const fetchUnavailableTimeRanges = async (slotId) => {
+    try {
+      const response = await parkingAPI.getUnavailableTimeRanges(slotId);
+      setUnavailableTimeRanges(response.data);
+    } catch (error) {
+      console.error('Error fetching unavailable time ranges:', error);
     }
   };
 
@@ -76,10 +88,12 @@ const BookingPage = () => {
       'Maximum stay: 24 hours',
       'No overnight parking without prior arrangement',
       'Payment required before exit'
-    ]
+    ],
+    latitude: 10.827247,
+    longitude: 77.059452
   };
 
-  const parking = parkingDetails || mockParkingDetails;
+  const parking = (parkingDetails && Object.keys(parkingDetails).length > 0) ? parkingDetails : mockParkingDetails;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -141,9 +155,23 @@ const BookingPage = () => {
       };
 
       const response = await parkingAPI.bookParking(bookingPayload);
-      setLastBooking(response.data);
+
+      // Ensure the booking response includes the destination coordinates for the success screen
+      const bookingWithCoords = {
+        ...response.data,
+        latitude: response.data.latitude || parking.latitude,
+        longitude: response.data.longitude || parking.longitude,
+        parkingName: response.data.parkingSlotName || parking.name,
+        startTime: response.data.startTime,
+        endTime: response.data.endTime
+      };
+
+      setLastBooking(bookingWithCoords);
       setShowSuccess(true);
       window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      // Trigger real-time update for dashboard
+      window.dispatchEvent(new Event('bookingCompleted'));
     } catch (error) {
       console.error('Error creating booking:', error);
       setErrors({ submit: error.response?.data?.message || 'Booking failed. Please try again.' });
@@ -156,7 +184,22 @@ const BookingPage = () => {
   for (let hour = 0; hour < 24; hour++) {
     for (let minute = 0; minute < 60; minute += 30) {
       const time = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
-      timeSlots.push(time);
+      const timeDate = new Date(`${bookingData.date}T${time}:00`);
+
+      // Check if this time slot conflicts with any unavailable ranges
+      const isUnavailable = unavailableTimeRanges.some(range => {
+        const rangeStart = new Date(range.startTime);
+        const rangeEnd = new Date(range.endTime);
+        const slotEnd = new Date(timeDate.getTime() + bookingData.duration * 60 * 60 * 1000);
+
+        // Check for overlap: slot starts before range ends AND slot ends after range starts
+        return timeDate < rangeEnd && slotEnd > rangeStart;
+      });
+
+      timeSlots.push({
+        time,
+        available: !isUnavailable
+      });
     }
   }
 
@@ -183,13 +226,13 @@ const BookingPage = () => {
               <Button
                 size="large"
                 className="w-full h-16 rounded-2xl flex items-center justify-center gap-3 bg-slate-900 hover:bg-black shadow-xl"
-                onClick={() => navigate(`/user/navigate/${parking.id}`, {
+                onClick={() => navigate(`/user/navigate/${lastBooking?.parkingSlotId || parking.id}`, {
                   state: {
                     startLat: userLocation.lat,
                     startLng: userLocation.lng,
-                    destLat: parking.latitude || 10.829000,
-                    destLng: parking.longitude || 77.061000,
-                    parkingName: parking.name
+                    destLat: lastBooking?.latitude ?? parking.latitude ?? 10.827247,
+                    destLng: lastBooking?.longitude ?? parking.longitude ?? 77.059452,
+                    parkingName: lastBooking?.parkingName ?? parking.name
                   }
                 })}
               >
@@ -273,8 +316,15 @@ const BookingPage = () => {
                         className={`input-field ${errors.startTime ? 'border-red-500' : ''}`}
                       >
                         <option value="">Select time</option>
-                        {timeSlots.map(time => (
-                          <option key={time} value={time}>{time}</option>
+                        {timeSlots.map(slot => (
+                          <option
+                            key={slot.time}
+                            value={slot.time}
+                            disabled={!slot.available}
+                            className={!slot.available ? 'text-gray-400' : ''}
+                          >
+                            {slot.time} {!slot.available ? '(Unavailable)' : ''}
+                          </option>
                         ))}
                       </select>
                       {errors.startTime && (
@@ -396,7 +446,26 @@ const BookingPage = () => {
                   />
                 </div>
 
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">{parking.name}</h3>
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="text-lg font-semibold text-gray-900">{parking.name}</h3>
+                  <button
+                    type="button"
+                    title="Preview Route"
+                    onClick={() => navigate(`/user/navigate/${parking.id}`, {
+                      state: {
+                        startLat: userLocation.lat,
+                        startLng: userLocation.lng,
+                        destLat: parkingDetails?.latitude ?? parking.latitude ?? 10.827247,
+                        destLng: parkingDetails?.longitude ?? parking.longitude ?? 77.059452,
+                        parkingName: parkingDetails?.name ?? parking.name
+                      }
+                    })}
+                    className="p-2 bg-primary-50 rounded-xl hover:bg-primary-100 text-primary-600 transition-all shadow-sm flex items-center gap-1 group"
+                  >
+                    <NavIcon className="h-4 w-4" />
+                    <span className="text-[10px] font-black uppercase tracking-widest hidden group-hover:block px-1">Route</span>
+                  </button>
+                </div>
 
                 <div className="space-y-2 mb-4">
                   <div className="flex items-center text-sm text-gray-600">
@@ -432,7 +501,7 @@ const BookingPage = () => {
                   <div className="space-y-2">
                     <div className="flex justify-between text-sm">
                       <span className="text-gray-600">Base Price</span>
-                      <span className="font-medium">${parking.pricePerHour || parking.price}/hour</span>
+                      <span className="font-medium">₹{parking.pricePerHour || parking.price}/hour</span>
                     </div>
                     <div className="flex justify-between text-sm">
                       <span className="text-gray-600">Duration</span>
@@ -440,13 +509,13 @@ const BookingPage = () => {
                     </div>
                     <div className="flex justify-between text-sm">
                       <span className="text-gray-600">Service Fee</span>
-                      <span className="font-medium">$2.00</span>
+                      <span className="font-medium">₹2.00</span>
                     </div>
                     <div className="border-t border-gray-200 pt-2">
                       <div className="flex justify-between">
                         <span className="font-medium text-gray-900">Total</span>
                         <span className="text-lg font-bold text-gray-900">
-                          ${(calculateTotalPrice() + 2).toFixed(2)}
+                          ₹{(calculateTotalPrice() + 2).toFixed(2)}
                         </span>
                       </div>
                     </div>

@@ -18,10 +18,11 @@ import {
   User
 } from 'lucide-react';
 
-import Card, { CardContent } from '../components/Card';
+import Card, { CardHeader, CardTitle, CardContent } from '../components/Card';
 import Button from '../components/Button';
 import { parkingAPI } from '../services/api';
 import ParkingMap from '../components/ParkingMap';
+import AvailabilityIndicator from '../components/AvailabilityIndicator';
 
 import useGeolocation from '../hooks/useGeolocation';
 import { calculateDistance } from '../utils/distance';
@@ -38,6 +39,11 @@ const ParkingSearchPage = () => {
   const [bestMatchId, setBestMatchId] = useState(null);
   const [selectedSpotId, setSelectedSpotId] = useState(null);
   const [debugVisible, setDebugVisible] = useState(false);
+
+  // Time slot selection
+  const [startTime, setStartTime] = useState('');
+  const [endTime, setEndTime] = useState('');
+  const [timeSlotSelected, setTimeSlotSelected] = useState(false);
 
   const {
     location: userLocation,
@@ -68,7 +74,9 @@ const ParkingSearchPage = () => {
           userLat: lat,
           userLng: lng,
           destinationLat: destLat,
-          destinationLng: destLng
+          destinationLng: destLng,
+          startTime: startTime ? `${new Date().toISOString().split('T')[0]}T${startTime}:00` : null,
+          endTime: endTime ? `${new Date().toISOString().split('T')[0]}T${endTime}:00` : null
         });
       } else {
         response = await parkingAPI.getNearbyParking(lat, lng);
@@ -76,6 +84,15 @@ const ParkingSearchPage = () => {
 
       const results = response.data || [];
       setParkingSpots(results);
+
+      // Add debug logging
+      console.log("Selected time:", startTime, endTime);
+      console.log("Search results:", results.map(spot => ({
+        id: spot.id,
+        available: spot.available,
+        reason: spot.reason,
+        recommended: spot.recommended
+      })));
 
       if (results.length > 0) {
         setBestMatchId(results[0].id);
@@ -88,7 +105,7 @@ const ParkingSearchPage = () => {
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [startTime, endTime]);
 
   // Sync favorites on load
   useEffect(() => {
@@ -137,10 +154,18 @@ const ParkingSearchPage = () => {
     }
   };
 
-  const getTrafficColor = (level) => {
-    if (level === 'Low') return 'text-green-600 bg-green-100';
-    if (level === 'Medium') return 'text-yellow-600 bg-yellow-100';
-    return 'text-red-600 bg-red-100';
+  const handleTimeSlotSubmit = () => {
+    if (startTime && endTime) {
+      setTimeSlotSelected(true);
+    }
+  };
+
+  const resetTimeSelection = () => {
+    setStartTime('');
+    setEndTime('');
+    setTimeSlotSelected(false);
+    setDestinationLocation(null);
+    setParkingSpots([]);
   };
 
   return (
@@ -185,6 +210,96 @@ const ParkingSearchPage = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Time Selection Column */}
+          {!timeSlotSelected && (
+            <div className="lg:col-span-3 mb-8">
+              <Card className="max-w-2xl mx-auto">
+                <CardHeader className="text-center">
+                  <CardTitle className="text-2xl font-black text-slate-800 flex items-center justify-center gap-3">
+                    <Clock className="h-8 w-8 text-primary-600" />
+                    Select Parking Time Slot
+                  </CardTitle>
+                  <p className="text-slate-600 mt-2">Choose your parking duration to get optimized recommendations</p>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-sm font-bold text-slate-700 mb-3 uppercase tracking-widest">
+                        Start Time
+                      </label>
+                      <select
+                        value={startTime}
+                        onChange={(e) => setStartTime(e.target.value)}
+                        className="input-field text-lg h-14"
+                      >
+                        <option value="">Select start time</option>
+                        {Array.from({ length: 24 }, (_, i) => {
+                          const hour = i.toString().padStart(2, '0');
+                          return (
+                            <option key={`start-${hour}`} value={`${hour}:00`}>
+                              {hour}:00
+                            </option>
+                          );
+                        })}
+                      </select>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-bold text-slate-700 mb-3 uppercase tracking-widest">
+                        End Time
+                      </label>
+                      <select
+                        value={endTime}
+                        onChange={(e) => setEndTime(e.target.value)}
+                        className="input-field text-lg h-14"
+                      >
+                        <option value="">Select end time</option>
+                        {Array.from({ length: 24 }, (_, i) => {
+                          const hour = (i + 1).toString().padStart(2, '0');
+                          return (
+                            <option key={`end-${hour}`} value={`${hour}:00`}>
+                              {hour}:00
+                            </option>
+                          );
+                        })}
+                      </select>
+                    </div>
+                  </div>
+                  <div className="text-center">
+                    <Button
+                      onClick={handleTimeSlotSubmit}
+                      disabled={!startTime || !endTime}
+                      className="px-12 py-4 text-lg font-black"
+                    >
+                      Confirm Time Slot
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          )}
+
+          {/* Time Slot Indicator */}
+          {timeSlotSelected && (
+            <div className="lg:col-span-3 mb-6">
+              <div className="flex items-center justify-center">
+                <div className="bg-primary-50 text-primary-700 px-6 py-3 rounded-full border border-primary-200 flex items-center gap-4">
+                  <Clock className="h-5 w-5" />
+                  <span className="font-bold">
+                    Parking Time: {startTime} - {endTime}
+                  </span>
+                  <Button
+                    variant="outline"
+                    size="small"
+                    onClick={resetTimeSelection}
+                    className="ml-2"
+                  >
+                    Change
+                  </Button>
+                </div>
+              </div>
+            </div>
+          )}
+
           {/* Map Column */}
           <div className="lg:col-span-2 space-y-6 relative">
             <ParkingMap
@@ -283,7 +398,7 @@ const ParkingSearchPage = () => {
                     <Card
                       key={spot.id}
                       onClick={() => setSelectedSpotId(spot.id)}
-                      className={`relative overflow-hidden transition-all duration-500 cursor-pointer rounded-[32px] border-2 ${isSelected ? 'border-primary-500 bg-white shadow-2xl scale-[1.02]' : (isBest ? 'border-yellow-400 bg-white shadow-xl shadow-yellow-50' : 'bg-white border-transparent shadow-sm hover:border-slate-200 hover:shadow-md')
+                      className={`relative overflow-hidden transition-all duration-500 cursor-pointer rounded-[32px] border-2 ${isSelected ? 'border-primary-500 bg-white shadow-2xl scale-[1.02]' : (isBest ? 'border-yellow-400 bg-white shadow-xl shadow-yellow-50' : spot.available !== false ? 'bg-white border-transparent shadow-sm hover:border-slate-200 hover:shadow-md' : 'bg-slate-50 border-slate-200 shadow-sm opacity-75 hover:border-slate-300 hover:shadow-md')
                         }`}
                     >
                       {isBest && (
@@ -291,6 +406,15 @@ const ParkingSearchPage = () => {
                           <div className="bg-yellow-400 text-slate-900 text-[10px] font-black py-1 px-4 shadow-sm flex items-center gap-1 rounded-bl-2xl uppercase tracking-tighter">
                             <Brain className="h-3 w-3" />
                             AI PREDICTION
+                          </div>
+                        </div>
+                      )}
+
+                      {spot.recommended && (
+                        <div className="absolute top-0 right-0">
+                          <div className="bg-slate-500 text-white text-[10px] font-black py-1 px-4 shadow-sm flex items-center gap-1 rounded-bl-2xl uppercase tracking-tighter">
+                            <Award className="h-3 w-3" />
+                            GOOD SPOT
                           </div>
                         </div>
                       )}
@@ -323,6 +447,18 @@ const ParkingSearchPage = () => {
                             <p className="text-[8px] font-black text-slate-400 uppercase tracking-widest mb-1">Proximity</p>
                             <p className="text-lg font-black text-slate-900 uppercase tracking-tighter">{distance?.toFixed(2)}<span className="text-[10px] font-normal text-slate-500"> KM</span></p>
                           </div>
+                        </div>
+
+                        {/* Availability Indicator */}
+                        <div className="mb-6">
+                          <AvailabilityIndicator
+                            availabilityPercent={spot.availabilityPercent || 0}
+                            availabilityStatus={spot.availabilityStatus || 'UNKNOWN'}
+                            aiPredictedAvailability={spot.aiPredictedAvailability}
+                            recommended={spot.recommended}
+                            totalSlots={spot.totalSpots || 0}
+                            showAiPrediction={true}
+                          />
                         </div>
 
                         <div className="flex items-center justify-between gap-4">

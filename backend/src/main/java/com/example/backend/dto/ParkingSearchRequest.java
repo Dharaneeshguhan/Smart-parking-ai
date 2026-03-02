@@ -7,6 +7,8 @@ public class ParkingSearchRequest {
     private Double destinationLat;
     private Double destinationLng;
     private String location; // Search query, optional in this context
+    private String startTime;
+    private String endTime;
 
     public ParkingSearchRequest() {
     }
@@ -49,5 +51,21 @@ public class ParkingSearchRequest {
 
     public void setDestinationLng(Double destinationLng) {
         this.destinationLng = destinationLng;
+    }
+
+    public String getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
     }
 }

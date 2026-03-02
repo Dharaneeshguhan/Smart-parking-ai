@@ -227,16 +227,16 @@ const OwnerDashboard = () => {
       </div>
 
       <div className="p-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-          <Card>
-            <CardContent>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <Card className="border-l-4 border-l-blue-500 shadow-sm hover:shadow-md transition-shadow">
+            <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Total Slots</p>
-                  <p className="text-2xl font-bold text-gray-900">{stats.totalSlots || slots.reduce((sum, slot) => sum + slot.totalSpots, 0)}</p>
-                  <div className="flex items-center mt-2 text-sm">
+                  <p className="text-sm font-medium text-gray-500 uppercase tracking-wider">Total Slots</p>
+                  <p className="text-3xl font-bold text-gray-900 mt-1">{stats.totalSlots || slots.reduce((sum, slot) => sum + slot.totalSpots, 0)}</p>
+                  <div className="flex items-center mt-2">
                     <Activity className="h-4 w-4 text-blue-500 mr-1" />
-                    <span className="text-blue-600">{occupancyRate}% occupied</span>
+                    <span className="text-sm text-blue-600 font-medium">{occupancyRate}% occupied</span>
                   </div>
                 </div>
                 <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
@@ -246,25 +246,112 @@ const OwnerDashboard = () => {
             </CardContent>
           </Card>
 
-          <Card>
-            <CardContent>
+          <Card className="border-l-4 border-l-green-500 shadow-sm hover:shadow-md transition-shadow">
+            <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Occupied Slots</p>
-                  <p className="text-2xl font-bold text-gray-900">{stats.occupiedSlots || slots.reduce((sum, slot) => sum + slot.occupiedSpots, 0)}</p>
-                  <div className="flex items-center mt-2 text-sm">
+                  <p className="text-sm font-medium text-gray-500 uppercase tracking-wider">Active Bookings</p>
+                  <p className="text-3xl font-bold text-gray-900 mt-1">{bookings.filter(b => b.status === 'active').length}</p>
+                  <div className="flex items-center mt-2">
                     <TrendingUp className="h-4 w-4 text-green-500 mr-1" />
-                    <span className="text-green-600">+12% this week</span>
+                    <span className="text-sm text-green-600 font-medium">+8 this week</span>
                   </div>
                 </div>
                 <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                  <Car className="h-6 w-6 text-green-600" />
+                  <Calendar className="h-6 w-6 text-green-600" />
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="border-l-4 border-l-emerald-500 shadow-sm hover:shadow-md transition-shadow">
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-medium text-gray-500 uppercase tracking-wider">Today's Revenue</p>
+                  <p className="text-3xl font-bold text-gray-900 mt-1">₹{stats.monthlyRevenue?.toFixed(2) || '0.00'}</p>
+                  <div className="flex items-center mt-2">
+                    <TrendingUp className="h-4 w-4 text-emerald-500 mr-1" />
+                    <span className="text-sm text-emerald-600 font-medium">+₹1,250 today</span>
+                  </div>
+                </div>
+                <div className="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center">
+                  <DollarSign className="h-6 w-6 text-emerald-600" />
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="border-l-4 border-l-orange-500 shadow-sm hover:shadow-md transition-shadow">
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-medium text-gray-500 uppercase tracking-wider">Availability Status</p>
+                  <p className="text-3xl font-bold text-gray-900 mt-1">
+                    {stats.totalSlots > 0 && stats.occupiedSlots >= 0 ?
+                      Math.round(((stats.totalSlots - stats.occupiedSlots) / stats.totalSlots) * 100) : 0}%
+                  </p>
+                  <div className="flex items-center mt-2">
+                    <div className={`w-2 h-2 rounded-full mr-2 ${
+                      (stats.totalSlots - stats.occupiedSlots) / stats.totalSlots > 0.5 ? 'bg-green-500' :
+                      (stats.totalSlots - stats.occupiedSlots) / stats.totalSlots > 0.2 ? 'bg-yellow-500' : 'bg-red-500'
+                    }`}></div>
+                    <span className={`text-sm font-medium ${
+                      (stats.totalSlots - stats.occupiedSlots) / stats.totalSlots > 0.5 ? 'text-green-600' :
+                      (stats.totalSlots - stats.occupiedSlots) / stats.totalSlots > 0.2 ? 'text-yellow-600' : 'text-red-600'
+                    }`}>
+                      {(stats.totalSlots - stats.occupiedSlots) / stats.totalSlots > 0.5 ? 'Good' :
+                       (stats.totalSlots - stats.occupiedSlots) / stats.totalSlots > 0.2 ? 'Filling Fast' : 'Almost Full'}
+                    </span>
+                  </div>
+                </div>
+                <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${
+                  (stats.totalSlots - stats.occupiedSlots) / stats.totalSlots > 0.5 ? 'bg-green-100' :
+                  (stats.totalSlots - stats.occupiedSlots) / stats.totalSlots > 0.2 ? 'bg-yellow-100' : 'bg-red-100'
+                }`}>
+                  <Activity className={`h-6 w-6 ${
+                    (stats.totalSlots - stats.occupiedSlots) / stats.totalSlots > 0.5 ? 'text-green-600' :
+                    (stats.totalSlots - stats.occupiedSlots) / stats.totalSlots > 0.2 ? 'text-yellow-600' : 'text-red-600'
+                  }`} />
                 </div>
               </div>
             </CardContent>
           </Card>
         </div>
 
+        {/* Quick Actions */}
+        <div className="bg-white rounded-lg shadow p-6 mb-8">
+          <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <Link to="/owner/add-slot">
+              <Button className="w-full h-16 flex items-center justify-center gap-3 bg-blue-600 hover:bg-blue-700">
+                <Plus className="h-5 w-5" />
+                <div className="text-left">
+                  <div className="font-bold">Add New Slot</div>
+                  <div className="text-xs opacity-90">Create parking location</div>
+                </div>
+              </Button>
+            </Link>
+            <Link to="/owner/bookings">
+              <Button className="w-full h-16 flex items-center justify-center gap-3 bg-green-600 hover:bg-green-700">
+                <Calendar className="h-5 w-5" />
+                <div className="text-left">
+                  <div className="font-bold">View Bookings</div>
+                  <div className="text-xs opacity-90">Manage reservations</div>
+                </div>
+              </Button>
+            </Link>
+            <Link to="/owner/parking-slots">
+              <Button className="w-full h-16 flex items-center justify-center gap-3 bg-purple-600 hover:bg-purple-700">
+                <Settings className="h-5 w-5" />
+                <div className="text-left">
+                  <div className="font-bold">Manage Slots</div>
+                  <div className="text-xs opacity-90">Edit & organize</div>
+                </div>
+              </Button>
+            </Link>
+          </div>
+        </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <Card>

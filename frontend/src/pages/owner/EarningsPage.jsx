@@ -41,9 +41,9 @@ const EarningsPage = () => {
   const avgRevenue = earnings.length > 0 ? totalRevenue / earnings.length : 0;
 
   const formatCurrency = (amount) => {
-    return new Intl.NumberFormat('en-US', {
+    return new Intl.NumberFormat('en-IN', {
       style: 'currency',
-      currency: 'USD'
+      currency: 'INR'
     }).format(amount);
   };
 
@@ -138,7 +138,7 @@ const EarningsPage = () => {
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600">Avg Booking Value</p>
               <p className="text-2xl font-bold text-gray-900">
-                {totalBookings > 0 ? formatCurrency(totalRevenue / totalBookings) : '$0.00'}
+                {totalBookings > 0 ? formatCurrency(totalRevenue / totalBookings) : '₹0.00'}
               </p>
             </div>
           </div>

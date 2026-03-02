@@ -2,9 +2,10 @@ package com.example.backend.service;
 
 import com.example.backend.dto.ParkingSearchRequest;
 import com.example.backend.dto.ParkingSearchResponse;
+import com.example.backend.entity.Booking;
 import com.example.backend.entity.ParkingSlot;
 import com.example.backend.repository.ParkingSlotRepository;
-import com.example.backend.util.DistanceUtil;
+import com.example.backend.service.AvailabilityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,12 @@ public class ParkingService {
     @Autowired
     private com.example.backend.repository.UserRepository userRepository;
 
+    @Autowired
+    private AvailabilityService availabilityService;
+
+    @Autowired
+    private com.example.backend.repository.BookingRepository bookingRepository;
+
     private final RestTemplate restTemplate = new RestTemplate();
     private final String ML_API_URL = "http://localhost:5000/predict";
 
@@ -42,13 +49,34 @@ public class ParkingService {
         String trafficLevel = calculateTrafficLevel(hourOfDay, dayOfWeek);
         double trafficScore = mapTrafficToScore(trafficLevel);
 
+        // Parse requested time slot if provided
+        LocalDateTime requestedStartTime = null;
+        LocalDateTime requestedEndTime = null;
+        boolean hasTimeSlot = false;
+
+        if (request.getStartTime() != null && request.getEndTime() != null) {
+            try {
+                // Frontend sends full ISO datetime strings like "2024-01-01T10:00:00"
+                requestedStartTime = LocalDateTime.parse(request.getStartTime());
+                requestedEndTime = LocalDateTime.parse(request.getEndTime());
+                hasTimeSlot = true;
+            } catch (Exception e) {
+                // Invalid time format, ignore time slot filtering
+                hasTimeSlot = false;
+            }
+        }
+
+        // Create final copies for lambda expression
+        final LocalDateTime finalRequestedStartTime = requestedStartTime;
+        final LocalDateTime finalRequestedEndTime = requestedEndTime;
+
         for (ParkingSlot slot : allSlots) {
             double distToDest = 0.0;
             double distFromUser = 0.0;
             
             // Calculate distance to destination (60% weight)
             if (request.getDestinationLat() != null && request.getDestinationLng() != null) {
-                distToDest = DistanceUtil.calculateDistance(
+                distToDest = com.example.backend.util.DistanceUtil.calculateDistance(
                         request.getDestinationLat(), request.getDestinationLng(),
                         slot.getLatitude(), slot.getLongitude()
                 );
@@ -56,10 +84,34 @@ public class ParkingService {
             
             // Calculate distance from user (20% weight)
             if (request.getUserLat() != null && request.getUserLng() != null) {
-                distFromUser = DistanceUtil.calculateDistance(
+                distFromUser = com.example.backend.util.DistanceUtil.calculateDistance(
                         request.getUserLat(), request.getUserLng(),
                         slot.getLatitude(), slot.getLongitude()
                 );
+            }
+
+            // Check availability for requested time slot using proper time overlap logic
+            boolean isAvailableForTimeSlot = true;
+            String timeSlotReason = null;
+
+            if (hasTimeSlot) {
+                // Check for bookings that overlap with the requested time slot
+                // A booking overlaps if: existingStart < selectedEnd AND existingEnd > selectedStart
+                List<Booking> overlappingBookings = bookingRepository.findByParkingSlotInAndStatus(
+                    List.of(slot), "CONFIRMED"
+                ).stream()
+                .filter(booking -> {
+                    LocalDateTime bookingStart = booking.getStartTime();
+                    LocalDateTime bookingEnd = booking.getEndTime();
+                    // Proper overlap check: booking starts before request ends AND booking ends after request starts
+                    return bookingStart.isBefore(finalRequestedEndTime) && bookingEnd.isAfter(finalRequestedStartTime);
+                })
+                .collect(Collectors.toList());
+
+                if (!overlappingBookings.isEmpty()) {
+                    isAvailableForTimeSlot = false;
+                    timeSlotReason = "Slot unavailable for selected time range";
+                }
             }
 
             // Real Time AI prediction
@@ -95,6 +147,24 @@ public class ParkingService {
 
             ParkingSearchResponse pResponse = new ParkingSearchResponse(slot, distToDest, trafficLevel, predictedAvailability, score);
             pResponse.setScore(score);
+
+            // Add real-time availability information
+            Map<String, Object> availabilityInfo = availabilityService.getCompleteAvailabilityInfo(slot.getId());
+            pResponse.setAvailabilityPercent((Integer) availabilityInfo.get("availabilityPercent"));
+            pResponse.setAvailabilityStatus((String) availabilityInfo.get("availabilityStatus"));
+            pResponse.setAiPredictedAvailability((Integer) availabilityInfo.get("aiPredictedAvailability"));
+            
+            // Set recommended flag based on time slot availability
+            if (hasTimeSlot && !isAvailableForTimeSlot) {
+                // Unavailable for time slot - do not mark as recommended
+                pResponse.setRecommended(false);
+                pResponse.setAvailable(false);
+                pResponse.setReason(timeSlotReason);
+            } else {
+                pResponse.setRecommended((Boolean) availabilityInfo.get("recommended"));
+                pResponse.setAvailable(true);
+            }
+
             responseList.add(pResponse);
         }
 
@@ -123,7 +193,16 @@ public class ParkingService {
         // Mocking distances as 0 for direct detail view
         int predictedAvailability = getMlAvailability(slot, hourOfDay, dayOfWeek, month, trafficScore);
         
-        return new ParkingSearchResponse(slot, 0.0, trafficLevel, predictedAvailability, 0.0);
+        ParkingSearchResponse response = new ParkingSearchResponse(slot, 0.0, trafficLevel, predictedAvailability, 0.0);
+
+        // Add real-time availability information
+        Map<String, Object> availabilityInfo = availabilityService.getCompleteAvailabilityInfo(slot.getId());
+        response.setAvailabilityPercent((Integer) availabilityInfo.get("availabilityPercent"));
+        response.setAvailabilityStatus((String) availabilityInfo.get("availabilityStatus"));
+        response.setAiPredictedAvailability((Integer) availabilityInfo.get("aiPredictedAvailability"));
+        response.setRecommended((Boolean) availabilityInfo.get("recommended"));
+
+        return response;
     }
 
     private int getMlAvailability(ParkingSlot slot, int hour, int day, int month, double traffic) {
@@ -192,7 +271,7 @@ public class ParkingService {
         double trafficScore = mapTrafficToScore(trafficLevel);
 
         for (ParkingSlot slot : allSlots) {
-            double distance = DistanceUtil.calculateDistance(userLat, userLng, slot.getLatitude(), slot.getLongitude());
+            double distance = com.example.backend.util.DistanceUtil.calculateDistance(userLat, userLng, slot.getLatitude(), slot.getLongitude());
             
             int predictedAvailability = getMlAvailability(slot, hourOfDay, dayOfWeek, month, trafficScore);
             
@@ -202,6 +281,14 @@ public class ParkingService {
             
             ParkingSearchResponse pResponse = new ParkingSearchResponse(slot, distance, trafficLevel, predictedAvailability, distance);
             pResponse.setScore(distance); // Primary sort factor
+
+            // Add real-time availability information
+            Map<String, Object> availabilityInfo = availabilityService.getCompleteAvailabilityInfo(slot.getId());
+            pResponse.setAvailabilityPercent((Integer) availabilityInfo.get("availabilityPercent"));
+            pResponse.setAvailabilityStatus((String) availabilityInfo.get("availabilityStatus"));
+            pResponse.setAiPredictedAvailability((Integer) availabilityInfo.get("aiPredictedAvailability"));
+            pResponse.setRecommended((Boolean) availabilityInfo.get("recommended"));
+
             responseList.add(pResponse);
         }
 

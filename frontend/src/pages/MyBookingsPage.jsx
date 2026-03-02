@@ -16,7 +16,6 @@ import {
   RefreshCw,
   Eye
 } from 'lucide-react';
-import Sidebar from '../components/Sidebar';
 import Card, { CardHeader, CardTitle, CardContent, CardFooter } from '../components/Card';
 import Button from '../components/Button';
 import { parkingAPI } from '../services/api';
@@ -46,6 +45,8 @@ const MyBookingsPage = () => {
         bookingId: `BK${booking.id.toString().padStart(3, '0')}`,
         parkingName: booking.parkingSlotName,
         address: booking.parkingSlotAddress,
+        latitude: booking.latitude,
+        longitude: booking.longitude,
         date: booking.startTime.split('T')[0],
         startTime: booking.startTime.split('T')[1].substring(0, 5),
         endTime: booking.endTime.split('T')[1].substring(0, 5),
@@ -120,15 +121,14 @@ const MyBookingsPage = () => {
     }
   };
 
-  const handleCancelBooking = async (bookingId) => {
-    if (window.confirm('Are you sure you want to cancel this booking?')) {
-      try {
-        await parkingAPI.cancelBooking(bookingId);
-        fetchBookings();
-      } catch (error) {
-        console.error('Error cancelling booking:', error);
-      }
-    }
+  const canCancelBooking = (booking) => {
+    if (booking.status !== 'upcoming') return false;
+
+    const startTime = new Date(`${booking.date}T${booking.startTime}:00`);
+    const now = new Date();
+    const oneHourFromNow = new Date(now.getTime() + 60 * 60 * 1000);
+
+    return startTime > oneHourFromNow;
   };
 
   const handleDownloadReceipt = (booking) => {
@@ -321,12 +321,24 @@ const MyBookingsPage = () => {
                               <Eye className="h-4 w-4 mr-1" />
                               Details
                             </Button>
-                            {booking.status === 'upcoming' && (
+                            {booking.status === 'upcoming' && canCancelBooking(booking) && (
                               <Button
                                 variant="outline"
                                 size="small"
                                 onClick={() => handleCancelBooking(booking.id)}
                                 className="text-red-600 border-red-300 hover:bg-red-50"
+                              >
+                                <X className="h-4 w-4 mr-1" />
+                                Cancel
+                              </Button>
+                            )}
+                            {booking.status === 'upcoming' && !canCancelBooking(booking) && (
+                              <Button
+                                variant="outline"
+                                size="small"
+                                disabled
+                                className="text-gray-400 border-gray-300 cursor-not-allowed"
+                                title="Cancellation not allowed within 1 hour of booking start time"
                               >
                                 <X className="h-4 w-4 mr-1" />
                                 Cancel
@@ -350,8 +362,8 @@ const MyBookingsPage = () => {
                                   state: {
                                     startLat: userLocation.lat,
                                     startLng: userLocation.lng,
-                                    destLat: booking.latitude || 10.829000,
-                                    destLng: booking.longitude || 77.061000,
+                                    destLat: booking.latitude,
+                                    destLng: booking.longitude,
                                     parkingName: booking.parkingName
                                   }
                                 })}
@@ -402,9 +414,27 @@ const MyBookingsPage = () => {
               </div>
 
               <div className="space-y-4">
-                <div className="border-b pb-4">
-                  <h3 className="font-semibold text-gray-900 mb-2">{selectedBooking.parkingName}</h3>
-                  <p className="text-gray-600">{selectedBooking.address}</p>
+                <div className="border-b pb-4 flex items-center justify-between">
+                  <div>
+                    <h3 className="font-semibold text-gray-900 mb-2">{selectedBooking.parkingName}</h3>
+                    <p className="text-gray-600 text-sm">{selectedBooking.address}</p>
+                  </div>
+                  <Button
+                    size="small"
+                    className="bg-slate-900 hover:bg-black"
+                    onClick={() => navigate(`/user/navigate/${selectedBooking.parkingSlotId}`, {
+                      state: {
+                        startLat: userLocation.lat,
+                        startLng: userLocation.lng,
+                        destLat: selectedBooking.latitude,
+                        destLng: selectedBooking.longitude,
+                        parkingName: selectedBooking.parkingName
+                      }
+                    })}
+                  >
+                    <NavIcon className="h-4 w-4 mr-1" />
+                    Navigate
+                  </Button>
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
