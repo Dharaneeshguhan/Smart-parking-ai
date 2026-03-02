@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMap, useMapEvents, Circle, Polyline } from 'react-leaflet';
+import { useNavigate } from 'react-router-dom';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { Navigation, ShieldAlert, Zap, Search, MapPin } from 'lucide-react';
@@ -10,11 +11,9 @@ delete L.Icon.Default.prototype._getIconUrl;
 const createIcon = (color) => {
     return new L.Icon({
         iconUrl: `https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-${color}.png`,
-        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
         iconSize: [25, 41],
         iconAnchor: [12, 41],
         popupAnchor: [1, -34],
-        shadowSize: [41, 41]
     });
 };
 
@@ -85,6 +84,7 @@ const ParkingMap = ({
     selectedSpotId = null,
     onSpotSelect = () => { }
 }) => {
+    const navigate = useNavigate();
     const COIMBATORE_CENTER = { lat: 11.0168, lng: 76.9558 };
     const center = (userLocation && userLocation.lat) ? userLocation : COIMBATORE_CENTER;
     const userAccuracy = userLocation?.accuracy || 0;
@@ -209,10 +209,25 @@ const ParkingMap = ({
                                     <p className="text-xs font-black text-blue-600">₹{spot.pricePerHour}/hr</p>
                                 </div>
                                 <button
-                                    onClick={() => window.location.href = `/user/booking/${spot.id}`}
+                                    onClick={() => navigate(`/user/booking/${spot.id}`)}
                                     className="w-full mt-3 py-1.5 bg-primary-600 text-white text-xs font-bold rounded-lg hover:bg-primary-700 transition-colors"
                                 >
                                     Quick Book
+                                </button>
+                                <button
+                                    onClick={() => navigate(`/user/navigate/${spot.id}`, {
+                                        state: {
+                                            startLat: userLocation.lat,
+                                            startLng: userLocation.lng,
+                                            destLat: spot.latitude,
+                                            destLng: spot.longitude,
+                                            parkingName: spot.name
+                                        }
+                                    })}
+                                    className="w-full mt-2 py-2 bg-slate-900 text-white text-[10px] font-black uppercase tracking-wider rounded-xl hover:bg-black transition-all flex items-center justify-center gap-2 shadow-lg"
+                                >
+                                    <Navigation className="h-3 w-3" />
+                                    Start Navigation
                                 </button>
                             </div>
                         </Popup>

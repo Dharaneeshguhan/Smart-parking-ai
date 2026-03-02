@@ -16,9 +16,10 @@ import MyParkingSlotsPage from './pages/owner/MyParkingSlotsPage';
 import EarningsPage from './pages/owner/EarningsPage';
 import AddNewSlotPage from './pages/owner/AddNewSlotPage';
 import BookingsPage from './pages/owner/BookingsPage';
-import OwnerSettingsPage from './pages/owner/OwnerSettingsPage';
-import OwnerLayout from './layouts/OwnerLayout';
 import UserLayout from './layouts/UserLayout';
+import OwnerLayout from './layouts/OwnerLayout';
+import RouteNavigationPage from './pages/user/RouteNavigationPage';
+import OwnerSettingsPage from './pages/owner/OwnerSettingsPage';
 import { useEffect } from 'react';
 
 function App() {
@@ -58,6 +59,7 @@ function App() {
           <Route path="bookings" element={<MyBookingsPage />} />
           <Route path="favorites" element={<FavoritesPage />} />
           <Route path="payments" element={<PaymentHistoryPage />} />
+          <Route path="navigate/:parkingId" element={<RouteNavigationPage />} />
         </Route>
 
         {/* Owner Routes with OwnerLayout */}
@@ -82,6 +84,8 @@ function App() {
         <Route path="/payments" element={<Navigate to="/user/payments" replace />} />
         <Route path="/owner-dashboard" element={<Navigate to="/owner/dashboard" replace />} />
         <Route path="/my-bookings" element={<Navigate to="/user/bookings" replace />} />
+        <Route path="/navigation" element={<Navigate to="/user/search" replace />} />
+        <Route path="/navigate/:parkingId" element={<Navigate to="/user/navigate/:parkingId" replace />} />
 
         {/* Catch all */}
         <Route path="*" element={<Navigate to="/" replace />} />

@@ -13,10 +13,11 @@ import {
   CheckCircle,
   AlertCircle
 } from 'lucide-react';
-import Navbar from '../components/Navbar';
 import Card, { CardHeader, CardTitle, CardContent, CardFooter } from '../components/Card';
 import Button from '../components/Button';
 import { parkingAPI } from '../services/api';
+import useGeolocation from '../hooks/useGeolocation';
+import { Navigation as NavIcon } from 'lucide-react';
 
 const BookingPage = () => {
   const { id } = useParams();
@@ -32,6 +33,9 @@ const BookingPage = () => {
   });
   const [errors, setErrors] = useState({});
   const [bookingLoading, setBookingLoading] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [lastBooking, setLastBooking] = useState(null);
+  const { location: userLocation } = useGeolocation();
 
   useEffect(() => {
     fetchParkingDetails();
@@ -137,13 +141,9 @@ const BookingPage = () => {
       };
 
       const response = await parkingAPI.bookParking(bookingPayload);
-
-      navigate('/user/bookings', { // Redirecting to my bookings directly for now
-        state: {
-          booking: response.data,
-          parking: parking
-        }
-      });
+      setLastBooking(response.data);
+      setShowSuccess(true);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     } catch (error) {
       console.error('Error creating booking:', error);
       setErrors({ submit: error.response?.data?.message || 'Booking failed. Please try again.' });
@@ -168,9 +168,61 @@ const BookingPage = () => {
     );
   }
 
+  if (showSuccess) {
+    return (
+      <div className="min-h-screen bg-slate-50">
+        <div className="max-w-2xl mx-auto px-4 py-16 text-center">
+          <div className="bg-white p-8 rounded-[2.5rem] shadow-2xl border border-slate-100">
+            <div className="w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-6">
+              <CheckCircle className="h-10 w-10 text-emerald-600" />
+            </div>
+            <h2 className="text-3xl font-black text-slate-800 mb-2">Booking Confirmed!</h2>
+            <p className="text-slate-500 mb-8 font-medium">Your parking spot at <span className="text-slate-800 font-bold">{parking.name}</span> is secured.</p>
+
+            <div className="flex flex-col gap-4">
+              <Button
+                size="large"
+                className="w-full h-16 rounded-2xl flex items-center justify-center gap-3 bg-slate-900 hover:bg-black shadow-xl"
+                onClick={() => navigate(`/user/navigate/${parking.id}`, {
+                  state: {
+                    startLat: userLocation.lat,
+                    startLng: userLocation.lng,
+                    destLat: parking.latitude || 10.829000,
+                    destLng: parking.longitude || 77.061000,
+                    parkingName: parking.name
+                  }
+                })}
+              >
+                <NavIcon className="h-6 w-6" />
+                <span className="text-lg font-black uppercase tracking-widest">Start Navigation</span>
+              </Button>
+
+              <div className="grid grid-cols-2 gap-4">
+                <Button
+                  variant="outline"
+                  className="rounded-2xl flex items-center justify-center gap-2"
+                  onClick={() => navigate('/user/bookings')}
+                >
+                  <Calendar className="h-4 w-4" />
+                  My Bookings
+                </Button>
+                <Button
+                  variant="outline"
+                  className="rounded-2xl"
+                  onClick={() => navigate('/user/dashboard')}
+                >
+                  Dashboard
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-gray-50">
-      <Navbar />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="mb-6">

@@ -78,11 +78,6 @@ const Sidebar = ({ role = 'driver' }) => {
       icon: Calendar,
     },
     {
-      name: 'Earnings',
-      href: '/owner/earnings',
-      icon: DollarSign,
-    },
-    {
       name: 'Profile',
       href: '/owner/profile',
       icon: User,

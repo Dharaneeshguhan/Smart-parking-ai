@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   Calendar,
   Clock,
@@ -20,14 +20,18 @@ import Sidebar from '../components/Sidebar';
 import Card, { CardHeader, CardTitle, CardContent, CardFooter } from '../components/Card';
 import Button from '../components/Button';
 import { parkingAPI } from '../services/api';
+import useGeolocation from '../hooks/useGeolocation';
+import { Navigation as NavIcon } from 'lucide-react';
 
 const MyBookingsPage = () => {
+  const navigate = useNavigate();
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
   const [showFilters, setShowFilters] = useState(false);
   const [selectedBooking, setSelectedBooking] = useState(null);
+  const { location: userLocation } = useGeolocation();
 
   useEffect(() => {
     fetchBookings();
@@ -336,6 +340,24 @@ const MyBookingsPage = () => {
                               >
                                 <Download className="h-4 w-4 mr-1" />
                                 Receipt
+                              </Button>
+                            )}
+                            {(booking.status === 'upcoming' || booking.status === 'active') && (
+                              <Button
+                                size="small"
+                                className="bg-slate-900 hover:bg-black text-white"
+                                onClick={() => navigate(`/user/navigate/${booking.parkingSlotId}`, {
+                                  state: {
+                                    startLat: userLocation.lat,
+                                    startLng: userLocation.lng,
+                                    destLat: booking.latitude || 10.829000,
+                                    destLng: booking.longitude || 77.061000,
+                                    parkingName: booking.parkingName
+                                  }
+                                })}
+                              >
+                                <NavIcon className="h-4 w-4 mr-1" />
+                                Navigate
                               </Button>
                             )}
                           </div>
