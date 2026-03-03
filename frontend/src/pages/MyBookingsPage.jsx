@@ -40,22 +40,56 @@ const MyBookingsPage = () => {
     try {
       setLoading(true);
       const response = await parkingAPI.getMyBookings();
-      const mappedData = response.data.map(booking => ({
-        ...booking,
-        bookingId: `BK${booking.id.toString().padStart(3, '0')}`,
-        parkingName: booking.parkingSlotName,
-        address: booking.parkingSlotAddress,
-        latitude: booking.latitude,
-        longitude: booking.longitude,
-        date: booking.startTime.split('T')[0],
-        startTime: booking.startTime.split('T')[1].substring(0, 5),
-        endTime: booking.endTime.split('T')[1].substring(0, 5),
-        duration: 0, // Should be calculated or returned by backend DTO
-        status: booking.status.toLowerCase(),
-        paymentStatus: 'paid', // Hardcoded for now
-        amount: booking.totalAmount,
-        spotNumber: 'Standard'
-      }));
+      console.log('Raw bookings data from backend:', response.data);
+      
+      const mappedData = response.data.map(booking => {
+        const rawStatus = booking.status ? booking.status.toLowerCase() : 'unknown';
+        console.log(`Booking ID: ${booking.id}, Raw Status: "${booking.status}", Normalized: "${rawStatus}"`);
+        
+        // Determine the proper status based on booking time and backend status
+        let finalStatus = 'unknown';
+        const now = new Date();
+        const startTime = new Date(booking.startTime);
+        const endTime = new Date(booking.endTime);
+        
+        if (rawStatus === 'cancelled') {
+          finalStatus = 'cancelled';
+        } else if (rawStatus === 'confirmed') {
+          if (startTime > now) {
+            finalStatus = 'upcoming'; // Future booking
+          } else if (endTime > now) {
+            finalStatus = 'active';   // Currently active
+          } else {
+            finalStatus = 'completed'; // Past booking
+          }
+        } else if (rawStatus === 'completed') {
+          finalStatus = 'completed';
+        } else {
+          // Fallback for any other status
+          finalStatus = rawStatus;
+        }
+        
+        console.log(`Booking ID: ${booking.id}, Final Status: "${finalStatus}" (Start: ${startTime}, Now: ${now}, End: ${endTime})`);
+        
+        return {
+          ...booking,
+          bookingId: `BK${booking.id.toString().padStart(3, '0')}`,
+          parkingName: booking.parkingSlotName,
+          address: booking.parkingSlotAddress,
+          latitude: booking.latitude,
+          longitude: booking.longitude,
+          date: booking.startTime.split('T')[0],
+          startTime: booking.startTime.split('T')[1].substring(0, 5),
+          endTime: booking.endTime.split('T')[1].substring(0, 5),
+          duration: Math.round((endTime - startTime) / (1000 * 60 * 60)), // Calculate hours
+          status: finalStatus,
+          paymentStatus: 'paid', // Hardcoded for now
+          amount: booking.totalAmount,
+          spotNumber: 'Standard'
+        };
+      });
+      
+      console.log('Mapped bookings data:', mappedData);
       setBookings(mappedData);
     } catch (error) {
       console.error('Error fetching bookings:', error);
@@ -72,6 +106,8 @@ const MyBookingsPage = () => {
       booking.bookingId.toLowerCase().includes(searchQuery.toLowerCase());
 
     const matchesStatus = statusFilter === 'all' || booking.status === statusFilter;
+    
+    console.log(`Filtering booking ${booking.bookingId}: status="${booking.status}", filter="${statusFilter}", matchesStatus=${matchesStatus}`);
 
     return matchesSearch && matchesStatus;
   });
@@ -131,9 +167,18 @@ const MyBookingsPage = () => {
     return startTime > oneHourFromNow;
   };
 
-  const handleDownloadReceipt = (booking) => {
-    // Generate and download receipt
-    console.log('Downloading receipt for booking:', booking.bookingId);
+  const handleCancelBooking = async (bookingId) => {
+    if (window.confirm('Are you sure you want to cancel this booking? You will receive a full refund.')) {
+      try {
+        await parkingAPI.cancelBooking(bookingId);
+        // Refresh the bookings list
+        fetchBookings();
+        alert('Booking cancelled successfully. Your refund will be processed within 3-5 business days.');
+      } catch (error) {
+        console.error('Error cancelling booking:', error);
+        alert('Failed to cancel booking. Please try again or contact support.');
+      }
+    }
   };
 
   const handleRefresh = () => {

@@ -62,12 +62,20 @@ const SignupPage = () => {
     setLoading(true);
     setSignupError('');
 
+    console.log('Signup form submitted with data:', formData);
+
     try {
       const { confirmPassword, ...signupData } = formData;
-      await authAPI.register(signupData);
+      console.log('Sending signup data to backend:', signupData);
+
+      const response = await authAPI.register(signupData);
+      console.log('Signup response:', response);
+
       setSuccess(true);
       setTimeout(() => navigate('/login'), 2000);
     } catch (error) {
+      console.error('Signup error:', error);
+      console.error('Error response:', error.response);
       setSignupError(error.response?.data?.message || 'Registration failed');
     } finally {
       setLoading(false);
