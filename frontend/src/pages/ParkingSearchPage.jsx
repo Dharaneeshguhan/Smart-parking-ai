@@ -40,9 +40,10 @@ const ParkingSearchPage = () => {
   const [selectedSpotId, setSelectedSpotId] = useState(null);
   const [debugVisible, setDebugVisible] = useState(false);
 
-  // Time slot selection
-  const [startTime, setStartTime] = useState('');
-  const [endTime, setEndTime] = useState('');
+  // Time-first search state
+  const [searchDate, setSearchDate] = useState('');
+  const [searchStartTime, setSearchStartTime] = useState('');
+  const [searchDuration, setSearchDuration] = useState(1);
   const [timeSlotSelected, setTimeSlotSelected] = useState(false);
 
   const {
@@ -64,8 +65,29 @@ const ParkingSearchPage = () => {
   const fetchParkingSpots = useCallback(async (lat, lng, destLat, destLng) => {
     setLoading(true);
     setSearchError(null);
-
     try {
+      // If we have time-based search, use the new availability endpoint
+      if (searchDate && searchStartTime && searchDuration) {
+        const response = await parkingAPI.searchParkingByTime({
+          userLat: lat,
+          userLng: lng,
+          destinationLat: destLat,
+          destinationLng: destLng,
+          date: searchDate,
+          startTime: searchStartTime,
+          duration: searchDuration
+        });
+        const results = response.data || [];
+        setParkingSpots(results);
+        
+        if (results.length > 0) {
+          setBestMatchId(results[0].id);
+        } else {
+          setBestMatchId(null);
+        }
+        return;
+      }
+
       // If we have a destination, use the smart search endpoint
       // Otherwise, use the nearby endpoint
       let response;
@@ -75,8 +97,8 @@ const ParkingSearchPage = () => {
           userLng: lng,
           destinationLat: destLat,
           destinationLng: destLng,
-          startTime: startTime ? `${new Date().toISOString().split('T')[0]}T${startTime}:00` : null,
-          endTime: endTime ? `${new Date().toISOString().split('T')[0]}T${endTime}:00` : null
+          startTime: null,
+          endTime: null
         });
       } else {
         response = await parkingAPI.getNearbyParking(lat, lng);
@@ -86,7 +108,6 @@ const ParkingSearchPage = () => {
       setParkingSpots(results);
 
       // Add debug logging
-      console.log("Selected time:", startTime, endTime);
       console.log("Search results:", results.map(spot => ({
         id: spot.id,
         available: spot.available,
@@ -105,7 +126,7 @@ const ParkingSearchPage = () => {
     } finally {
       setLoading(false);
     }
-  }, [startTime, endTime]);
+  }, [searchDate, searchStartTime, searchDuration]);
 
   // Sync favorites on load
   useEffect(() => {
@@ -155,14 +176,18 @@ const ParkingSearchPage = () => {
   };
 
   const handleTimeSlotSubmit = () => {
-    if (startTime && endTime) {
+    if (searchDate && searchStartTime && searchDuration) {
       setTimeSlotSelected(true);
+      if (userLocation.lat) {
+        fetchParkingSpots(userLocation.lat, userLocation.lng, null, null);
+      }
     }
   };
 
   const resetTimeSelection = () => {
-    setStartTime('');
-    setEndTime('');
+    setSearchDate('');
+    setSearchStartTime('');
+    setSearchDuration(1);
     setTimeSlotSelected(false);
     setDestinationLocation(null);
     setParkingSpots([]);
@@ -222,14 +247,26 @@ const ParkingSearchPage = () => {
                   <p className="text-slate-600 mt-2">Choose your parking duration to get optimized recommendations</p>
                 </CardHeader>
                 <CardContent className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div>
+                      <label className="block text-sm font-bold text-slate-700 mb-3 uppercase tracking-widest">
+                        Date
+                      </label>
+                      <input
+                        type="date"
+                        value={searchDate}
+                        onChange={(e) => setSearchDate(e.target.value)}
+                        min={new Date().toISOString().split('T')[0]}
+                        className="input-field text-lg h-14"
+                      />
+                    </div>
                     <div>
                       <label className="block text-sm font-bold text-slate-700 mb-3 uppercase tracking-widest">
                         Start Time
                       </label>
                       <select
-                        value={startTime}
-                        onChange={(e) => setStartTime(e.target.value)}
+                        value={searchStartTime}
+                        onChange={(e) => setSearchStartTime(e.target.value)}
                         className="input-field text-lg h-14"
                       >
                         <option value="">Select start time</option>
@@ -245,32 +282,31 @@ const ParkingSearchPage = () => {
                     </div>
                     <div>
                       <label className="block text-sm font-bold text-slate-700 mb-3 uppercase tracking-widest">
-                        End Time
+                        Duration (hours)
                       </label>
                       <select
-                        value={endTime}
-                        onChange={(e) => setEndTime(e.target.value)}
+                        value={searchDuration}
+                        onChange={(e) => setSearchDuration(parseInt(e.target.value))}
                         className="input-field text-lg h-14"
                       >
-                        <option value="">Select end time</option>
-                        {Array.from({ length: 24 }, (_, i) => {
-                          const hour = (i + 1).toString().padStart(2, '0');
-                          return (
-                            <option key={`end-${hour}`} value={`${hour}:00`}>
-                              {hour}:00
-                            </option>
-                          );
-                        })}
+                        <option value={1}>1 hour</option>
+                        <option value={2}>2 hours</option>
+                        <option value={3}>3 hours</option>
+                        <option value={4}>4 hours</option>
+                        <option value={5}>5 hours</option>
+                        <option value={6}>6 hours</option>
+                        <option value={8}>8 hours</option>
+                        <option value={12}>12 hours</option>
                       </select>
                     </div>
                   </div>
                   <div className="text-center">
                     <Button
                       onClick={handleTimeSlotSubmit}
-                      disabled={!startTime || !endTime}
+                      disabled={!searchDate || !searchStartTime || !searchDuration}
                       className="px-12 py-4 text-lg font-black"
                     >
-                      Confirm Time Slot
+                      Search Parking
                     </Button>
                   </div>
                 </CardContent>
@@ -285,7 +321,7 @@ const ParkingSearchPage = () => {
                 <div className="bg-primary-50 text-primary-700 px-6 py-3 rounded-full border border-primary-200 flex items-center gap-4">
                   <Clock className="h-5 w-5" />
                   <span className="font-bold">
-                    Parking Time: {startTime} - {endTime}
+                    Parking Time: {searchDate} {searchStartTime} ({searchDuration} hours)
                   </span>
                   <Button
                     variant="outline"
@@ -449,16 +485,37 @@ const ParkingSearchPage = () => {
                           </div>
                         </div>
 
-                        {/* Availability Indicator */}
+                        {/* Availability Status Badge */}
                         <div className="mb-6">
-                          <AvailabilityIndicator
-                            availabilityPercent={spot.availabilityPercent || 0}
-                            availabilityStatus={spot.availabilityStatus || 'UNKNOWN'}
-                            aiPredictedAvailability={spot.aiPredictedAvailability}
-                            recommended={spot.recommended}
-                            totalSlots={spot.totalSpots || 0}
-                            showAiPrediction={true}
-                          />
+                          {spot.available === true ? (
+                            <div className="flex items-center gap-2 bg-green-50 text-green-700 px-3 py-2 rounded-full border border-green-200">
+                              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                              <span className="text-sm font-semibold">Available</span>
+                            </div>
+                          ) : spot.available === false ? (
+                            <div className="space-y-2">
+                              <div className="flex items-center gap-2 bg-red-50 text-red-700 px-3 py-2 rounded-full border border-red-200">
+                                <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                                <span className="text-sm font-semibold">Not Available Now</span>
+                              </div>
+                              {spot.nextAvailableFrom && (
+                                <div className="flex items-center gap-2 bg-yellow-50 text-yellow-700 px-3 py-2 rounded-full border border-yellow-200">
+                                  <Clock className="h-4 w-4" />
+                                  <span className="text-sm font-semibold">Available From {spot.nextAvailableFrom}</span>
+                                </div>
+                              )}
+                            </div>
+                          ) : spot.recommended ? (
+                            <div className="flex items-center gap-2 bg-yellow-50 text-yellow-700 px-3 py-2 rounded-full border border-yellow-200">
+                              <Zap className="h-4 w-4" />
+                              <span className="text-sm font-semibold">Recommended (Available Soon)</span>
+                            </div>
+                          ) : (
+                            <div className="flex items-center gap-2 bg-gray-50 text-gray-700 px-3 py-2 rounded-full border border-gray-200">
+                              <div className="w-2 h-2 bg-gray-500 rounded-full"></div>
+                              <span className="text-sm font-semibold">Unknown Status</span>
+                            </div>
+                          )}
                         </div>
 
                         <div className="flex items-center justify-between gap-4">

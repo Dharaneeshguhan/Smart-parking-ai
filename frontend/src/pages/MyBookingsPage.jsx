@@ -181,6 +181,14 @@ const MyBookingsPage = () => {
     }
   };
 
+  // Helper function to format datetime in IST
+  const formatDateTime = (dateString) => {
+    return new Date(dateString).toLocaleString('en-IN', {
+      dateStyle: 'medium',
+      timeStyle: 'short'
+    });
+  };
+
   const handleRefresh = () => {
     setLoading(true);
     fetchBookings();
@@ -327,7 +335,7 @@ const MyBookingsPage = () => {
                               </div>
                               <div className="flex items-center">
                                 <Calendar className="h-4 w-4 mr-2" />
-                                {new Date(booking.date).toLocaleDateString()}
+                                {booking.date || 'No date'}
                               </div>
                               <div className="flex items-center">
                                 <Clock className="h-4 w-4 mr-2" />
@@ -335,7 +343,7 @@ const MyBookingsPage = () => {
                               </div>
                               <div className="flex items-center">
                                 <Car className="h-4 w-4 mr-2" />
-                                {booking.vehicleNumber}
+                                {booking.vehicleNumber || 'Not specified'}
                               </div>
                             </div>
 
@@ -482,48 +490,50 @@ const MyBookingsPage = () => {
                   </Button>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <span className="text-sm text-gray-600">Booking ID</span>
-                    <p className="font-medium">{selectedBooking.bookingId}</p>
-                  </div>
-                  <div>
-                    <span className="text-sm text-gray-600">Spot Number</span>
-                    <p className="font-medium">{selectedBooking.spotNumber}</p>
-                  </div>
-                  <div>
-                    <span className="text-sm text-gray-600">Date</span>
-                    <p className="font-medium">{new Date(selectedBooking.date).toLocaleDateString()}</p>
-                  </div>
-                  <div>
-                    <span className="text-sm text-gray-600">Time</span>
-                    <p className="font-medium">{selectedBooking.startTime} - {selectedBooking.endTime}</p>
-                  </div>
-                  <div>
-                    <span className="text-sm text-gray-600">Duration</span>
-                    <p className="font-medium">{selectedBooking.duration} hours</p>
-                  </div>
-                  <div>
-                    <span className="text-sm text-gray-600">Vehicle</span>
-                    <p className="font-medium">{selectedBooking.vehicleNumber}</p>
-                  </div>
-                </div>
-
                 <div className="border-t pt-4">
-                  <div className="flex justify-between items-center">
-                    <span className="text-lg font-semibold text-gray-900">Total Amount</span>
-                    <span className="text-2xl font-bold text-primary-600">${selectedBooking.amount}</span>
-                  </div>
-                </div>
-
-                {selectedBooking.qrCode && (
-                  <div className="border-t pt-4 text-center">
-                    <p className="text-sm text-gray-600 mb-2">QR Code for Entry</p>
-                    <div className="w-32 h-32 bg-gray-200 rounded-lg mx-auto flex items-center justify-center">
-                      <span className="text-gray-600">{selectedBooking.qrCode}</span>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <span className="text-sm text-gray-600">Booking ID</span>
+                      <p className="font-medium">{selectedBooking.bookingId}</p>
+                    </div>
+                    <div>
+                      <span className="text-sm text-gray-600">Spot Number</span>
+                      <p className="font-medium">{selectedBooking.spotNumber}</p>
+                    </div>
+                    <div>
+                      <span className="text-sm text-gray-600">Date</span>
+                      <p className="font-medium">{selectedBooking.date || 'No date'}</p>
+                    </div>
+                    <div>
+                      <span className="text-sm text-gray-600">Time</span>
+                      <p className="font-medium">{selectedBooking.startTime} - {selectedBooking.endTime}</p>
+                    </div>
+                    <div>
+                      <span className="text-sm text-gray-600">Duration</span>
+                      <p className="font-medium">{selectedBooking.duration} hours</p>
+                    </div>
+                    <div>
+                      <span className="text-sm text-gray-600">Vehicle</span>
+                      <p className="font-medium">{selectedBooking.vehicleNumber || 'Not specified'}</p>
                     </div>
                   </div>
-                )}
+
+                  <div className="border-t pt-4">
+                    <div className="flex justify-between items-center">
+                      <span className="text-lg font-semibold text-gray-900">Total Amount</span>
+                      <span className="text-2xl font-bold text-primary-600">${selectedBooking.amount}</span>
+                    </div>
+                  </div>
+
+                  {selectedBooking.qrCode && (
+                    <div className="border-t pt-4 text-center">
+                      <p className="text-sm text-gray-600 mb-2">QR Code for Entry</p>
+                      <div className="w-32 h-32 bg-gray-200 rounded-lg mx-auto flex items-center justify-center">
+                        <span className="text-gray-600">{selectedBooking.qrCode}</span>
+                      </div>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           </div>

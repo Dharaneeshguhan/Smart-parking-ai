@@ -38,6 +38,14 @@ const BookingPage = () => {
   const { location: userLocation } = useGeolocation();
   const [unavailableTimeRanges, setUnavailableTimeRanges] = useState([]);
 
+  // Helper function to format datetime in IST
+  const formatDateTime = (dateString) => {
+    return new Date(dateString).toLocaleString('en-IN', {
+      dateStyle: 'medium',
+      timeStyle: 'short'
+    });
+  };
+
   useEffect(() => {
     fetchParkingDetails();
 
@@ -69,6 +77,21 @@ const BookingPage = () => {
     } catch (error) {
       console.error('Error fetching unavailable time ranges:', error);
     }
+  };
+
+  const isTimeSlotUnavailable = (time) => {
+    if (!unavailableTimeRanges || unavailableTimeRanges.length === 0) return false;
+    
+    const selectedDateTime = new Date(`${bookingData.date}T${time}:00`);
+    
+    return unavailableTimeRanges.some(range => {
+      const bookedStart = new Date(range.startTime);
+      const bookedEnd = new Date(range.endTime);
+      
+      // Check overlap: (bookedStart < selectedEnd) AND (bookedEnd > selectedStart)
+      const selectedEnd = new Date(selectedDateTime.getTime() + 60 * 60 * 1000); // +1 hour
+      return bookedStart < selectedEnd && bookedEnd > selectedDateTime;
+    });
   };
 
   const mockParkingDetails = {
@@ -147,6 +170,17 @@ const BookingPage = () => {
       const startTime = new Date(`${bookingData.date}T${bookingData.startTime}:00`);
       const endTime = new Date(startTime.getTime() + bookingData.duration * 60 * 60 * 1000);
 
+      console.log('=== BOOKING TIME DEBUG ===');
+      console.log('Selected date:', bookingData.date);
+      console.log('Selected time:', bookingData.startTime);
+      console.log('Duration:', bookingData.duration, 'hours');
+      console.log('Created startTime object:', startTime);
+      console.log('Created endTime object:', endTime);
+      console.log('startTime ISO:', startTime.toISOString());
+      console.log('endTime ISO:', endTime.toISOString());
+      console.log('Local startTime:', startTime.toLocaleString());
+      console.log('Local endTime:', endTime.toLocaleString());
+
       const bookingPayload = {
         parkingSlotId: parseInt(parking.id),
         startTime: startTime.toISOString(),
@@ -154,7 +188,11 @@ const BookingPage = () => {
         totalAmount: calculateTotalPrice() + 2 // Including service fee
       };
 
+      console.log('Booking payload:', bookingPayload);
+
       const response = await parkingAPI.bookParking(bookingPayload);
+
+      console.log('Backend response:', response.data);
 
       // Ensure the booking response includes the destination coordinates for the success screen
       const bookingWithCoords = {
@@ -162,9 +200,12 @@ const BookingPage = () => {
         latitude: response.data.latitude || parking.latitude,
         longitude: response.data.longitude || parking.longitude,
         parkingName: response.data.parkingSlotName || parking.name,
-        startTime: response.data.startTime,
-        endTime: response.data.endTime
+        // Use the original selected times instead of backend response times
+        startTime: startTime.toISOString(),
+        endTime: endTime.toISOString()
       };
+
+      console.log('Final booking with coords:', bookingWithCoords);
 
       setLastBooking(bookingWithCoords);
       setShowSuccess(true);
@@ -198,7 +239,8 @@ const BookingPage = () => {
 
       timeSlots.push({
         time,
-        available: !isUnavailable
+        available: !isUnavailable,
+        isBooked: isUnavailable
       });
     }
   }
@@ -221,6 +263,29 @@ const BookingPage = () => {
             </div>
             <h2 className="text-3xl font-black text-slate-800 mb-2">Booking Confirmed!</h2>
             <p className="text-slate-500 mb-8 font-medium">Your parking spot at <span className="text-slate-800 font-bold">{parking.name}</span> is secured.</p>
+            
+            {lastBooking && (
+              <div className="mb-6 p-4 bg-slate-50 rounded-xl border border-slate-200">
+                <div className="text-sm text-slate-600 mb-2">Booking Details</div>
+                <div className="flex items-center justify-center gap-4 text-sm">
+                  <div className="flex items-center gap-1">
+                    <Calendar className="h-4 w-4 text-slate-500" />
+                    <span className="font-medium">
+                      {lastBooking.startTime ? formatDateTime(lastBooking.startTime).split(',')[0] : 'No date'}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <Clock className="h-4 w-4 text-slate-500" />
+                    <span className="font-medium">
+                      {lastBooking.startTime && lastBooking.endTime 
+                        ? `${formatDateTime(lastBooking.startTime).split(',')[1]} - ${formatDateTime(lastBooking.endTime).split(',')[1]}`
+                        : 'No time'
+                      }
+                    </span>
+                  </div>
+                </div>
+              </div>
+            )}
 
             <div className="flex flex-col gap-4">
               <Button
@@ -323,7 +388,7 @@ const BookingPage = () => {
                             disabled={!slot.available}
                             className={!slot.available ? 'text-gray-400' : ''}
                           >
-                            {slot.time} {!slot.available ? '(Unavailable)' : ''}
+                            {slot.time} {slot.isBooked ? '(Booked)' : ''}
                           </option>
                         ))}
                       </select>

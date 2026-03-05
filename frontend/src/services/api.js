@@ -47,6 +47,7 @@ export const authAPI = {
 
 export const parkingAPI = {
   searchParking: (searchData) => api.post('/parking/search', searchData),
+  searchParkingByTime: (searchData) => api.get('/parking/search', { params: searchData }),
   getParkingDetails: (id) => api.get(`/parking/${id}`),
   bookParking: (bookingData) => api.post('/bookings', bookingData),
   cancelBooking: (bookingId) => api.put(`/bookings/${bookingId}/cancel`),
@@ -56,7 +57,7 @@ export const parkingAPI = {
   removeFromFavorites: (parkingId) => api.delete(`/parking/${parkingId}/favorite`),
   getPaymentHistory: () => api.get('/bookings/payments'),
   getNearbyParking: (lat, lng) => api.get('/parking/nearby', { params: { lat, lng } }),
-  getUnavailableTimeRanges: (slotId) => api.get(`/bookings/unavailable-times/${slotId}`),
+  getUnavailableTimeRanges: (slotId) => api.get(`/parking/slots/${slotId}/unavailable-times`),
   downloadReceipt: (paymentId) => api.get(`/bookings/payments/${paymentId}/receipt`, {
     responseType: 'blob'
   }),

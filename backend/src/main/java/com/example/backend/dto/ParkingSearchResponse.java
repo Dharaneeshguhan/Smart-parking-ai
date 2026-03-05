@@ -26,6 +26,9 @@ public class ParkingSearchResponse {
     private boolean recommended;
     private boolean available;
     private String reason;
+    private String nextAvailableFrom;
+    private String message;
+    private double rating;
 
     // UI Mock Fields for compatibility
     private java.util.List<String> amenities;
@@ -245,5 +248,29 @@ public class ParkingSearchResponse {
 
     public void setReason(String reason) {
         this.reason = reason;
+    }
+
+    public String getNextAvailableFrom() {
+        return nextAvailableFrom;
+    }
+
+    public void setNextAvailableFrom(String nextAvailableFrom) {
+        this.nextAvailableFrom = nextAvailableFrom;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
     }
 }

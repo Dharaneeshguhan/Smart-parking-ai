@@ -84,12 +84,9 @@ const BookingsPage = () => {
   };
 
   const formatDateTime = (dateTime) => {
-    return new Date(dateTime).toLocaleString('en-US', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
+    return new Date(dateTime).toLocaleString('en-IN', {
+      dateStyle: 'medium',
+      timeStyle: 'short'
     });
   };
 
