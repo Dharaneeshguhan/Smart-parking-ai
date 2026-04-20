@@ -46,16 +46,67 @@ public class DashboardController {
                 .mapToDouble(com.example.backend.entity.Booking::getTotalAmount)
                 .sum();
 
+        List<com.example.backend.entity.ParkingSlot> mySlots = parkingSlotRepository.findByOwner(user);
+        long myAvailableSlots = mySlots.stream()
+                .mapToLong(com.example.backend.entity.ParkingSlot::getAvailableSpots)
+                .sum();
+        long myTotalSlots = mySlots.stream()
+                .mapToLong(com.example.backend.entity.ParkingSlot::getTotalSpots)
+                .sum();
+
+        // For regular users, show total available slots from all parking locations
+        List<com.example.backend.entity.ParkingSlot> allSlots = parkingSlotRepository.findAll();
+        long totalAvailableSlots = allSlots.stream()
+                .mapToLong(com.example.backend.entity.ParkingSlot::getAvailableSpots)
+                .sum();
+        long totalSlots = allSlots.stream()
+                .mapToLong(com.example.backend.entity.ParkingSlot::getTotalSpots)
+                .sum();
+
         Map<String, Object> response = new HashMap<>();
         response.put("totalBookings", totalBookings);
         response.put("activeBookings", activeBookings);
         response.put("totalSpent", totalSpent);
         response.put("savedTime", (totalBookings * 15) + "m");
-        response.put("availableSlots", parkingSlotRepository.count());
+        response.put("availableSlots", mySlots.isEmpty() ? totalAvailableSlots : myAvailableSlots);
+        response.put("totalSlots", mySlots.isEmpty() ? totalSlots : myTotalSlots);
+        response.put("mySlotsCount", mySlots.size());
         response.put("demandLevel", activeBookings > 5 ? "high" : "medium");
         response.put("totalUsers", userRepository.count());
 
         return ResponseEntity.ok(response);
+    }
+
+    // ===============================
+    // OWNER PARKING SLOTS
+    // ===============================
+    @GetMapping("/my-slots")
+    public ResponseEntity<List<Map<String, Object>>> getMyParkingSlots(
+            org.springframework.security.core.Authentication authentication) {
+
+        com.example.backend.entity.User user =
+                userRepository.findByEmail(authentication.getName())
+                        .orElseThrow(() -> new RuntimeException("User not found"));
+
+        List<com.example.backend.entity.ParkingSlot> mySlots = parkingSlotRepository.findByOwner(user);
+
+        List<Map<String, Object>> slots = mySlots.stream()
+                .map(slot -> {
+                    Map<String, Object> slotMap = new HashMap<>();
+                    slotMap.put("id", slot.getId());
+                    slotMap.put("name", slot.getName());
+                    slotMap.put("address", slot.getAddress());
+                    slotMap.put("latitude", slot.getLatitude());
+                    slotMap.put("longitude", slot.getLongitude());
+                    slotMap.put("pricePerHour", slot.getPricePerHour());
+                    slotMap.put("totalSpots", slot.getTotalSpots());
+                    slotMap.put("availableSpots", slot.getAvailableSpots());
+                    slotMap.put("dailyRate", slot.getDailyRate());
+                    return slotMap;
+                })
+                .toList();
+
+        return ResponseEntity.ok(slots);
     }
 
     // ===============================

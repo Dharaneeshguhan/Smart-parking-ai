@@ -17,7 +17,6 @@ const MyParkingSlotsPage = () => {
     try {
       setLoading(true);
       const response = await ownerAPI.getParkingSlots();
-      // Ensure each slot has some required UI fields like occupancy/revenue if missing from backend
       const data = response.data.map(slot => {
         const total = slot.totalSpots || 0;
         const available = slot.availableSpots || 0;

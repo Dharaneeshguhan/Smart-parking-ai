@@ -272,7 +272,7 @@ const AddNewSlotPage = () => {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Hourly Rate ($) *
+                Hourly Rate (₹) *
               </label>
               <div className="relative">
                 <DollarSign className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
@@ -295,7 +295,7 @@ const AddNewSlotPage = () => {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Daily Rate ($) *
+                Daily Rate (₹) *
               </label>
               <div className="relative">
                 <DollarSign className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
@@ -318,7 +318,7 @@ const AddNewSlotPage = () => {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Weekly Rate ($)
+                Weekly Rate (₹)
               </label>
               <div className="relative">
                 <DollarSign className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
@@ -337,7 +337,7 @@ const AddNewSlotPage = () => {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Monthly Rate ($)
+                Monthly Rate (₹)
               </label>
               <div className="relative">
                 <DollarSign className="absolute left-3 top-3 h-5 w-5 text-gray-400" />

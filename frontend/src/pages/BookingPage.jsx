@@ -167,24 +167,25 @@ const BookingPage = () => {
     setBookingLoading(true);
 
     try {
-      const startTime = new Date(`${bookingData.date}T${bookingData.startTime}:00`);
-      const endTime = new Date(startTime.getTime() + bookingData.duration * 60 * 60 * 1000);
+      // Create booking times in local timezone (not UTC)
+      const startTimeLocal = `${bookingData.date}T${bookingData.startTime}:00`;
+      const endTimeLocal = new Date(new Date(`${bookingData.date}T${bookingData.startTime}:00`).getTime() + bookingData.duration * 60 * 60 * 1000)
+        .toLocaleTimeString('en-GB', { hour12: false, hour: '2-digit', minute: '2-digit' });
+      
+      const endTimeFull = `${bookingData.date}T${endTimeLocal}:00`;
 
       console.log('=== BOOKING TIME DEBUG ===');
       console.log('Selected date:', bookingData.date);
       console.log('Selected time:', bookingData.startTime);
       console.log('Duration:', bookingData.duration, 'hours');
-      console.log('Created startTime object:', startTime);
-      console.log('Created endTime object:', endTime);
-      console.log('startTime ISO:', startTime.toISOString());
-      console.log('endTime ISO:', endTime.toISOString());
-      console.log('Local startTime:', startTime.toLocaleString());
-      console.log('Local endTime:', endTime.toLocaleString());
+      console.log('startTimeLocal:', startTimeLocal);
+      console.log('endTimeLocal:', endTimeLocal);
+      console.log('endTimeFull:', endTimeFull);
 
       const bookingPayload = {
         parkingSlotId: parseInt(parking.id),
-        startTime: startTime.toISOString(),
-        endTime: endTime.toISOString(),
+        startTime: startTimeLocal,
+        endTime: endTimeFull,
         totalAmount: calculateTotalPrice() + 2 // Including service fee
       };
 
@@ -201,8 +202,8 @@ const BookingPage = () => {
         longitude: response.data.longitude || parking.longitude,
         parkingName: response.data.parkingSlotName || parking.name,
         // Use the original selected times instead of backend response times
-        startTime: startTime.toISOString(),
-        endTime: endTime.toISOString()
+        startTime: startTimeLocal,
+        endTime: endTimeFull
       };
 
       console.log('Final booking with coords:', bookingWithCoords);

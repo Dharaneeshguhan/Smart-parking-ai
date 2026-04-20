@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080/api';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8081/api';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -64,7 +64,7 @@ export const parkingAPI = {
 };
 
 export const ownerAPI = {
-  getParkingSlots: () => api.get('/owner/slots'),
+  getParkingSlots: () => api.get('/dashboard/my-slots'),
   addParkingSlot: (slotData) => api.post('/owner/slots', slotData),
   updateParkingSlot: (id, slotData) => api.put(`/owner/slots/${id}`, slotData),
   deleteParkingSlot: (id) => api.delete(`/owner/slots/${id}`),
@@ -75,6 +75,7 @@ export const ownerAPI = {
 
 export const dashboardAPI = {
   getStats: () => api.get('/dashboard/stats'),
+  getMySlots: () => api.get('/dashboard/my-slots'),
   getDemandPrediction: () => api.get('/dashboard/demand-prediction'),
   getAvailabilityChart: () => api.get('/dashboard/availability'),
   getRecentActivity: () => api.get('/dashboard/activity'),

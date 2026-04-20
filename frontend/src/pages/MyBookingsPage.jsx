@@ -298,7 +298,7 @@ const MyBookingsPage = () => {
               <Card>
                 <CardContent className="text-center">
                   <div className="text-2xl font-bold text-green-600">
-                    ${bookingsData.reduce((sum, b) => sum + b.amount, 0)}
+                    ₹{bookingsData.reduce((sum, b) => sum + b.amount, 0)}
                   </div>
                   <div className="text-sm text-gray-600">Total Spent</div>
                 </CardContent>
@@ -360,7 +360,7 @@ const MyBookingsPage = () => {
                                 </span>
                               </div>
                               <div className="flex items-center space-x-2">
-                                <span className="text-lg font-bold text-gray-900">${booking.amount}</span>
+                                <span className="text-lg font-bold text-gray-900">₹{booking.amount}</span>
                               </div>
                             </div>
                           </div>
@@ -521,7 +521,7 @@ const MyBookingsPage = () => {
                   <div className="border-t pt-4">
                     <div className="flex justify-between items-center">
                       <span className="text-lg font-semibold text-gray-900">Total Amount</span>
-                      <span className="text-2xl font-bold text-primary-600">${selectedBooking.amount}</span>
+                      <span className="text-2xl font-bold text-primary-600">₹{selectedBooking.amount}</span>
                     </div>
                   </div>
 

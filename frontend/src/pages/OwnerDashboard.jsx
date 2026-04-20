@@ -376,11 +376,11 @@ const OwnerDashboard = () => {
                       </div>
                       <div>
                         <span className="text-gray-600">Price:</span>
-                        <span className="ml-1 font-medium">${slot.price}/hr</span>
+                        <span className="ml-1 font-medium">₹{slot.price}/hr</span>
                       </div>
                       <div>
                         <span className="text-gray-600">Revenue:</span>
-                        <span className="ml-1 font-medium">${slot.revenue}</span>
+                        <span className="ml-1 font-medium">₹{slot.revenue}</span>
                       </div>
                     </div>
                     <div className="flex items-center justify-end space-x-2 mt-3">
@@ -432,7 +432,7 @@ const OwnerDashboard = () => {
                       <p>{booking.date} • {booking.time} • {booking.duration} hours</p>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="font-medium text-gray-900">${booking.amount}</span>
+                      <span className="font-medium text-gray-900">₹{booking.amount}</span>
                       <div className="flex items-center space-x-2">
                         {booking.status === 'active' && (
                           <Button size="small" variant="outline">

@@ -195,7 +195,7 @@ const BookingsPage = () => {
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600">Today's Revenue</p>
               <p className="text-2xl font-bold text-gray-900">
-                ${bookings
+                ₹{bookings
                   .filter(b => new Date(b.startTime).toDateString() === new Date().toDateString())
                   .reduce((sum, b) => sum + b.totalAmount, 0)
                   .toFixed(2)}
@@ -291,7 +291,7 @@ const BookingsPage = () => {
                     {formatDuration(booking.duration)}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                    ${booking.totalAmount.toFixed(2)}
+                    ₹{booking.totalAmount.toFixed(2)}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <span className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusColor(booking.status)}`}>
@@ -399,7 +399,7 @@ const BookingsPage = () => {
                   </div>
                   <div>
                     <p className="text-sm text-gray-500">Total Amount</p>
-                    <p className="font-medium">${selectedBooking.totalAmount.toFixed(2)}</p>
+                    <p className="font-medium">₹{selectedBooking.totalAmount.toFixed(2)}</p>
                   </div>
                   <div>
                     <p className="text-sm text-gray-500">Booking Date</p>

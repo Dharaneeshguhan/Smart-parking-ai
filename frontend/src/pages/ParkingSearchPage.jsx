@@ -162,17 +162,33 @@ const ParkingSearchPage = () => {
   };
 
   const toggleFavorite = async (id) => {
+    console.log('=== TOGGLE FAVORITE DEBUG ===');
+    console.log('Slot ID:', id);
+    console.log('Current favorites:', favorites);
+    console.log('Is already favorite:', favorites.includes(id));
+    
     try {
       if (favorites.includes(id)) {
+        console.log('Removing from favorites...');
         await parkingAPI.removeFromFavorites(id);
-        setFavorites(prev => prev.filter(x => x !== id));
+        setFavorites(prev => {
+          const newFavorites = prev.filter(x => x !== id);
+          console.log('Updated favorites after removal:', newFavorites);
+          return newFavorites;
+        });
       } else {
+        console.log('Adding to favorites...');
         await parkingAPI.addToFavorites(id);
-        setFavorites(prev => [...prev, id]);
+        setFavorites(prev => {
+          const newFavorites = [...prev, id];
+          console.log('Updated favorites after addition:', newFavorites);
+          return newFavorites;
+        });
       }
     } catch (e) {
-      console.error(e);
+      console.error('Error toggling favorite:', e);
     }
+    console.log('=== END TOGGLE FAVORITE DEBUG ===');
   };
 
   const handleTimeSlotSubmit = () => {

@@ -265,7 +265,7 @@ const ProfilePage = () => {
                           <div className="p-2 bg-amber-100 text-amber-600 rounded-lg"><DollarSign className="h-4 w-4" /></div>
                           <span className="text-sm font-bold text-slate-600">{isOwner ? 'Revenue Target' : 'Cost Savings'}</span>
                         </div>
-                        <span className="text-xl font-black text-slate-900">{isOwner ? '92%' : '$128'}</span>
+                        <span className="text-xl font-black text-slate-900">{isOwner ? '92%' : '₹128'}</span>
                       </div>
                     </div>
                   </CardContent>

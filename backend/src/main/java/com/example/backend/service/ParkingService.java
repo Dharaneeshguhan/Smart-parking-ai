@@ -79,12 +79,19 @@ public class ParkingService {
                     LocalDateTime bookingStart = booking.getStartTime();
                     LocalDateTime bookingEnd = booking.getEndTime();
                     
-                    System.out.println("Checking booking: " + bookingStart + " to " + bookingEnd);
+                    System.out.println("=== BOOKING COMPARISON DEBUG ===");
+                    System.out.println("Requested Start: " + requestedStart);
+                    System.out.println("Requested End: " + requestedEnd);
+                    System.out.println("Booking Start: " + bookingStart);
+                    System.out.println("Booking End: " + bookingEnd);
+                    System.out.println("bookingStart.isBefore(requestedEnd): " + bookingStart.isBefore(requestedEnd));
+                    System.out.println("bookingEnd.isAfter(requestedStart): " + bookingEnd.isAfter(requestedStart));
                     
                     // Correct overlap condition: booking.startTime < requestedEnd AND booking.endTime > requestedStart
                     boolean overlap = bookingStart.isBefore(requestedEnd) && bookingEnd.isAfter(requestedStart);
                     
                     System.out.println("Overlap result: " + overlap);
+                    System.out.println("=== END BOOKING COMPARISON ===");
                     
                     if (overlap) {
                         isAvailable = false;
@@ -211,16 +218,63 @@ public class ParkingService {
     }
 
     public void addToFavorites(Long slotId, String userEmail) {
-        // Mock implementation
+        System.out.println("=== ADD TO FAVORITES DEBUG ===");
+        System.out.println("Slot ID: " + slotId);
+        System.out.println("User Email: " + userEmail);
+        
+        com.example.backend.entity.User user = userRepository.findByEmail(userEmail)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        ParkingSlot slot = getParkingDetails(slotId);
+        
+        System.out.println("User found: " + user.getName());
+        System.out.println("Slot found: " + slot.getName());
+        System.out.println("Current favorites count: " + user.getFavoriteSlots().size());
+        
+        user.getFavoriteSlots().add(slot);
+        userRepository.save(user);
+        
+        System.out.println("New favorites count: " + user.getFavoriteSlots().size());
+        System.out.println("=== END ADD TO FAVORITES ===");
     }
 
     public void removeFromFavorites(Long slotId, String userEmail) {
-        // Mock implementation
+        System.out.println("=== REMOVE FROM FAVORITES DEBUG ===");
+        System.out.println("Slot ID: " + slotId);
+        System.out.println("User Email: " + userEmail);
+        
+        com.example.backend.entity.User user = userRepository.findByEmail(userEmail)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        
+        System.out.println("User found: " + user.getName());
+        System.out.println("Current favorites count: " + user.getFavoriteSlots().size());
+        
+        boolean removed = user.getFavoriteSlots().removeIf(slot -> slot.getId().equals(slotId));
+        System.out.println("Slot removed: " + removed);
+        userRepository.save(user);
+        
+        System.out.println("New favorites count: " + user.getFavoriteSlots().size());
+        System.out.println("=== END REMOVE FROM FAVORITES ===");
     }
 
     public List<ParkingSearchResponse> getFavorites(String userEmail) {
-        // Mock implementation
-        return new ArrayList<>();
+        com.example.backend.entity.User user = userRepository.findByEmail(userEmail)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        
+        return user.getFavoriteSlots().stream()
+                .map(slot -> {
+                    ParkingSearchResponse response = new ParkingSearchResponse();
+                    response.setId(slot.getId());
+                    response.setName(slot.getName());
+                    response.setAddress(slot.getAddress());
+                    response.setLatitude(slot.getLatitude());
+                    response.setLongitude(slot.getLongitude());
+                    response.setPricePerHour(slot.getPricePerHour());
+                    response.setTotalSpots(slot.getTotalSpots());
+                    response.setRating(4.0);
+                    response.setAvailable(true);
+                    return response;
+                })
+                .collect(Collectors.toList());
     }
 
     public List<ParkingSearchResponse> getNearbyParking(double userLat, double userLng) {
