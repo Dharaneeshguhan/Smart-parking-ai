@@ -97,14 +97,14 @@ const SettingsPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50/50 flex-1">
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-pink-50 flex-1">
       <div className="flex flex-col max-w-5xl mx-auto p-8">
 
         {/* HEADER */}
-        <div className="flex items-center justify-between mb-10">
-          <div>
-            <h1 className="text-4xl font-black text-slate-900 tracking-tight">System Configuration</h1>
-            <p className="text-slate-500 font-medium mt-1">Manage your digital footprint and application behavior</p>
+        <div className="max-w-4xl mx-auto px-4 py-8">
+          <div className="text-center mb-8">
+            <h1 className="text-3xl font-bold text-gray-900 mb-4 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Settings</h1>
+            <p className="text-gray-600">Manage your account settings and preferences</p>
           </div>
           <Button onClick={handleSave} loading={loading} className="px-8 shadow-lg shadow-primary-500/20">
             Sync Preferences
@@ -140,7 +140,7 @@ const SettingsPage = () => {
                   Communication Hub
                 </h3>
               </div>
-              <div className="p-8 space-y-6">
+              <div className="glass-container rounded-xl shadow-lg p-6 mb-6">
                 {[
                   { id: 'email', title: 'Intelligence Reports', desc: 'Detailed booking summaries via secure email', icon: Mail },
                   { id: 'push', title: 'Real-time Pulse', desc: 'Instant alerts on your primary device', icon: Smartphone },
@@ -176,30 +176,43 @@ const SettingsPage = () => {
                   Global Standards
                 </h3>
               </div>
-              <div className="p-8 grid grid-cols-1 sm:grid-cols-2 gap-8">
-                <div className="space-y-2">
-                  <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Linguistic Engine</label>
-                  <select
-                    value={settings.preferences.language}
-                    onChange={(e) => handleSelect('preferences', 'language', e.target.value)}
-                    className="w-full px-4 py-3 bg-slate-50 border-2 border-transparent focus:border-indigo-500 rounded-2xl outline-none font-bold text-slate-900 transition-all appearance-none cursor-pointer"
-                  >
-                    <option value="en">English (US)</option>
-                    <option value="es">Español</option>
-                    <option value="fr">Français</option>
-                  </select>
-                </div>
-                <div className="space-y-2">
-                  <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Currency Unit</label>
-                  <select
-                    value={settings.preferences.currency}
-                    onChange={(e) => handleSelect('preferences', 'currency', e.target.value)}
-                    className="w-full px-4 py-3 bg-slate-50 border-2 border-transparent focus:border-indigo-500 rounded-2xl outline-none font-bold text-slate-900 transition-all appearance-none cursor-pointer"
-                  >
-                    <option value="INR">INR (₹)</option>
-                    <option value="USD">USD ($)</option>
-                    <option value="EUR">EUR (€)</option>
-                  </select>
+              <div className="glass-container rounded-xl shadow-lg p-6 mb-6">
+                <div className="flex flex-col lg:flex-row gap-4">
+                  <div className="flex-1">
+                    <div className="relative">
+                      <input
+                        type="text"
+                        placeholder="Search settings..."
+                        value=""
+                        onChange={(e) => {}}
+                        className="input-field pl-10 pr-4"
+                      />
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Linguistic Engine</label>
+                    <select
+                      value={settings.preferences.language}
+                      onChange={(e) => handleSelect('preferences', 'language', e.target.value)}
+                      className="w-full px-4 py-3 bg-slate-50 border-2 border-transparent focus:border-indigo-500 rounded-2xl outline-none font-bold text-slate-900 transition-all appearance-none cursor-pointer"
+                    >
+                      <option value="en">English (US)</option>
+                      <option value="es">Español</option>
+                      <option value="fr">Français</option>
+                    </select>
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Currency Unit</label>
+                    <select
+                      value={settings.preferences.currency}
+                      onChange={(e) => handleSelect('preferences', 'currency', e.target.value)}
+                      className="w-full px-4 py-3 bg-slate-50 border-2 border-transparent focus:border-indigo-500 rounded-2xl outline-none font-bold text-slate-900 transition-all appearance-none cursor-pointer"
+                    >
+                      <option value="INR">INR (¥)</option>
+                      <option value="USD">USD ($)</option>
+                      <option value="EUR">EUR (¬)</option>
+                    </select>
+                  </div>
                 </div>
               </div>
             </section>

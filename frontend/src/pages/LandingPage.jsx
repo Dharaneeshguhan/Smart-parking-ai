@@ -101,7 +101,7 @@ const LandingPage = () => {
         </div>
 
         <div className="relative max-w-7xl mx-auto px-6 py-28 text-center">
-          <div className="mb-8 inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-lg rounded-full border border-white/30">
+          <div className="mb-8 inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-lg rounded-full">
             <Sparkles className="w-5 h-5 mr-2 text-yellow-300" />
             <span className="text-white font-semibold">✨ Premium Parking Experience</span>
           </div>
@@ -158,7 +158,9 @@ const LandingPage = () => {
               <Brain className="w-5 h-5 mr-2" />
               Premium Features
             </div>
-            <h2 className="text-5xl font-black mb-6 gradient-text">Why Choose SmartPark?</h2>
+            <h2 className="text-5xl font-black mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              Why Choose SmartPark?
+            </h2>
             <p className="text-gray-600 text-xl max-w-3xl mx-auto font-medium">
               Built with cutting-edge AI to make parking smarter, faster, and effortlessly simple.
             </p>
@@ -181,7 +183,7 @@ const LandingPage = () => {
       </section>
 
       {/* HOW IT WORKS */}
-      <section className="py-24 bg-gradient-to-r from-indigo-600 to-purple-600">
+      <section className="py-24 bg-gradient-to-r from-blue-600 to-cyan-600">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <h2 className="text-4xl font-black text-white mb-16">How It Works</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -210,26 +212,7 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* TESTIMONIALS */}
-      <section className="py-20 bg-slate-100">
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
-          {testimonials.map((t, i) => (
-            <Card key={i} className="rounded-2xl shadow-sm hover:shadow-xl transition">
-              <CardContent>
-                <div className="flex mb-3">
-                  {[...Array(t.rating)].map((_, idx) => (
-                    <Star key={idx} className="h-5 w-5 text-yellow-400 fill-current" />
-                  ))}
-                </div>
-                <p className="italic text-slate-700 mb-4">"{t.content}"</p>
-                <p className="font-semibold">{t.name}</p>
-                <p className="text-sm text-slate-500">{t.role}</p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </section>
-
+      
       {/* CTA */}
       <section className="py-20 bg-primary-700 text-white text-center">
         <div className="max-w-4xl mx-auto px-6">

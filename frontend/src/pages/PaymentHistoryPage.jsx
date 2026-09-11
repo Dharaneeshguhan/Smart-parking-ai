@@ -274,15 +274,15 @@ const PaymentHistoryPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 flex-1">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-gray-100 flex-1">
       <div className="flex flex-col">
         <div className="flex-1">
-          <div className="sticky top-0 z-10 bg-white shadow-sm border-b border-gray-200">
-            <div className="px-6 py-4">
+          <Card className="glass-container rounded-xl shadow-lg border-0">
+            <div className="mb-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <h1 className="text-2xl font-bold text-gray-900">Payment History</h1>
-                  <p className="text-sm text-gray-600">View and manage your payment transactions</p>
+                  <h1 className="text-2xl font-bold text-gray-900 bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">Payment History</h1>
+                  <p className="text-sm text-gray-600">View your transaction history</p>
                 </div>
                 <div className="flex items-center space-x-4">
                   <Button variant="outline">
@@ -298,7 +298,7 @@ const PaymentHistoryPage = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </Card>
 
           <div className="p-6">
             {/* Payment Stats */}
@@ -330,7 +330,7 @@ const PaymentHistoryPage = () => {
             </div>
 
             {/* Search and Filters */}
-            <Card className="mb-6">
+            <Card className="glass-container rounded-xl shadow-lg border-0 mb-6">
               <CardContent>
                 <div className="flex flex-col lg:flex-row gap-4">
                   <div className="flex-1">
@@ -373,7 +373,7 @@ const PaymentHistoryPage = () => {
             </Card>
 
             {/* Payment History */}
-            <Card>
+            <Card className="glass-container rounded-xl shadow-lg border-0">
               <CardHeader>
                 <CardTitle>Transaction History</CardTitle>
               </CardHeader>
@@ -398,51 +398,42 @@ const PaymentHistoryPage = () => {
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-600 mb-3">
                               <div className="flex items-center">
                                 <FileText className="h-4 w-4 mr-2" />
-                                Transaction ID: {payment.transactionId}
                               </div>
-                              {payment.bookingId && (
+
+                              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-600 mb-3">
                                 <div className="flex items-center">
-                                  <Receipt className="h-4 w-4 mr-2" />
-                                  Booking ID: {payment.bookingId}
+                                  <FileText className="h-4 w-4 mr-2" />
+                                  Transaction ID: {payment.transactionId}
                                 </div>
-                              )}
-                              <div className="flex items-center">
-                                <Calendar className="h-4 w-4 mr-2" />
-                                {new Date(payment.date).toLocaleDateString()} at {payment.time}
-                              </div>
-                              <div className="flex items-center">
-                                {getPaymentMethodIcon(payment.paymentMethod)}
-                                <span className="ml-2 capitalize">{payment.paymentMethod.replace('_', ' ')}</span>
-                                {payment.cardType && (
-                                  <span className="ml-2">
-                                    ({payment.cardType} •••• {payment.cardLast4})
-                                  </span>
+                                {payment.bookingId && (
+                                  <div className="flex items-center">
+                                    <Receipt className="h-4 w-4 mr-2" />
+                                    Booking ID: {payment.bookingId}
+                                  </div>
                                 )}
+                                <div className="flex items-center">
+                                  <Calendar className="h-4 w-4 mr-2" />
+                                  {new Date(payment.date).toLocaleDateString()} at {payment.time}
+                                </div>
+                                <div className="flex items-center">
+                                  {getPaymentMethodIcon(payment.paymentMethod)}
+                                  <span className="ml-2 capitalize">{payment.paymentMethod.replace('_', ' ')}</span>
+                                  {payment.cardType && (
+                                    <span className="ml-2">
+                                      ({payment.cardType} ••• {payment.cardLast4})
+                                    </span>
+                                  )}
+                                </div>
                               </div>
                             </div>
-
-                            <div className="text-sm text-gray-600">
-                              {payment.description}
-                            </div>
-                          </div>
-
-                          <div className="flex items-center space-x-2 ml-4">
-                            <div className="text-right">
-                              <div className={`text-lg font-bold ${payment.type === 'refund' ? 'text-green-600' : 'text-gray-900'
-                                }`}>
-                                {payment.type === 'refund' ? '-' : ''}₹{payment.amount.toFixed(2)}
-                              </div>
-                            </div>
-                            {payment.status === 'completed' && (
-                              <Button
-                                variant="outline"
-                                size="small"
+                            <div className="flex items-center space-x-2 ml-4">
+                              <Button variant="outline" size="sm"
                                 onClick={() => handleDownloadReceipt(payment)}
                               >
                                 <Download className="h-4 w-4 mr-1" />
                                 Receipt
                               </Button>
-                            )}
+                            </div>
                           </div>
                         </div>
                       </div>

@@ -247,6 +247,7 @@ const RouteNavigationPage = () => {
     // }, [stats]);
 
     return (
+        <>
         <div className="relative h-screen w-full flex flex-col overflow-hidden bg-slate-50">
             {/* Header / Back Button */}
             <div className="absolute top-6 left-6 z-[1000]">
@@ -310,83 +311,8 @@ const RouteNavigationPage = () => {
                     )}
                 </div>
             </div>
-
-            {/* Map Container */}
-            <div className="h-screen w-full z-0">
-                {start.lat != null && start.lng != null && (
-                    <MapContainer
-                        center={[start.lat, start.lng]}
-                        zoom={15}
-                        style={{ height: '100%', width: '100%' }}
-                        zoomControl={false}
-                    >
-                        <TileLayer
-                            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                        />
-
-                        {/* Start Marker */}
-                        <Marker position={[start.lat, start.lng]} icon={icons.start}>
-                            <Popup>
-                                <div className="text-xs font-bold text-center">Your Location</div>
-                            </Popup>
-                        </Marker>
-
-                        {/* Destination Marker */}
-                        <Marker position={[destination.lat, destination.lng]} icon={icons.end}>
-                            <Popup>
-                                <div className="text-xs font-bold text-center">
-                                    <p className="text-primary-600 uppercase tracking-widest text-[8px] mb-1">Destination</p>
-                                    {destination.name}
-                                </div>
-                            </Popup>
-                        </Marker>
-
-                        {/* Route Polyline */}
-                        {route && (
-                            <Polyline
-                                positions={route}
-                                pathOptions={{
-                                    color: '#3b82f6',
-                                    weight: 6,
-                                    opacity: 0.8,
-                                    lineJoin: 'round',
-                                    lineCap: 'round'
-                                }}
-                            />
-                        )}
-
-                        <MapBoundsHandler routeCoords={route} start={[start.lat, start.lng]} end={[destination.lat, destination.lng]} />
-                    </MapContainer>
-                )}
-            </div>
-
-            {/* Bottom Status (Mobile) */}
-            <div className="absolute bottom-6 left-6 right-6 lg:hidden z-[1000] pointer-events-none">
-                <div className="bg-slate-900/90 backdrop-blur-md text-white px-6 py-4 rounded-[2rem] flex items-center justify-between shadow-2xl border border-white/10 pointer-events-auto">
-                    <div className="flex gap-4">
-                        <div className="flex items-center gap-2">
-                            <Clock className="h-4 w-4 text-emerald-400" />
-                            <span className="text-sm font-black">{stats.duration} min</span>
-                        </div>
-                        <div className="w-px h-4 bg-white/20 self-center"></div>
-                        <div className="flex items-center gap-2">
-                            <RouteIcon className="h-4 w-4 text-blue-400" />
-                            <span className="text-sm font-black">{stats.distance} km</span>
-                        </div>
-                    </div>
-                    <button className="p-3 bg-primary-600 rounded-full shadow-lg transform active:scale-95 transition-all">
-                        <Navigation className="h-5 w-5 fill-current" />
-                    </button>
-                </div>
-            </div>
-
-            <style dangerouslySetInnerHTML={{
-                __html: `
-                .leaflet-container { font-family: inherit; }
-                .leaflet-popup-content-wrapper { border-radius: 1rem; padding: 5px; }
-            `}} />
         </div>
+        </>
     );
 };
 

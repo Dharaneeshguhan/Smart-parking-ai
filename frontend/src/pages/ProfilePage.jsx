@@ -169,7 +169,7 @@ const ProfilePage = () => {
   const isOwner = user?.role === 'ROLE_OWNER' || user?.role === 'owner';
 
   return (
-    <div className="min-h-screen bg-gray-50 flex-1">
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-pink-50 flex-1">
       <div className="flex flex-col">
         <div className="flex-1">
           {/* PREMIUM HEADER WITH GLASSMORPHISM */}
@@ -308,7 +308,7 @@ const ProfilePage = () => {
                             value={formData.name}
                             onChange={handleChange}
                             disabled={!editing}
-                            className={`w-full pl-12 pr-4 py-3 rounded-xl border-2 transition-all outline-none font-bold text-slate-900 ${!editing ? 'bg-slate-50/50 border-transparent' : 'bg-white border-slate-200 focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10'} ${errors.name ? 'border-red-500 bg-red-50' : ''}`}
+                            className={`input-field px-4 py-2 ${errors.name ? 'border-red-500' : ''}`}
                           />
                         </div>
                         {errors.name && <p className="text-[10px] font-black text-red-500 ml-1">{errors.name}</p>}
@@ -324,7 +324,7 @@ const ProfilePage = () => {
                             value={formData.email}
                             onChange={handleChange}
                             disabled={!editing}
-                            className={`w-full pl-12 pr-4 py-3 rounded-xl border-2 transition-all outline-none font-bold text-slate-900 ${!editing ? 'bg-slate-50/50 border-transparent' : 'bg-white border-slate-200 focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10'} ${errors.email ? 'border-red-500 bg-red-50' : ''}`}
+                            className={`input-field px-4 py-2 ${errors.email ? 'border-red-500' : ''}`}
                           />
                         </div>
                         {errors.email && <p className="text-[10px] font-black text-red-500 ml-1">{errors.email}</p>}
@@ -341,7 +341,7 @@ const ProfilePage = () => {
                             onChange={handleChange}
                             disabled={!editing}
                             placeholder="+1 (555) 000-0000"
-                            className={`w-full pl-12 pr-4 py-3 rounded-xl border-2 transition-all outline-none font-bold text-slate-900 ${!editing ? 'bg-slate-50/50 border-transparent' : 'bg-white border-slate-200 focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10'} ${errors.phone ? 'border-red-500 bg-red-50' : ''}`}
+                            className={`input-field px-4 py-2 ${errors.phone ? 'border-red-500' : ''}`}
                           />
                         </div>
                       </div>

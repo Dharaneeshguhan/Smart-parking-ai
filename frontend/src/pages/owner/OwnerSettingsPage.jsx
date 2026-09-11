@@ -97,7 +97,7 @@ const OwnerSettingsPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50/50 flex-1 p-8">
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50 flex-1 p-8">
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
           <div>
@@ -133,30 +133,36 @@ const OwnerSettingsPage = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                       <div className="space-y-2">
                         <label className="text-[11px] font-black text-slate-400 uppercase tracking-widest ml-1">Legal Business ID</label>
-                        <input
-                          value={settings.general.businessName}
-                          onChange={(e) => handleChange('general', 'businessName', e.target.value)}
-                          className="w-full px-5 py-4 bg-slate-50 border-2 border-transparent focus:border-primary-500 rounded-2xl outline-none font-bold text-slate-900 transition-all shadow-inner"
-                        />
+                        <div className="glass-container rounded-xl shadow-lg p-6 mb-6">
+                          <input
+                            value={settings.general.businessName}
+                            onChange={(e) => handleChange('general', 'businessName', e.target.value)}
+                            className="w-full px-5 py-4 bg-slate-50 border-2 border-transparent focus:border-primary-500 rounded-2xl outline-none font-bold text-slate-900 transition-all shadow-inner"
+                          />
+                        </div>
                       </div>
                       <div className="space-y-2">
                         <label className="text-[11px] font-black text-slate-400 uppercase tracking-widest ml-1">Primary Operations Email</label>
-                        <input
-                          value={settings.general.email}
-                          onChange={(e) => handleChange('general', 'email', e.target.value)}
-                          className="w-full px-5 py-4 bg-slate-50 border-2 border-transparent focus:border-primary-500 rounded-2xl outline-none font-bold text-slate-900 transition-all shadow-inner"
-                        />
+                        <div className="glass-container rounded-xl shadow-lg p-6 mb-6">
+                          <input
+                            value={settings.general.email}
+                            onChange={(e) => handleChange('general', 'email', e.target.value)}
+                            className="w-full px-5 py-4 bg-slate-50 border-2 border-transparent focus:border-primary-500 rounded-2xl outline-none font-bold text-slate-900 transition-all shadow-inner"
+                          />
+                        </div>
                       </div>
                     </div>
 
                     <div className="space-y-2">
                       <label className="text-[11px] font-black text-slate-400 uppercase tracking-widest ml-1">Operational Coordinates (Address)</label>
-                      <textarea
-                        rows="3"
-                        value={settings.general.address}
-                        onChange={(e) => handleChange('general', 'address', e.target.value)}
-                        className="w-full px-5 py-4 bg-slate-50 border-2 border-transparent focus:border-primary-500 rounded-2xl outline-none font-bold text-slate-900 transition-all shadow-inner resize-none"
-                      />
+                      <div className="glass-container rounded-xl shadow-lg p-6 mb-6">
+                        <textarea
+                          rows="3"
+                          value={settings.general.address}
+                          onChange={(e) => handleChange('general', 'address', e.target.value)}
+                          className="w-full px-5 py-4 bg-slate-50 border-2 border-transparent focus:border-primary-500 rounded-2xl outline-none font-bold text-slate-900 transition-all shadow-inner resize-none"
+                        />
+                      </div>
                     </div>
 
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">

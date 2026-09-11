@@ -201,7 +201,7 @@ const OwnerDashboard = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50 flex items-center justify-center">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
       </div>
     );
@@ -209,7 +209,7 @@ const OwnerDashboard = () => {
 
   return (
     <div className="w-full">
-      <div className="mb-8">
+      <div className="px-4 sm:px-6 lg:px-8 py-8 mb-8">
         <div className="flex justify-between items-center">
           <div>
             <h1 className="text-2xl font-bold text-gray-900">Owner Dashboard</h1>
@@ -226,9 +226,9 @@ const OwnerDashboard = () => {
         </div>
       </div>
 
-      <div className="p-6">
+      <div className="px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <Card className="border-l-4 border-l-blue-500 shadow-sm hover:shadow-md transition-shadow">
+          <Card className="glass-container rounded-xl shadow-lg border-0">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>

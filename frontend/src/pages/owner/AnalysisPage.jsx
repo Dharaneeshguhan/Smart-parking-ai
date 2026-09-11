@@ -104,7 +104,7 @@ const AnalysisPage = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto"></div>
           <p className="mt-4 text-gray-600">Loading analytics...</p>
@@ -114,29 +114,75 @@ const AnalysisPage = () => {
   }
 
   return (
-      <div className="w-full">
-        <div className="mb-8">
-          <div className="flex justify-between items-center">
-            <div>
-              <h1 className="text-3xl font-bold text-gray-900">Analytics Dashboard</h1>
-              <p className="mt-2 text-gray-600">Comprehensive insights into your parking business performance</p>
-            </div>
-            <select
-              value={timeRange}
-              onChange={(e) => setTimeRange(e.target.value)}
-              className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-            >
-              <option value="week">Last Week</option>
-              <option value="month">Last Month</option>
-              <option value="quarter">Last Quarter</option>
-              <option value="year">Last Year</option>
-            </select>
+    <div className="w-full">
+      <div className="mb-8">
+        <div className="max-w-7xl mx-auto px-4 py-8">
+          <div className="text-center mb-8">
+            <h1 className="text-3xl font-bold text-gray-900 mb-4 bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">Analytics Dashboard</h1>
+            <p className="text-gray-600">Comprehensive insights into your parking business</p>
           </div>
+        </div>
+        <div className="glass-container rounded-xl shadow-lg p-6 mb-6">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-xl font-bold text-gray-900 bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">Time Range</h2>
+            <div className="flex gap-2">
+              <button
+                onClick={() => setTimeRange('week')}
+                className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+                  timeRange === 'week'
+                    ? 'bg-gradient-to-r from-emerald-600 to-teal-600 text-white'
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                }`}
+              >
+                Week
+              </button>
+              <button
+                onClick={() => setTimeRange('month')}
+                className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+                  timeRange === 'month'
+                    ? 'bg-gradient-to-r from-emerald-600 to-teal-600 text-white'
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                }`}
+              >
+                Month
+              </button>
+              <button
+                onClick={() => setTimeRange('quarter')}
+                className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+                  timeRange === 'quarter'
+                    ? 'bg-gradient-to-r from-emerald-600 to-teal-600 text-white'
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                }`}
+              >
+                Quarter
+              </button>
+              <button
+                onClick={() => setTimeRange('year')}
+                className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+                  timeRange === 'year'
+                    ? 'bg-gradient-to-r from-emerald-600 to-teal-600 text-white'
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                }`}
+              >
+                Year
+              </button>
+            </div>
+          </div>
+          <select
+            value={timeRange}
+            onChange={(e) => setTimeRange(e.target.value)}
+            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+          >
+            <option value="week">Last Week</option>
+            <option value="month">Last Month</option>
+            <option value="quarter">Last Quarter</option>
+            <option value="year">Last Year</option>
+          </select>
         </div>
 
         {/* Overview Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <div className="bg-white rounded-lg shadow p-6">
+          <div className="glass-container rounded-xl shadow-lg p-6">
             <div className="flex items-center">
               <div className="p-3 bg-green-100 rounded-lg">
                 <DollarSign className="h-6 w-6 text-green-600" />
@@ -153,7 +199,7 @@ const AnalysisPage = () => {
               </div>
             </div>
           </div>
-          <div className="bg-white rounded-lg shadow p-6">
+          <div className="glass-container rounded-xl shadow-lg p-6">
             <div className="flex items-center">
               <div className="p-3 bg-blue-100 rounded-lg">
                 <Users className="h-6 w-6 text-blue-600" />
@@ -170,7 +216,7 @@ const AnalysisPage = () => {
               </div>
             </div>
           </div>
-          <div className="bg-white rounded-lg shadow p-6">
+          <div className="glass-container rounded-xl shadow-lg p-6">
             <div className="flex items-center">
               <div className="p-3 bg-yellow-100 rounded-lg">
                 <Activity className="h-6 w-6 text-yellow-600" />
@@ -187,7 +233,7 @@ const AnalysisPage = () => {
               </div>
             </div>
           </div>
-          <div className="bg-white rounded-lg shadow p-6">
+          <div className="glass-container rounded-xl shadow-lg p-6">
             <div className="flex items-center">
               <div className="p-3 bg-purple-100 rounded-lg">
                 <Clock className="h-6 w-6 text-purple-600" />
@@ -414,6 +460,7 @@ const AnalysisPage = () => {
           </div>
         </div>
       </div>
+    </div>
   );
 };
 

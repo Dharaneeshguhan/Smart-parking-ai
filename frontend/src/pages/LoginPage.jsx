@@ -79,13 +79,13 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-100">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-cyan-50 text-gray-900">
       <Navbar />
 
       <div className="min-h-[calc(100vh-70px)] grid grid-cols-1 lg:grid-cols-2">
 
         {/* LEFT SIDE — LOGIN FORM */}
-        <div className="flex items-center justify-center px-6 py-10 bg-gradient-to-br from-slate-100 via-slate-50 to-white">
+        <div className="flex items-center justify-center px-6 py-10 bg-gradient-to-br from-blue-50 via-white to-cyan-50">
           <div className="w-full max-w-md">
 
             <div className="text-center mb-6">
@@ -101,7 +101,7 @@ const LoginPage = () => {
             </div>
 
             {/* UPDATED CONTAINER STYLE */}
-            <Card className="rounded-3xl border border-white/40 bg-white/80 backdrop-blur-lg shadow-[0_20px_60px_rgba(0,0,0,0.12)]">
+            <Card className="glass-container rounded-3xl border-0 shadow-2xl">
               <CardContent className="p-6">
 
                 {loginError && (
@@ -126,8 +126,7 @@ const LoginPage = () => {
                         value={formData.email}
                         onChange={handleChange}
                         placeholder="Enter email"
-                        className={`w-full pl-10 pr-3 py-2.5 bg-white border rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition ${errors.email ? 'border-red-500' : 'border-slate-300'
-                          }`}
+                        className={`input-field pl-10 pr-3 py-3 ${errors.email ? 'border-red-500' : ''}`}
                       />
                     </div>
                     {errors.email && (
@@ -148,8 +147,7 @@ const LoginPage = () => {
                         value={formData.password}
                         onChange={handleChange}
                         placeholder="Enter password"
-                        className={`w-full pl-10 pr-10 py-2.5 bg-white border rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition ${errors.password ? 'border-red-500' : 'border-slate-300'
-                          }`}
+                        className={`input-field pl-10 pr-3 py-3 ${errors.password ? 'border-red-500' : ''}`}
                       />
                       <button
                         type="button"

@@ -180,15 +180,15 @@ const FavoritesPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 flex-1">
+    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex-1">
       <div className="flex flex-col">
         <div className="flex-1">
           <div className="sticky top-0 z-10 bg-white shadow-sm border-b border-gray-200">
-            <div className="px-6 py-4">
+            <div className="mb-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <h1 className="text-2xl font-bold text-gray-900">Favorite Parking Spots</h1>
-                  <p className="text-sm text-gray-600">Quick access to your preferred parking locations</p>
+                  <h1 className="text-2xl font-bold text-gray-900 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">My Favorites</h1>
+                  <p className="text-sm text-gray-600">Your saved parking spots</p>
                 </div>
                 <Link to="/search">
                   <Button>
@@ -202,7 +202,7 @@ const FavoritesPage = () => {
 
           <div className="p-6">
             {/* Search and Controls */}
-            <Card className="mb-6">
+            <Card className="glass-container rounded-xl shadow-lg border-0 mb-6">
               <CardContent>
                 <div className="flex flex-col lg:flex-row gap-4">
                   <div className="flex-1">

@@ -97,7 +97,7 @@ const SignupPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-100 via-white to-slate-200">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-cyan-50 text-gray-900">
       <Navbar />
 
       <div className="min-h-[calc(100vh-70px)] flex items-center justify-center px-4 py-10">
@@ -117,7 +117,7 @@ const SignupPage = () => {
           </div>
 
           {/* CARD */}
-          <Card className="backdrop-blur-xl bg-white/90 border border-white/40 shadow-2xl rounded-3xl">
+          <Card className="glass-container rounded-3xl border-0 shadow-2xl">
             <CardContent className="p-7">
 
               {signupError && (

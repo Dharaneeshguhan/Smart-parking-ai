@@ -164,39 +164,32 @@ const AddNewSlotPage = () => {
   };
 
   return (
-    <div className="w-full">
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50">
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900">Add New Parking Slot</h1>
         <p className="mt-2 text-gray-600">Add a new parking location to your portfolio</p>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-8">
-        {/* Basic Information */}
-        <div className="bg-white rounded-lg shadow p-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-6">Basic Information</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Parking Name *
-              </label>
-              <input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleInputChange}
-                className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent ${errors.name ? 'border-red-300' : 'border-gray-300'
-                  }`}
-                placeholder="Downtown Parking Complex"
-              />
-              {errors.name && (
-                <p className="mt-1 text-sm text-red-600">{errors.name}</p>
-              )}
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Address *
-              </label>
+        <div className="w-full max-w-4xl">
+          <div className="glass-container rounded-2xl shadow-lg p-6">
+            {/* Basic Information */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Parking Name</label>
+                  <input
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    placeholder="Enter parking name"
+                    className="input-field px-4 py-2"
+                    required
+                  />
+                  {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Address *</label>
               <div className="relative">
                 <MapPin className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
                 <input
@@ -212,6 +205,7 @@ const AddNewSlotPage = () => {
               {errors.address && (
                 <p className="mt-1 text-sm text-red-600">{errors.address}</p>
               )}
+            </div>
             </div>
 
             <div className="md:col-span-2">

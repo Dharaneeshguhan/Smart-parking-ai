@@ -203,10 +203,10 @@ const MyBookingsPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 flex-1">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-cyan-50 flex-1">
       <div className="flex flex-col">
         <div className="flex-1">
-          <div className="sticky top-0 z-10 bg-white shadow-sm border-b border-gray-200">
+          <div className="sticky top-0 z-10 glass-container border-0 shadow-lg">
             <div className="px-6 py-4">
               <div className="flex items-center justify-between">
                 <div>
@@ -231,7 +231,7 @@ const MyBookingsPage = () => {
 
           <div className="p-6">
             {/* Search and Filters */}
-            <Card className="mb-6">
+            <Card className="glass-container rounded-xl shadow-lg border-0">
               <CardContent>
                 <div className="flex flex-col lg:flex-row gap-4">
                   <div className="flex-1">
@@ -242,7 +242,7 @@ const MyBookingsPage = () => {
                         placeholder="Search by booking ID, location, or address..."
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
-                        className="input-field pl-10"
+                        className="input-field pl-10 pr-4"
                       />
                     </div>
                   </div>

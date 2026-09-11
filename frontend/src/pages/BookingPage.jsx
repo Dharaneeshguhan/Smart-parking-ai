@@ -6,601 +6,162 @@ import {
   DollarSign,
   MapPin,
   Car,
-  Shield,
-  Zap,
-  CreditCard,
   ArrowLeft,
-  CheckCircle,
-  AlertCircle
+  CheckCircle
 } from 'lucide-react';
-import Card, { CardHeader, CardTitle, CardContent, CardFooter } from '../components/Card';
+
+import Card, { CardHeader, CardTitle, CardContent } from '../components/Card';
 import Button from '../components/Button';
 import { parkingAPI } from '../services/api';
 import useGeolocation from '../hooks/useGeolocation';
-import { Navigation as NavIcon } from 'lucide-react';
 
 const BookingPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [parkingDetails, setParkingDetails] = useState(null);
+  const { location: userLocation } = useGeolocation();
+
+  const [parking, setParking] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [bookingLoading, setBookingLoading] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+
   const [bookingData, setBookingData] = useState({
     date: '',
     startTime: '',
     duration: 1,
-    vehicleNumber: '',
-    paymentMethod: 'card'
+    vehicleNumber: ''
   });
-  const [errors, setErrors] = useState({});
-  const [bookingLoading, setBookingLoading] = useState(false);
-  const [showSuccess, setShowSuccess] = useState(false);
-  const [lastBooking, setLastBooking] = useState(null);
-  const { location: userLocation } = useGeolocation();
-  const [unavailableTimeRanges, setUnavailableTimeRanges] = useState([]);
 
-  // Helper function to format datetime in IST
-  const formatDateTime = (dateString) => {
-    return new Date(dateString).toLocaleString('en-IN', {
-      dateStyle: 'medium',
-      timeStyle: 'short'
-    });
-  };
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
-    fetchParkingDetails();
-
-    const tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    setBookingData(prev => ({
-      ...prev,
-      date: tomorrow.toISOString().split('T')[0]
-    }));
+    fetchParking();
   }, [id]);
 
-  const fetchParkingDetails = async () => {
+  const fetchParking = async () => {
     try {
-      const response = await parkingAPI.getParkingDetails(id);
-      setParkingDetails(response.data);
-      // Fetch unavailable time ranges for this slot
-      await fetchUnavailableTimeRanges(id);
-    } catch (error) {
-      console.error('Error fetching parking details:', error);
+      const res = await parkingAPI.getParkingDetails(id);
+      setParking(res.data);
+    } catch (e) {
+      console.error(e);
     } finally {
       setLoading(false);
     }
   };
 
-  const fetchUnavailableTimeRanges = async (slotId) => {
-    try {
-      const response = await parkingAPI.getUnavailableTimeRanges(slotId);
-      setUnavailableTimeRanges(response.data);
-    } catch (error) {
-      console.error('Error fetching unavailable time ranges:', error);
-    }
-  };
-
-  const isTimeSlotUnavailable = (time) => {
-    if (!unavailableTimeRanges || unavailableTimeRanges.length === 0) return false;
-    
-    const selectedDateTime = new Date(`${bookingData.date}T${time}:00`);
-    
-    return unavailableTimeRanges.some(range => {
-      const bookedStart = new Date(range.startTime);
-      const bookedEnd = new Date(range.endTime);
-      
-      // Check overlap: (bookedStart < selectedEnd) AND (bookedEnd > selectedStart)
-      const selectedEnd = new Date(selectedDateTime.getTime() + 60 * 60 * 1000); // +1 hour
-      return bookedStart < selectedEnd && bookedEnd > selectedDateTime;
-    });
-  };
-
-  const mockParkingDetails = {
-    id: id,
-    name: 'Downtown Plaza Parking',
-    address: '123 Main St, Downtown',
-    image: 'https://images.unsplash.com/photo-1579532586980-284d4fd16b91?w=800',
-    rating: 4.5,
-    totalSpots: 100,
-    availableSpots: 45,
-    pricePerHour: 8,
-    amenities: ['Covered', 'Security', 'EV Charging', 'Disabled Access', '24/7'],
-    operatingHours: '24/7',
-    description: 'Premium parking facility in the heart of downtown with state-of-the-art security and EV charging stations.',
-    rules: [
-      'Valid parking permit must be displayed',
-      'Maximum stay: 24 hours',
-      'No overnight parking without prior arrangement',
-      'Payment required before exit'
-    ],
-    latitude: 10.827247,
-    longitude: 77.059452
-  };
-
-  const parking = (parkingDetails && Object.keys(parkingDetails).length > 0) ? parkingDetails : mockParkingDetails;
-
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setBookingData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-
-    if (errors[name]) {
-      setErrors(prev => ({
-        ...prev,
-        [name]: ''
-      }));
-    }
+    setBookingData(prev => ({ ...prev, [name]: value }));
   };
 
-  const validateForm = () => {
-    const newErrors = {};
+  const validate = () => {
+    const err = {};
 
-    if (!bookingData.date) {
-      newErrors.date = 'Date is required';
-    }
+    if (!bookingData.date) err.date = 'Date required';
+    if (!bookingData.startTime) err.startTime = 'Time required';
+    if (!bookingData.vehicleNumber) err.vehicleNumber = 'Vehicle number required';
 
-    if (!bookingData.startTime) {
-      newErrors.startTime = 'Start time is required';
-    }
-
-    if (!bookingData.vehicleNumber) {
-      newErrors.vehicleNumber = 'Vehicle number is required';
-    } else if (!/^[A-Z0-9]{2,10}$/i.test(bookingData.vehicleNumber.replace(/\s/g, ''))) {
-      newErrors.vehicleNumber = 'Invalid vehicle number format';
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+    setErrors(err);
+    return Object.keys(err).length === 0;
   };
 
-  const calculateTotalPrice = () => {
-    const rate = parking.pricePerHour || parking.price || 0;
-    return rate * bookingData.duration;
+  const totalPrice = () => {
+    return (parking?.pricePerHour || 0) * bookingData.duration;
   };
 
   const handleBooking = async (e) => {
     e.preventDefault();
-
-    if (!validateForm()) return;
+    if (!validate()) return;
 
     setBookingLoading(true);
 
     try {
-      // Create booking times in local timezone (not UTC)
-      const startTimeLocal = `${bookingData.date}T${bookingData.startTime}:00`;
-      const endTimeLocal = new Date(new Date(`${bookingData.date}T${bookingData.startTime}:00`).getTime() + bookingData.duration * 60 * 60 * 1000)
-        .toLocaleTimeString('en-GB', { hour12: false, hour: '2-digit', minute: '2-digit' });
-      
-      const endTimeFull = `${bookingData.date}T${endTimeLocal}:00`;
+      await parkingAPI.bookParking({
+        parkingSlotId: parking.id,
+        startTime: `${bookingData.date}T${bookingData.startTime}:00`,
+        totalAmount: totalPrice()
+      });
 
-      console.log('=== BOOKING TIME DEBUG ===');
-      console.log('Selected date:', bookingData.date);
-      console.log('Selected time:', bookingData.startTime);
-      console.log('Duration:', bookingData.duration, 'hours');
-      console.log('startTimeLocal:', startTimeLocal);
-      console.log('endTimeLocal:', endTimeLocal);
-      console.log('endTimeFull:', endTimeFull);
-
-      const bookingPayload = {
-        parkingSlotId: parseInt(parking.id),
-        startTime: startTimeLocal,
-        endTime: endTimeFull,
-        totalAmount: calculateTotalPrice() + 2 // Including service fee
-      };
-
-      console.log('Booking payload:', bookingPayload);
-
-      const response = await parkingAPI.bookParking(bookingPayload);
-
-      console.log('Backend response:', response.data);
-
-      // Ensure the booking response includes the destination coordinates for the success screen
-      const bookingWithCoords = {
-        ...response.data,
-        latitude: response.data.latitude || parking.latitude,
-        longitude: response.data.longitude || parking.longitude,
-        parkingName: response.data.parkingSlotName || parking.name,
-        // Use the original selected times instead of backend response times
-        startTime: startTimeLocal,
-        endTime: endTimeFull
-      };
-
-      console.log('Final booking with coords:', bookingWithCoords);
-
-      setLastBooking(bookingWithCoords);
       setShowSuccess(true);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-
-      // Trigger real-time update for dashboard
-      window.dispatchEvent(new Event('bookingCompleted'));
-    } catch (error) {
-      console.error('Error creating booking:', error);
-      setErrors({ submit: error.response?.data?.message || 'Booking failed. Please try again.' });
+    } catch (e) {
+      console.error(e);
     } finally {
       setBookingLoading(false);
     }
   };
 
-  const timeSlots = [];
-  for (let hour = 0; hour < 24; hour++) {
-    for (let minute = 0; minute < 60; minute += 30) {
-      const time = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
-      const timeDate = new Date(`${bookingData.date}T${time}:00`);
-
-      // Check if this time slot conflicts with any unavailable ranges
-      const isUnavailable = unavailableTimeRanges.some(range => {
-        const rangeStart = new Date(range.startTime);
-        const rangeEnd = new Date(range.endTime);
-        const slotEnd = new Date(timeDate.getTime() + bookingData.duration * 60 * 60 * 1000);
-
-        // Check for overlap: slot starts before range ends AND slot ends after range starts
-        return timeDate < rangeEnd && slotEnd > rangeStart;
-      });
-
-      timeSlots.push({
-        time,
-        available: !isUnavailable,
-        isBooked: isUnavailable
-      });
-    }
-  }
-
   if (loading) {
-    return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
-      </div>
-    );
+    return <div className="p-10 text-center">Loading...</div>;
   }
 
   if (showSuccess) {
     return (
-      <div className="min-h-screen bg-slate-50">
-        <div className="max-w-2xl mx-auto px-4 py-16 text-center">
-          <div className="bg-white p-8 rounded-[2.5rem] shadow-2xl border border-slate-100">
-            <div className="w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-6">
-              <CheckCircle className="h-10 w-10 text-emerald-600" />
-            </div>
-            <h2 className="text-3xl font-black text-slate-800 mb-2">Booking Confirmed!</h2>
-            <p className="text-slate-500 mb-8 font-medium">Your parking spot at <span className="text-slate-800 font-bold">{parking.name}</span> is secured.</p>
-            
-            {lastBooking && (
-              <div className="mb-6 p-4 bg-slate-50 rounded-xl border border-slate-200">
-                <div className="text-sm text-slate-600 mb-2">Booking Details</div>
-                <div className="flex items-center justify-center gap-4 text-sm">
-                  <div className="flex items-center gap-1">
-                    <Calendar className="h-4 w-4 text-slate-500" />
-                    <span className="font-medium">
-                      {lastBooking.startTime ? formatDateTime(lastBooking.startTime).split(',')[0] : 'No date'}
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <Clock className="h-4 w-4 text-slate-500" />
-                    <span className="font-medium">
-                      {lastBooking.startTime && lastBooking.endTime 
-                        ? `${formatDateTime(lastBooking.startTime).split(',')[1]} - ${formatDateTime(lastBooking.endTime).split(',')[1]}`
-                        : 'No time'
-                      }
-                    </span>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            <div className="flex flex-col gap-4">
-              <Button
-                size="large"
-                className="w-full h-16 rounded-2xl flex items-center justify-center gap-3 bg-slate-900 hover:bg-black shadow-xl"
-                onClick={() => navigate(`/user/navigate/${lastBooking?.parkingSlotId || parking.id}`, {
-                  state: {
-                    startLat: userLocation.lat,
-                    startLng: userLocation.lng,
-                    destLat: lastBooking?.latitude ?? parking.latitude ?? 10.827247,
-                    destLng: lastBooking?.longitude ?? parking.longitude ?? 77.059452,
-                    parkingName: lastBooking?.parkingName ?? parking.name
-                  }
-                })}
-              >
-                <NavIcon className="h-6 w-6" />
-                <span className="text-lg font-black uppercase tracking-widest">Start Navigation</span>
-              </Button>
-
-              <div className="grid grid-cols-2 gap-4">
-                <Button
-                  variant="outline"
-                  className="rounded-2xl flex items-center justify-center gap-2"
-                  onClick={() => navigate('/user/bookings')}
-                >
-                  <Calendar className="h-4 w-4" />
-                  My Bookings
-                </Button>
-                <Button
-                  variant="outline"
-                  className="rounded-2xl"
-                  onClick={() => navigate('/user/dashboard')}
-                >
-                  Dashboard
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div className="text-center p-20">
+        <CheckCircle className="mx-auto mb-4 text-green-500" />
+        <h2 className="text-2xl font-bold">Booking Confirmed</h2>
+        <Button onClick={() => navigate('/user/dashboard')}>
+          Go to Dashboard
+        </Button>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="max-w-5xl mx-auto p-6">
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="mb-6">
-          <button
-            onClick={() => navigate('/search')}
-            className="flex items-center text-gray-600 hover:text-gray-900 mb-4"
-          >
-            <ArrowLeft className="h-4 w-4 mr-2" />
-            Back to Search
-          </button>
-          <h1 className="text-3xl font-bold text-gray-900">Book Parking</h1>
-        </div>
+      <button onClick={() => navigate('/search')} className="mb-4 flex items-center">
+        <ArrowLeft className="mr-2" /> Back
+      </button>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2">
-            <form onSubmit={handleBooking}>
-              <Card className="mb-6">
-                <CardHeader>
-                  <CardTitle>Booking Details</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Date
-                      </label>
-                      <input
-                        type="date"
-                        name="date"
-                        value={bookingData.date}
-                        onChange={handleChange}
-                        min={new Date().toISOString().split('T')[0]}
-                        className={`input-field ${errors.date ? 'border-red-500' : ''}`}
-                      />
-                      {errors.date && (
-                        <p className="mt-1 text-sm text-red-600">{errors.date}</p>
-                      )}
-                    </div>
+      <div className="grid md:grid-cols-2 gap-6">
 
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Start Time
-                      </label>
-                      <select
-                        name="startTime"
-                        value={bookingData.startTime}
-                        onChange={handleChange}
-                        className={`input-field ${errors.startTime ? 'border-red-500' : ''}`}
-                      >
-                        <option value="">Select time</option>
-                        {timeSlots.map(slot => (
-                          <option
-                            key={slot.time}
-                            value={slot.time}
-                            disabled={!slot.available}
-                            className={!slot.available ? 'text-gray-400' : ''}
-                          >
-                            {slot.time} {slot.isBooked ? '(Booked)' : ''}
-                          </option>
-                        ))}
-                      </select>
-                      {errors.startTime && (
-                        <p className="mt-1 text-sm text-red-600">{errors.startTime}</p>
-                      )}
-                    </div>
-                  </div>
+        {/* FORM */}
+        <form onSubmit={handleBooking}>
+          <Card>
+            <CardHeader>
+              <CardTitle>Booking</CardTitle>
+            </CardHeader>
 
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Duration (hours)
-                    </label>
-                    <div className="flex items-center space-x-4">
-                      <input
-                        type="range"
-                        name="duration"
-                        min="1"
-                        max="24"
-                        value={bookingData.duration}
-                        onChange={handleChange}
-                        className="flex-1"
-                      />
-                      <div className="w-16 text-center">
-                        <span className="text-lg font-medium text-gray-900">{bookingData.duration}</span>
-                        <span className="text-sm text-gray-600 block">hours</span>
-                      </div>
-                    </div>
-                  </div>
+            <CardContent className="space-y-4">
 
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Vehicle Number
-                    </label>
-                    <input
-                      type="text"
-                      name="vehicleNumber"
-                      value={bookingData.vehicleNumber}
-                      onChange={handleChange}
-                      placeholder="e.g., ABC 1234"
-                      className={`input-field ${errors.vehicleNumber ? 'border-red-500' : ''}`}
-                    />
-                    {errors.vehicleNumber && (
-                      <p className="mt-1 text-sm text-red-600">{errors.vehicleNumber}</p>
-                    )}
-                  </div>
-                </CardContent>
-              </Card>
+              <input type="date" name="date" onChange={handleChange} />
+              {errors.date && <p className="text-red-500">{errors.date}</p>}
 
-              <Card className="mb-6">
-                <CardHeader>
-                  <CardTitle>Payment Method</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-3">
-                    <label className="flex items-center p-3 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50">
-                      <input
-                        type="radio"
-                        name="paymentMethod"
-                        value="card"
-                        checked={bookingData.paymentMethod === 'card'}
-                        onChange={handleChange}
-                        className="h-4 w-4 text-primary-600"
-                      />
-                      <CreditCard className="h-5 w-5 ml-3 mr-2 text-gray-600" />
-                      <div>
-                        <div className="font-medium text-gray-900">Credit/Debit Card</div>
-                        <div className="text-sm text-gray-600">Pay with your card</div>
-                      </div>
-                    </label>
+              <input type="time" name="startTime" onChange={handleChange} />
+              {errors.startTime && <p className="text-red-500">{errors.startTime}</p>}
 
-                    <label className="flex items-center p-3 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50">
-                      <input
-                        type="radio"
-                        name="paymentMethod"
-                        value="wallet"
-                        checked={bookingData.paymentMethod === 'wallet'}
-                        onChange={handleChange}
-                        className="h-4 w-4 text-primary-600"
-                      />
-                      <DollarSign className="h-5 w-5 ml-3 mr-2 text-gray-600" />
-                      <div>
-                        <div className="font-medium text-gray-900">Wallet Balance</div>
-                        <div className="text-sm text-gray-600">Use your wallet balance</div>
-                      </div>
-                    </label>
-                  </div>
-                </CardContent>
-              </Card>
+              <input
+                type="text"
+                name="vehicleNumber"
+                placeholder="Vehicle Number"
+                onChange={handleChange}
+              />
+              {errors.vehicleNumber && <p className="text-red-500">{errors.vehicleNumber}</p>}
 
-              {errors.submit && (
-                <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-md flex items-center">
-                  <AlertCircle className="h-5 w-5 text-red-500 mr-2" />
-                  <span className="text-sm text-red-700">{errors.submit}</span>
-                </div>
-              )}
-
-              <Button
-                type="submit"
-                className="w-full"
-                loading={bookingLoading}
-                disabled={bookingLoading}
-              >
-                {bookingLoading ? 'Processing...' : 'Confirm Booking'}
+              <Button loading={bookingLoading}>
+                Confirm Booking
               </Button>
-            </form>
-          </div>
 
-          <div className="lg:col-span-1">
-            <Card className="sticky top-6">
-              <CardHeader>
-                <CardTitle>Parking Details</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="mb-4">
-                  <img
-                    src={parking.image || 'https://images.unsplash.com/photo-1579532586980-284d4fd16b91?w=800'}
-                    alt={parking.name}
-                    className="w-full h-48 object-cover rounded-lg"
-                  />
-                </div>
+            </CardContent>
+          </Card>
+        </form>
 
-                <div className="flex items-center justify-between mb-2">
-                  <h3 className="text-lg font-semibold text-gray-900">{parking.name}</h3>
-                  <button
-                    type="button"
-                    title="Preview Route"
-                    onClick={() => navigate(`/user/navigate/${parking.id}`, {
-                      state: {
-                        startLat: userLocation.lat,
-                        startLng: userLocation.lng,
-                        destLat: parkingDetails?.latitude ?? parking.latitude ?? 10.827247,
-                        destLng: parkingDetails?.longitude ?? parking.longitude ?? 77.059452,
-                        parkingName: parkingDetails?.name ?? parking.name
-                      }
-                    })}
-                    className="p-2 bg-primary-50 rounded-xl hover:bg-primary-100 text-primary-600 transition-all shadow-sm flex items-center gap-1 group"
-                  >
-                    <NavIcon className="h-4 w-4" />
-                    <span className="text-[10px] font-black uppercase tracking-widest hidden group-hover:block px-1">Route</span>
-                  </button>
-                </div>
+        {/* DETAILS */}
+        <Card>
+          <CardHeader>
+            <CardTitle>{parking.name}</CardTitle>
+          </CardHeader>
 
-                <div className="space-y-2 mb-4">
-                  <div className="flex items-center text-sm text-gray-600">
-                    <MapPin className="h-4 w-4 mr-2" />
-                    {parking.address}
-                  </div>
-                  <div className="flex items-center text-sm text-gray-600">
-                    <Clock className="h-4 w-4 mr-2" />
-                    {parking.operatingHours || '24/7'}
-                  </div>
-                  <div className="flex items-center text-sm text-gray-600">
-                    <Car className="h-4 w-4 mr-2" />
-                    {parking.availableSpots} of {parking.totalSpots} spots available
-                  </div>
-                </div>
+          <CardContent>
+            <p>{parking.address}</p>
 
-                <div className="border-t border-gray-200 pt-4 mb-4">
-                  <h4 className="font-medium text-gray-900 mb-2">Amenities</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {(parking.amenities || ['Security', '24/7 Access']).map((amenity, index) => (
-                      <span
-                        key={index}
-                        className="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-gray-100 text-gray-700"
-                      >
-                        {amenity}
-                      </span>
-                    ))}
-                  </div>
-                </div>
+            <div className="mt-4">
+              <p>₹{parking.pricePerHour}/hour</p>
+              <p>Total: ₹{totalPrice()}</p>
+            </div>
+          </CardContent>
+        </Card>
 
-                <div className="border-t border-gray-200 pt-4">
-                  <h4 className="font-medium text-gray-900 mb-3">Price Summary</h4>
-                  <div className="space-y-2">
-                    <div className="flex justify-between text-sm">
-                      <span className="text-gray-600">Base Price</span>
-                      <span className="font-medium">₹{parking.pricePerHour || parking.price}/hour</span>
-                    </div>
-                    <div className="flex justify-between text-sm">
-                      <span className="text-gray-600">Duration</span>
-                      <span className="font-medium">{bookingData.duration} hours</span>
-                    </div>
-                    <div className="flex justify-between text-sm">
-                      <span className="text-gray-600">Service Fee</span>
-                      <span className="font-medium">₹2.00</span>
-                    </div>
-                    <div className="border-t border-gray-200 pt-2">
-                      <div className="flex justify-between">
-                        <span className="font-medium text-gray-900">Total</span>
-                        <span className="text-lg font-bold text-gray-900">
-                          ₹{(calculateTotalPrice() + 2).toFixed(2)}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="mt-4 p-3 bg-green-50 border border-green-200 rounded-md">
-                  <div className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 mr-2 flex-shrink-0" />
-                    <div className="text-sm text-green-800">
-                      <p className="font-medium mb-1">Free Cancellation</p>
-                      <p>Cancel up to 1 hour before start time for a full refund</p>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
       </div>
     </div>
   );
